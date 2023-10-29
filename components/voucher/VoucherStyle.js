@@ -1,0 +1,41 @@
+import { StyleSheet } from "react-native";
+
+export const VoucherStyle = StyleSheet.create({
+  voucherContainer: {
+    height: 80,
+    shadowColor: "rgba(0,0,0,0.4)",
+    elevation: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    paddingHorizontal: 10,
+    marginTop: 10,
+    borderRadius: 10,
+  },
+  voucherImgCon: {
+    width: 60,
+    height: 60,
+    shadowColor: "rgba(0,0,0,0.4)",
+    elevation: 14,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 15,
+    borderRadius: 8,
+  },
+  textContainer: {
+    flex: 2,
+  },
+  discountText: {
+    fontSize: 16,
+    fontWeight: "600",
+    marginBottom: 5,
+  },
+  exDate: {
+    fontSize: 12,
+    color: "rgba(0,0,0,0.4)",
+  },
+  buttonContainer: {
+    flex: 1.5,
+  },
+});
