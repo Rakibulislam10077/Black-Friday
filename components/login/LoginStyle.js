@@ -102,7 +102,6 @@ export const LoginStyle = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: "700",
-    marginLeft: 10,
   },
   countryBoxtInModal: {
     paddingTop: 20,

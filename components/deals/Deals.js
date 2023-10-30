@@ -2,10 +2,12 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DealsStyle } from "./DealsStyle";
+import { Divider } from "react-native-paper";
+import { DescIcon } from "../../constants/AllSvg";
 
 const Deals = () => {
   return (
-    <View>
+    <View style={DealsStyle.mainContainer}>
       <View style={DealsStyle.dealsCartContainer}>
         <TouchableOpacity style={DealsStyle.itemImgCon}>
           <Image
@@ -39,6 +41,19 @@ const Deals = () => {
               />
             </View>
           </View>
+        </View>
+      </View>
+      <Divider style={DealsStyle.divider} />
+      <View style={DealsStyle.descContainer}>
+        <View style={DealsStyle.descIcon}>
+          <DescIcon />
+        </View>
+        <View style={DealsStyle.descCon}>
+          <Text style={DealsStyle.desc}>
+            dlkfjsd;jfputperoudsmknvk;ldfklasdfj klasdfkjsdfkj lkasdfld asdf
+            asldkfal;skdf;lkasdfj
+            asdlkfjla;skdjf;laksdjf;lkasdjf;lkasjdfl;aksdjf
+          </Text>
         </View>
       </View>
     </View>

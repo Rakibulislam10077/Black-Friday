@@ -17,6 +17,7 @@ import Chiep from "../../components/chiep/Chiep";
 import Deals from "../../components/deals/Deals";
 import Carousel from "../../components/carousel/Carousel";
 import Voucher from "../../components/voucher/Voucher";
+import Category from "../../components/categry/Category";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -43,38 +44,7 @@ const Home = () => {
       <Divider style={HomeStyle.Divider} />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* ==========category start here=========*/}
-        <View style={HomeStyle.categoryItemContainer}>
-          <View style={HomeStyle.categoryItemSubcontainer}>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Login")}
-                style={[HomeStyle.categoryItem, { marginLeft: 20 }]}
-              >
-                <Tranding />
-                <Text style={HomeStyle.categoryItemText}>Trending</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={HomeStyle.categoryItem}>
-                <Newest />
-                <Text style={HomeStyle.categoryItemText}>Newest</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={HomeStyle.categoryItem}>
-                <Fashion />
-                <Text style={HomeStyle.categoryItemText}>Fashion</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={HomeStyle.categoryItem}>
-                <Electronics />
-                <Text style={HomeStyle.categoryItemText}>Electronics</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={HomeStyle.categoryItem}>
-                <Electronics />
-                <Text style={HomeStyle.categoryItemText}>Electronics</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </View>
-        </View>
+        <Category />
         {/* ==========category end here=========*/}
         {/* =============chip item start here============== */}
         <Chiep />

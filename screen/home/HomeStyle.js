@@ -32,24 +32,7 @@ export const HomeStyle = StyleSheet.create({
     height: 1,
     opacity: 0.3,
   },
-  categoryItemContainer: {
-    height: hp(6.5),
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  categoryItemSubcontainer: {
-    height: hp(3.5),
-  },
-  categoryItem: {
-    flexDirection: "row",
-    marginRight: 20,
-  },
-  categoryItemText: {
-    fontSize: 14,
-    color: "#000",
-    marginLeft: 10,
-  },
+
   dealSectionContainer: {
     backgroundColor: "#fff",
     paddingTop: 20,

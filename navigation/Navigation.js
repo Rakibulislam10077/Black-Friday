@@ -22,6 +22,8 @@ import Deals from "../components/deals/Deals";
 import ProductDetails from "../components/productDetails/ProductDetails";
 import Login from "../components/login/Login";
 import SignUp from "../components/signup/SignUp";
+import CompainViewPage from "../components/compainViewPage/CompainViewPage";
+import Onboard from "../screen/onboarding/Onboarding";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,7 +47,11 @@ const TabScreen = () => {
           name="Home"
           component={Home}
         />
-        <Tab.Screen name="Stores" component={Store} />
+        <Tab.Screen
+          options={{ headerShown: false }}
+          name="Stores"
+          component={Store}
+        />
         {/* <Tab.Screen name="Whatsapp" component={""} /> */}
         <Tab.Screen
           name="whatsapp"
@@ -152,6 +158,16 @@ const StactNavigation = () => {
         options={{ headerShown: false }}
         name="SignUp"
         component={SignUp}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="CompainViewPage"
+        component={CompainViewPage}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Onboarding"
+        component={Onboard}
       />
     </Stack.Navigator>
   );

@@ -4,12 +4,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import StactNavigation from "../navigation/Navigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Index = () => {
   return (
-    <NavigationContainer>
-      <StactNavigation />
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <StactNavigation />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 };
 export default Index;

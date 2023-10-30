@@ -4,15 +4,18 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 export const DealsStyle = StyleSheet.create({
-  dealsCartContainer: {
+  mainContainer: {
     backgroundColor: "#fff",
-    width: " 90%",
     alignSelf: "center",
-    padding: 10,
+    width: " 90%",
     borderRadius: 10,
-    marginTop: 15,
     shadowColor: "rgba(0,0,0,0.3)",
     elevation: 15,
+    padding: 10,
+  },
+  dealsCartContainer: {
+    backgroundColor: "#fff",
+    marginTop: 15,
     flexDirection: "row",
   },
   itemImgCon: {
@@ -50,6 +53,7 @@ export const DealsStyle = StyleSheet.create({
     fontSize: 12,
     color: "rgba(255, 0, 0, 0.40)",
     marginRight: 10,
+    textDecorationLine: "line-through",
   },
   verticalDivider: {
     color: "rgba(0,0,0,0.1)",
@@ -82,5 +86,28 @@ export const DealsStyle = StyleSheet.create({
   },
   storeLogo: {
     marginTop: 5,
+  },
+  divider: {
+    height: 1,
+    opacity: 0.3,
+    width: "90%",
+    alignSelf: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  descContainer: {
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+  },
+  descIcon: {
+    marginHorizontal: 10,
+  },
+  descCon: {
+    paddingRight: 10,
+  },
+  desc: {
+    fontSize: 12,
+    color: "rgba(0,0,0,0.7)",
   },
 });
