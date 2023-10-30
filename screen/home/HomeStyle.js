@@ -5,8 +5,8 @@ import {
 } from "react-native-responsive-screen";
 
 export const HomeStyle = StyleSheet.create({
-  headercontainer: {
-    height: 80,
+  headerContainer: {
+    height: 70,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
@@ -55,7 +55,6 @@ export const HomeStyle = StyleSheet.create({
   },
   topStoreContainer: {
     backgroundColor: "#fff",
-    paddingHorizontal: 20,
     paddingTop: 20,
     marginTop: 20,
     paddingBottom: 20,
@@ -65,6 +64,7 @@ export const HomeStyle = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
     alignItems: "center",
+    paddingHorizontal: 20,
   },
   topStorTitle: {
     fontSize: 18,
@@ -78,6 +78,7 @@ export const HomeStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(0,0,0,0.4)",
     marginBottom: 10,
+    marginLeft: 20,
   },
   topStoreImg: {
     marginTop: 18,

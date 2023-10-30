@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { StatusBar } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -11,6 +11,7 @@ const Index = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
         <StactNavigation />
+        <StatusBar animated={true} backgroundColor="#000" barStyle="#fff" />
       </NavigationContainer>
     </GestureHandlerRootView>
   );

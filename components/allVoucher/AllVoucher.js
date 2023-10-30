@@ -1,35 +1,35 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
-import StoreDetails from "../../components/storeDetails/StoreDetails";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackArrow2, Magnify } from "../../constants/AllSvg";
-import { CouponStyle } from "./CouponStyle";
+import { AllVoucherStyle } from "./AllVoucherStyle";
 import { useNavigation } from "@react-navigation/native";
+import Voucher from "../voucher/Voucher";
 
-const Coupon = () => {
+const AllVoucher = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* header box */}
-      <View style={CouponStyle.headerContainer}>
-        <View style={CouponStyle.backArrowAndTitle}>
+      <View style={AllVoucherStyle.headerContainer}>
+        <View style={AllVoucherStyle.backArrowAndTitle}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <BackArrow2 />
           </TouchableOpacity>
-          <Text style={CouponStyle.title}>Offers</Text>
+          <Text style={AllVoucherStyle.title}>All voucher</Text>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("Search")}>
           <Magnify />
         </TouchableOpacity>
       </View>
-      <View style={CouponStyle.itemBox}>
-        <Text style={CouponStyle.allCouponText}>All Coupon code</Text>
+      <View style={AllVoucherStyle.itemContainer}>
         <ScrollView>
-          <StoreDetails />
+          <View>
+            <Voucher />
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
 
-export default Coupon;
+export default AllVoucher;

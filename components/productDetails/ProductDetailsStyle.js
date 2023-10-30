@@ -22,7 +22,7 @@ export const ProductDStyle = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    marginTop: hp(5),
+    marginTop: 30,
     paddingHorizontal: 20,
   },
   backText: {

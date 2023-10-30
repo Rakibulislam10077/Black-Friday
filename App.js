@@ -6,7 +6,6 @@ export default function App() {
   return (
     <View style={{ flex: 1 }}>
       <Index />
-      <StatusBar animated={true} backgroundColor="#000" barStyle="#fff" />
     </View>
   );
 }

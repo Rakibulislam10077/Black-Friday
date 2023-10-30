@@ -12,10 +12,10 @@ export const DealsStyle = StyleSheet.create({
     shadowColor: "rgba(0,0,0,0.3)",
     elevation: 15,
     padding: 10,
+    marginVertical: 10,
   },
   dealsCartContainer: {
     backgroundColor: "#fff",
-    marginTop: 15,
     flexDirection: "row",
   },
   itemImgCon: {

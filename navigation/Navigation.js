@@ -24,6 +24,9 @@ import Login from "../components/login/Login";
 import SignUp from "../components/signup/SignUp";
 import CompainViewPage from "../components/compainViewPage/CompainViewPage";
 import Onboard from "../screen/onboarding/Onboarding";
+import ViewPage from "../components/viewPage/ViewPage";
+import AllVoucher from "../components/allVoucher/AllVoucher";
+import AllProduct from "../components/allProduct/AllProduct";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -49,7 +52,7 @@ const TabScreen = () => {
         />
         <Tab.Screen
           options={{ headerShown: false }}
-          name="Stores"
+          name="Store"
           component={Store}
         />
         {/* <Tab.Screen name="Whatsapp" component={""} /> */}
@@ -114,14 +117,18 @@ const TabScreen = () => {
             headerShown: false,
           }}
         />
-        <Tab.Screen name="Coupon" component={Coupon} />
+        <Tab.Screen
+          options={{ headerShown: false }}
+          name="Coupon"
+          component={Coupon}
+        />
         <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
     </GestureHandlerRootView>
   );
 };
 
-const StactNavigation = () => {
+const StackNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
@@ -169,7 +176,22 @@ const StactNavigation = () => {
         name="Onboarding"
         component={Onboard}
       />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ViewPage"
+        component={ViewPage}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="AllVoucher"
+        component={AllVoucher}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="AllProduct"
+        component={AllProduct}
+      />
     </Stack.Navigator>
   );
 };
-export default StactNavigation;
+export default StackNavigation;

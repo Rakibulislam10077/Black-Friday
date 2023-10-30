@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -16,7 +16,7 @@ import Deals from "../deals/Deals";
 const CompainViewPage = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       {/* header */}
       <View style={CompainVStyle.header}>
         <View style={CompainVStyle.backArrowAndTitleCon}>
@@ -48,8 +48,12 @@ const CompainViewPage = () => {
         <Category />
       </View>
       {/* category item end */}
-      <View>
-        <Deals />
+      <View style={{ flex: 1 }}>
+        <View>
+          <ScrollView>
+            <Deals />
+          </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );

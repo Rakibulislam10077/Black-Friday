@@ -2,15 +2,17 @@ import { StyleSheet } from "react-native";
 
 export const VoucherStyle = StyleSheet.create({
   voucherContainer: {
-    height: 80,
+    height: 90,
     shadowColor: "rgba(0,0,0,0.4)",
     elevation: 14,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     paddingHorizontal: 10,
-    marginTop: 10,
+    marginVertical: 10,
     borderRadius: 10,
+    width: "90%",
+    alignSelf: "center",
   },
   voucherImgCon: {
     width: 60,

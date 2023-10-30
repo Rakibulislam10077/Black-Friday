@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { VoucherStyle } from "./VoucherStyle";
-import DealButton from "../dealButton/DealButton";
+import DealButton from "../../Shared/dealButton/DealButton";
 
 const Voucher = () => {
   return (

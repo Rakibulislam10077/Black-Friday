@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* =========header start here=========== */}
-      <View style={HomeStyle.headercontainer}>
+      <View style={HomeStyle.headerContainer}>
         <View>
           <Image source={require("../../assets/image/logo.png")} />
         </View>
@@ -61,7 +61,7 @@ const Home = () => {
                 Top used product deals
               </Text>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("Deals")}>
+            <TouchableOpacity onPress={() => navigation.navigate("AllProduct")}>
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
@@ -77,7 +77,7 @@ const Home = () => {
         <View style={HomeStyle.topStoreContainer}>
           <View style={HomeStyle.topStoreHeader}>
             <Text style={HomeStyle.topStorTitle}>Top store</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Store")}>
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
@@ -101,7 +101,7 @@ const Home = () => {
         <View style={HomeStyle.bestCouponContainer}>
           <View style={HomeStyle.bestCouponHeader}>
             <Text style={HomeStyle.bestCouponTitle}>Best Coupons</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Coupon")}>
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
@@ -125,8 +125,8 @@ const Home = () => {
         {/* ================popular Voucher section start here================ */}
         <View style={HomeStyle.topStoreContainer}>
           <View style={HomeStyle.topStoreHeader}>
-            <Text style={HomeStyle.topStorTitle}>Top store</Text>
-            <TouchableOpacity>
+            <Text style={HomeStyle.topStorTitle}>Most popular Voucher</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("AllVoucher")}>
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>

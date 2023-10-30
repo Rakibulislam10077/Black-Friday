@@ -5,6 +5,7 @@ import { BackArrow2, Magnify } from "../../constants/AllSvg";
 import { StoreStyle } from "./StoreStyle";
 import { useNavigation } from "@react-navigation/native";
 import HorizontalStore from "../../components/horizontalStore/HorizontalStore";
+import AllStore from "../../components/allStore/AllStore";
 
 const Store = () => {
   const navigation = useNavigation();
@@ -26,17 +27,19 @@ const Store = () => {
       <ScrollView>
         <View style={StoreStyle.horizontalStoreItemCon}>
           <Text style={StoreStyle.StoreTitle}>Top Store</Text>
-          <View style={StoreStyle.storeItemContainer}>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <View style={StoreStyle.storeItemContainer}>
               <HorizontalStore />
-            </ScrollView>
-          </View>
+            </View>
+          </ScrollView>
         </View>
         {/* ======================= */}
-        <View></View>
+        <View style={StoreStyle.allStoreContainer}>
+          <Text>All Store</Text>
+          <View style={StoreStyle.storeContainer}>
+            <AllStore />
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
