@@ -32,12 +32,6 @@ const Home = () => {
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <Magnify />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Notification")}
-            style={HomeStyle.notificationBell}
-          >
-            <NotificationBell />
-          </TouchableOpacity>
         </View>
       </View>
       {/* =========header end here=========== */}
@@ -83,7 +77,7 @@ const Home = () => {
           </View>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
             <TouchableOpacity
-              onPress={() => navigation.navigate("ProductDetails")}
+              onPress={() => navigation.navigate("ViewPage")}
               style={HomeStyle.topStoreItem}
             >
               <Image
@@ -107,8 +101,15 @@ const Home = () => {
           </View>
           {/* ============================ */}
           <View style={HomeStyle.bestCouponCartCon}>
-            <TouchableOpacity style={HomeStyle.bestCouponCart}>
-              <TouchableOpacity style={HomeStyle.couponLogoAndTextCon}>
+            <TouchableOpacity
+              activeOpacity={0.3}
+              style={HomeStyle.bestCouponCart}
+            >
+              <TouchableOpacity
+                activeOpacity={0.3}
+                onPress={() => navigation.navigate("ViewPage")}
+                style={HomeStyle.couponLogoAndTextCon}
+              >
                 <Image
                   style={HomeStyle.couponLogo}
                   source={require("../../assets/image/logo.png")}
@@ -130,6 +131,7 @@ const Home = () => {
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
+          {/* ============================ */}
           <Voucher />
         </View>
         {/* ================popular Voucher section start here================ */}

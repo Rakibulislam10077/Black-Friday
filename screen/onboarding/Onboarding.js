@@ -389,8 +389,8 @@ const Onboard = () => {
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => {
-            navigation.navigate("Home");
             setModalVisible(false);
+            navigation.navigate("Home");
           }}
           style={LoginStyle.saveAndContinueBtn}
         >

@@ -113,7 +113,7 @@ export const ProductDStyle = StyleSheet.create({
     width: hp(4),
     height: hp(4),
     borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.4)",
+    borderColor: "rgba(0,0,0,0.1)",
     alignItems: "center",
     justifyContent: "center",
     padding: 3,
@@ -148,6 +148,7 @@ export const ProductDStyle = StyleSheet.create({
     // bottom: 10,
     alignSelf: "center",
     marginBottom: 20,
+    marginTop: 10,
   },
   climText: {
     fontSize: 18,

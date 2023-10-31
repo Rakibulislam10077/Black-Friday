@@ -2,8 +2,10 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { VoucherStyle } from "./VoucherStyle";
 import DealButton from "../../Shared/dealButton/DealButton";
+import { useNavigation } from "@react-navigation/native";
 
 const Voucher = () => {
+  const navigation = useNavigation();
   return (
     <>
       <View style={VoucherStyle.voucherContainer}>
