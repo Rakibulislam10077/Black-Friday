@@ -31,7 +31,8 @@ import {
   SmallStart,
   Star,
 } from "../../constants/AllSvg";
-const ViewStore = () => {
+const ViewStore = (props) => {
+  const store = props?.route?.params;
   // data from coupon file in screen folder
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
@@ -66,11 +67,11 @@ const ViewStore = () => {
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
-              source={{}}
+              source={{ uri: store?.storePhotoURL }}
             />
           </TouchableOpacity>
           <View style={ViewPageStyle.SN_And_Rn_Con}>
-            <Text style={ViewPageStyle.storeBrandName}>Noon</Text>
+            <Text style={ViewPageStyle.storeBrandName}>{store?.storeName}</Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
               {/* ============================= */}
               <SmallStart />
@@ -239,9 +240,9 @@ const ViewStore = () => {
           <Image
             style={ViewPageStyle.bttmBtnImg}
             resizeMode="contain"
-            source={{}}
+            source={{ uri: store?.storePhotoURL }}
           />
-          <Text style={ViewPageStyle.bttmBtnText}>Noon</Text>
+          <Text style={ViewPageStyle.bttmBtnText}>{store?.storeName}</Text>
         </View>
         <TouchableOpacity
           onPress={() => Linking.openURL("http:www.google.com")}

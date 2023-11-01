@@ -37,17 +37,33 @@ export const StoreStyle = StyleSheet.create({
   storeItemContainer: {
     backgroundColor: "#fff",
     height: 130,
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   allStoreContainer: {
     marginTop: 10,
     backgroundColor: "#fff",
     paddingTop: 20,
     paddingHorizontal: 20,
+    flex: 1,
   },
   storeContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  LoadingSpinner: {
+    height: 100,
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  ErrorComponent: {
+    height: 100,
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
 });

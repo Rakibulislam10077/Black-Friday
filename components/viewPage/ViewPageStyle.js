@@ -78,6 +78,7 @@ export const ViewPageStyle = StyleSheet.create({
   },
   bttmBtnText: {
     fontSize: 16,
+    color: "#000",
   },
   visitBtn: {
     backgroundColor: "#D65A00",

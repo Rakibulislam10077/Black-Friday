@@ -28,6 +28,7 @@ export const AllStoreStyle = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 10,
     alignSelf: "center",
+    textAlign: "center",
   },
   divider: {
     height: 1,
@@ -40,5 +41,10 @@ export const AllStoreStyle = StyleSheet.create({
     fontSize: 14,
     color: "rgba(0,0,0,0.5)",
     alignSelf: "center",
+  },
+  offerNumber: {
+    fontSize: 14,
+    color: "rgba(0,0,0,0.5)",
+    fontWeight: "600",
   },
 });

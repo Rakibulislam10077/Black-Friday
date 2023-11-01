@@ -6,9 +6,14 @@ import { StoreStyle } from "./StoreStyle";
 import { useNavigation } from "@react-navigation/native";
 import HorizontalStore from "../../components/horizontalStore/HorizontalStore";
 import AllStore from "../../components/allStore/AllStore";
+import { useAllStore } from "../../hooks/AllHooks";
+import LoadingSpinner from "../../utils/LoadingSpinner";
+import ErrorComponent from "../../utils/ErrorComponent";
 
 const Store = () => {
   const navigation = useNavigation();
+  const { allStore, storeError, storeDataIsLoading } = useAllStore();
+  console.log(allStore?.map((data) => data?.storePhotoURL));
   return (
     <SafeAreaView>
       {/* store header */}
@@ -27,17 +32,36 @@ const Store = () => {
       <ScrollView>
         <View style={StoreStyle.horizontalStoreItemCon}>
           <Text style={StoreStyle.StoreTitle}>Top Store</Text>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={StoreStyle.storeItemContainer}>
-              <HorizontalStore />
+          {storeDataIsLoading ? (
+            <View style={StoreStyle.LoadingSpinner}>
+              <LoadingSpinner />
             </View>
-          </ScrollView>
+          ) : storeError ? (
+            <View style={StoreStyle.ErrorComponent}>
+              <ErrorComponent />
+            </View>
+          ) : (
+            <View style={StoreStyle.storeItemContainer}>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
+                {allStore?.map((topStore) => {
+                  return (
+                    <HorizontalStore key={topStore?._id} store={topStore} />
+                  );
+                })}
+              </ScrollView>
+            </View>
+          )}
         </View>
         {/* ======================= */}
         <View style={StoreStyle.allStoreContainer}>
           <Text>All Store</Text>
           <View style={StoreStyle.storeContainer}>
-            <AllStore />
+            {allStore?.map((store) => {
+              return <AllStore store={store} />;
+            })}
           </View>
         </View>
       </ScrollView>
