@@ -1,10 +1,18 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { HorizontalSStyle } from "./HorizontalSStyle";
+import { useNavigation } from "@react-navigation/native";
 
 const HorizontalStore = ({ store }) => {
+  const navigation = useNavigation();
   return (
-    <View style={HorizontalSStyle.storeContainer}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => {
+        navigation.navigate("ViewPage", { ...store });
+      }}
+      style={HorizontalSStyle.storeContainer}
+    >
       <View style={HorizontalSStyle.storeSubContainer}>
         <View style={HorizontalSStyle.imgContainer}>
           <Image
@@ -17,7 +25,7 @@ const HorizontalStore = ({ store }) => {
           {store?.storeName}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

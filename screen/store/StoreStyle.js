@@ -47,14 +47,21 @@ export const StoreStyle = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
     flex: 1,
+    paddingBottom: 100,
+  },
+  allStoreText: {
+    fontSize: 16,
+    color: "rgba(0,0,0,0.5)",
+    marginBottom: 10,
   },
   storeContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    flexWrap: "wrap",
   },
   LoadingSpinner: {
     height: 100,
-    backgroundColor: "red",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",

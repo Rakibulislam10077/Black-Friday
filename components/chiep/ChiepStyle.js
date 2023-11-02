@@ -8,6 +8,7 @@ export const ChiepStyle = StyleSheet.create({
     height: hp(10),
     alignItems: "center",
     justifyContent: "center",
+    paddingLeft: 15,
   },
   chiepSubContainer: {
     height: hp(8),

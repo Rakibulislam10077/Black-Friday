@@ -2,14 +2,14 @@ import { StyleSheet } from "react-native";
 
 export const AllStoreStyle = StyleSheet.create({
   storeContainer: {
-    width: "48%",
+    width: "48.5%",
     height: 180,
     backgroundColor: "#fff",
     borderRadius: 12,
     shadowColor: "rgba(0,0,0,0.4)",
     elevation: 14,
     padding: 15,
-    marginTop: 20,
+    marginTop: 10,
   },
   imgContainer: {
     width: "90%",

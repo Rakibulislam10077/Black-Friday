@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 const Voucher = () => {
   const navigation = useNavigation();
   return (
-    <>
+    <View>
       <View style={VoucherStyle.voucherContainer}>
         <View style={VoucherStyle.voucherImgCon}>
           <Image source={require("../../assets/image/noon.png")} />
@@ -36,7 +36,7 @@ const Voucher = () => {
           <DealButton />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 

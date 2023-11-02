@@ -7,7 +7,8 @@ import {
 
 export const CategoryStyle = StyleSheet.create({
   categoryItemContainer: {
-    height: hp(6.5),
+    height: 60,
+    paddingTop: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
@@ -17,7 +18,6 @@ export const CategoryStyle = StyleSheet.create({
   },
   categoryItem: {
     flexDirection: "row",
-    marginRight: 20,
   },
   categoryItemText: {
     fontSize: 14,

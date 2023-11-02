@@ -12,9 +12,14 @@ import { useNavigation } from "@react-navigation/native";
 import Chiep from "../chiep/Chiep";
 import Category from "../categry/Category";
 import Deals from "../deals/Deals";
+import { useCampaign } from "../../hooks/AllHooks";
 
-const CompainViewPage = () => {
+const CampaignViewPage = (props) => {
+  const cam = props?.route?.params;
   const navigation = useNavigation();
+  const { campaign } = useCampaign();
+  console.log(cam);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* header */}
@@ -39,7 +44,11 @@ const CompainViewPage = () => {
       {/* ======================== */}
       {/* chiep item */}
       <View style={CompainVStyle.chiepContainer}>
-        <Chiep />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {campaign?.map((cam) => {
+            return <Chiep cam={cam} />;
+          })}
+        </ScrollView>
       </View>
       {/* chiep item end */}
       {/* ======================== */}
@@ -59,4 +68,4 @@ const CompainViewPage = () => {
   );
 };
 
-export default CompainViewPage;
+export default CampaignViewPage;

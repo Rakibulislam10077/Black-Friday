@@ -71,7 +71,7 @@ export const ViewPageStyle = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  bttmBtnImg: {
+  btmBtnImg: {
     width: 40,
     height: 40,
     marginRight: 15,

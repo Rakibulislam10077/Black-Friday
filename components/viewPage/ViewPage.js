@@ -37,6 +37,7 @@ const ViewStore = (props) => {
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
 
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
@@ -71,7 +72,9 @@ const ViewStore = (props) => {
             />
           </TouchableOpacity>
           <View style={ViewPageStyle.SN_And_Rn_Con}>
-            <Text style={ViewPageStyle.storeBrandName}>{store?.storeName}</Text>
+            <Text style={ViewPageStyle.storeBrandName}>
+              {store?.storeName || store?.store?.storeName}
+            </Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
               {/* ============================= */}
               <SmallStart />
@@ -131,7 +134,7 @@ const ViewStore = (props) => {
             paddingHorizontal: 30,
           }}
         >
-          lkdsflkasdjflkjsdafkljasdfkja;lskdjf;lkadsjf
+          {store?.storeDescription}
         </Text>
       </View>
       <View style={ViewPageStyle.TabNavigateContainer}>
@@ -228,7 +231,7 @@ const ViewStore = (props) => {
       {selected == 0 ? (
         <Deals />
       ) : selected == 1 ? (
-        <CouponItem />
+        <CouponItem store={store} />
       ) : selected == 2 ? (
         <Voucher />
       ) : (
@@ -238,7 +241,7 @@ const ViewStore = (props) => {
       <View style={ViewPageStyle.bottomBtnForVisit}>
         <View style={ViewPageStyle.imgAndTextCon}>
           <Image
-            style={ViewPageStyle.bttmBtnImg}
+            style={ViewPageStyle.btmBtnImg}
             resizeMode="contain"
             source={{ uri: store?.storePhotoURL }}
           />

@@ -72,13 +72,21 @@ export const HomeStyle = StyleSheet.create({
   },
   topStoreItem: {
     height: 140,
-    width: 100,
+    maxWidth: 140,
+    minWidth: 120,
     backgroundColor: "#fff",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.4)",
+    borderColor: "rgba(0,0,0,0.1)",
     marginBottom: 10,
     marginLeft: 20,
+    padding: 5,
+  },
+  storeImgCon: {
+    height: 40,
+    width: 60,
+    backgroundColor: "#fff",
+    alignSelf: "center",
   },
   topStoreImg: {
     marginTop: 18,
@@ -90,6 +98,7 @@ export const HomeStyle = StyleSheet.create({
     fontWeight: "700",
     alignSelf: "center",
     marginBottom: 10,
+    textAlign: "center",
   },
   storeDivider: {
     height: 1,
@@ -100,6 +109,8 @@ export const HomeStyle = StyleSheet.create({
   },
   storeOfferText: {
     alignSelf: "center",
+    fontSize: 14,
+    color: "rgba(0,0,0,0.4)",
   },
   bestCouponContainer: {
     backgroundColor: "#fff",
@@ -121,15 +132,16 @@ export const HomeStyle = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingBottom: 30,
+    flexWrap: "wrap",
   },
   bestCouponCart: {
-    width: "48%",
-    height: 220,
+    width: "48.5%",
     backgroundColor: "#fff",
     borderRadius: 10,
     shadowColor: "rgba(0,0,0,0.5)",
     elevation: 16,
     padding: 8,
+    marginBottom: 10,
   },
   couponLogoAndTextCon: {
     backgroundColor: "rgba(154, 134, 121, 0.05)",
@@ -142,5 +154,30 @@ export const HomeStyle = StyleSheet.create({
   },
   couponLogo: {
     marginBottom: 10,
+  },
+  postTitleBox: {
+    height: 20,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  postTitle: {
+    fontSize: 16,
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  exDate: {
+    fontSize: 12,
+    color: "rgba(0,0,0,0.4)",
+    alignSelf: "center",
+  },
+  couponBTNCon: {
+    width: "90%",
+    alignSelf: "center",
+    marginTop: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -9,7 +9,7 @@ const AllStore = ({ store }) => {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("ViewPage", { ...store })}
-      activeOpacity={0.3}
+      activeOpacity={0.8}
       style={AllStoreStyle.storeContainer}
     >
       <View style={AllStoreStyle.imgContainer}>

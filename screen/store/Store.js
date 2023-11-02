@@ -7,13 +7,12 @@ import { useNavigation } from "@react-navigation/native";
 import HorizontalStore from "../../components/horizontalStore/HorizontalStore";
 import AllStore from "../../components/allStore/AllStore";
 import { useAllStore } from "../../hooks/AllHooks";
-import LoadingSpinner from "../../utils/LoadingSpinner";
-import ErrorComponent from "../../utils/ErrorComponent";
+import LoadingSpinner from "../../constants/LoadingSpinner";
+import ErrorComponent from "../../constants/ErrorComponent";
 
 const Store = () => {
   const navigation = useNavigation();
   const { allStore, storeError, storeDataIsLoading } = useAllStore();
-  console.log(allStore?.map((data) => data?.storePhotoURL));
   return (
     <SafeAreaView>
       {/* store header */}
@@ -33,13 +32,9 @@ const Store = () => {
         <View style={StoreStyle.horizontalStoreItemCon}>
           <Text style={StoreStyle.StoreTitle}>Top Store</Text>
           {storeDataIsLoading ? (
-            <View style={StoreStyle.LoadingSpinner}>
-              <LoadingSpinner />
-            </View>
+            <LoadingSpinner />
           ) : storeError ? (
-            <View style={StoreStyle.ErrorComponent}>
-              <ErrorComponent />
-            </View>
+            <ErrorComponent />
           ) : (
             <View style={StoreStyle.storeItemContainer}>
               <ScrollView
@@ -57,7 +52,7 @@ const Store = () => {
         </View>
         {/* ======================= */}
         <View style={StoreStyle.allStoreContainer}>
-          <Text>All Store</Text>
+          <Text style={StoreStyle.allStoreText}>All Store</Text>
           <View style={StoreStyle.storeContainer}>
             {allStore?.map((store) => {
               return <AllStore store={store} />;

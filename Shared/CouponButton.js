@@ -2,21 +2,23 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const CouponButton = ({}) => {
+const CouponButton = ({ couponData, children, coupon }) => {
   const navigation = useNavigation();
   const [clickedButton, setClickedButton] = useState(false);
   return (
     <TouchableOpacity
       style={styles.buttonContainer}
-      onPress={() => handleButton()}
+      onPress={() => {
+        navigation.navigate("CouponAndDealCart", { ...couponData, ...coupon });
+      }}
     >
       {!clickedButton ? (
         <View style={[styles.topLayer]}>
-          <Text style={styles.topLayerText}></Text>
+          <Text style={styles.topLayerText}>{children}</Text>
         </View>
       ) : (
         <View style={styles.hiddenLayer}>
-          <Text style={styles.hiddenText}></Text>
+          <Text style={styles.hiddenText}>{children}</Text>
         </View>
       )}
     </TouchableOpacity>

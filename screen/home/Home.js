@@ -18,9 +18,22 @@ import Deals from "../../components/deals/Deals";
 import Carousel from "../../components/carousel/Carousel";
 import Voucher from "../../components/voucher/Voucher";
 import Category from "../../components/categry/Category";
+import {
+  useAllCategory,
+  useAllCoupon,
+  useAllStore,
+  useCampaign,
+} from "../../hooks/AllHooks";
+import { getExpireInAtDays } from "../../utils/formattedDate";
+import CouponButton from "../../Shared/CouponButton";
 
 const Home = () => {
   const navigation = useNavigation();
+  const { allStore, storeError, storeDataIsLoading } = useAllStore();
+  const { allCoupon, couponError, couponDataLoading } = useAllCoupon("limit=6");
+  const { categoryData } = useAllCategory();
+  const { campaign } = useCampaign();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* =========header start here=========== */}
@@ -38,13 +51,17 @@ const Home = () => {
       <Divider style={HomeStyle.Divider} />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* ==========category start here=========*/}
-        <Category />
+        <Category categoryData={categoryData} />
         {/* ==========category end here=========*/}
         {/* =============chip item start here============== */}
-        <Chiep />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {campaign?.map((cam) => {
+            return <Chiep cam={cam} />;
+          })}
+        </ScrollView>
         {/* =============chip item end here============== */}
         {/* =============carousel start here============== */}
-        {/* <Carousel /> */}
+        <Carousel />
         {/* =============carousel end here============== */}
         {/* ============Top used product deals start here============== */}
         <View style={HomeStyle.dealSectionContainer}>
@@ -59,11 +76,10 @@ const Home = () => {
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
+          {/* ==================deals Item section start here=================== */}
           <View>
             <Deals />
           </View>
-          {/* ==================deals Item section start here=================== */}
-          <View></View>
           {/* ==================deals Item section end here=================== */}
         </View>
         {/* ============Top used product deals end here============== */}
@@ -75,19 +91,27 @@ const Home = () => {
               <Text style={HomeStyle.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("ViewPage")}
-              style={HomeStyle.topStoreItem}
-            >
-              <Image
-                style={HomeStyle.topStoreImg}
-                source={require("../../assets/image/noon.png")}
-              />
-              <Text style={HomeStyle.storeName}>Noon</Text>
-              <Divider style={HomeStyle.storeDivider} />
-              <Text style={HomeStyle.storeOfferText}>4 offers</Text>
-            </TouchableOpacity>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {allStore?.map((store) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("ViewPage", { ...store })}
+                  style={HomeStyle.topStoreItem}
+                >
+                  <View style={HomeStyle.storeImgCon}>
+                    <Image
+                      style={HomeStyle.topStoreImg}
+                      source={{ uri: store?.storePhotoURL }}
+                    />
+                  </View>
+                  <Text style={HomeStyle.storeName}>{store?.storeName}</Text>
+                  <Divider style={HomeStyle.storeDivider} />
+                  <Text style={HomeStyle.storeOfferText}>
+                    <Text>{store?.totalPosts}</Text> offers
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
         {/* ============== top store ends here ========================= */}
@@ -101,25 +125,39 @@ const Home = () => {
           </View>
           {/* ============================ */}
           <View style={HomeStyle.bestCouponCartCon}>
-            <TouchableOpacity
-              activeOpacity={0.3}
-              style={HomeStyle.bestCouponCart}
-            >
-              <TouchableOpacity
-                activeOpacity={0.3}
-                onPress={() => navigation.navigate("ViewPage")}
-                style={HomeStyle.couponLogoAndTextCon}
-              >
-                <Image
-                  style={HomeStyle.couponLogo}
-                  source={require("../../assets/image/logo.png")}
-                />
-                <Text>hello</Text>
-              </TouchableOpacity>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={HomeStyle.bestCouponCart}
-            ></TouchableOpacity>
+            {allCoupon?.map((coupon) => {
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.3}
+                  style={HomeStyle.bestCouponCart}
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.3}
+                    onPress={() => navigation.navigate("ViewPage")}
+                    style={HomeStyle.couponLogoAndTextCon}
+                  >
+                    <Image
+                      style={HomeStyle.couponLogo}
+                      source={{ uri: coupon?.store?.storePhotoURL }}
+                    />
+                    <Text>{coupon?.store?.storeName}</Text>
+                  </TouchableOpacity>
+                  <View style={HomeStyle.postTitleBox}>
+                    <Text style={HomeStyle.postTitle}>{coupon?.postTitle}</Text>
+                  </View>
+                  <Text style={HomeStyle.exDate}>
+                    End in{" "}
+                    <Text style={{ fontWeight: "700" }}>
+                      {getExpireInAtDays(coupon?.expireDate)}
+                    </Text>{" "}
+                    days
+                  </Text>
+                  <View style={HomeStyle.couponBTNCon}>
+                    <CouponButton coupon={coupon}>Get Code</CouponButton>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
           </View>
         </View>
         {/* ============Best coupon section ends here ================= */}
@@ -132,9 +170,9 @@ const Home = () => {
             </TouchableOpacity>
           </View>
           {/* ============================ */}
+          {/* ================popular Voucher section start here================ */}
           <Voucher />
         </View>
-        {/* ================popular Voucher section start here================ */}
       </ScrollView>
     </SafeAreaView>
   );

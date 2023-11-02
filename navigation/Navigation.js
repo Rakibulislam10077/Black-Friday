@@ -23,7 +23,6 @@ import Deals from "../components/deals/Deals";
 import ProductDetails from "../components/productDetails/ProductDetails";
 import Login from "../components/login/Login";
 import SignUp from "../components/signup/SignUp";
-import CompainViewPage from "../components/compainViewPage/CompainViewPage";
 import Onboard from "../screen/onboarding/Onboarding";
 import ViewPage from "../components/viewPage/ViewPage";
 import AllVoucher from "../components/allVoucher/AllVoucher";
@@ -42,6 +41,7 @@ import {
   DefaultStoreIcon,
   WhatsappIconInTab,
 } from "../constants/AllSvg";
+import CampaignViewPage from "../components/compainViewPage/CampaignViewPage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -224,8 +224,8 @@ const StackNavigation = () => {
       />
       <Stack.Screen
         options={{ headerShown: false }}
-        name="CompainViewPage"
-        component={CompainViewPage}
+        name="CampaignViewPage"
+        component={CampaignViewPage}
       />
       <Stack.Screen
         options={{ headerShown: false }}
