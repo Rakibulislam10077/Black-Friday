@@ -32,7 +32,6 @@ export default function CouponAndDealCart(props) {
     Clipboard.setString(data?.couponCode);
   };
 
-  // console.log(data.postType);
 
   return (
     <SafeAreaView
@@ -55,7 +54,7 @@ export default function CouponAndDealCart(props) {
             <View style={styles.BSimgCon}>
               <Image
                 source={{
-                  uri: data?.store?.storePhotoURL,
+                  uri: data?.store?.storePhotoURL || data?.postPhotoURL,
                 }}
                 style={styles.BSimg}
                 resizeMode="contain"

@@ -23,7 +23,6 @@ const Carousels = () => {
       return c;
     })
   );
-  console.log(carousel, "=============================");
 
   return (
     <View style={styles.carouselContainer}>
@@ -34,8 +33,8 @@ const Carousels = () => {
         ref={isCarousel}
         loop={true}
         firstItem={1}
-        inactiveSlideOpacity={0.75}
-        inactiveSlideScale={0.77}
+        inactiveSlideOpacity={0.7}
+        inactiveSlideScale={0.8}
         sliderWidth={400}
         itemWidth={280}
         onSnapToItem={(index) => setIndex(index)}

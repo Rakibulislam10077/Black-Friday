@@ -16,7 +16,7 @@ import {
   NotificationBell,
   Tranding,
 } from "../../constants/AllSvg";
-import { Divider } from "react-native-paper";
+import { ActivityIndicator, Divider } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import Chiep from "../../components/chiep/Chiep";
@@ -33,12 +33,13 @@ import { getExpireInAtDays } from "../../utils/formattedDate";
 import CouponButton from "../../Shared/CouponButton";
 import Carousels from "../../components/carousel/Carousels";
 import LoadingSpinner from "../../constants/LoadingSpinner";
+import ErrorComponent from "../../constants/ErrorComponent";
+import ErrorPage from "../../Shared/ErrorPage";
 
 const Home = () => {
   const navigation = useNavigation();
-  const { allStore, storeError, storeDataIsLoading, setStoreRefresh } =
-    useAllStore("limit=6");
-  const { allCoupon, couponError, couponDataLoading } = useAllCoupon("limit=6");
+  const { allStore, storeError, setStoreRefresh } = useAllStore("limit=6");
+  const { allCoupon, couponError, setRefreshCoupon } = useAllCoupon("limit=6");
   const { categoryData } = useAllCategory();
   const { campaign } = useCampaign();
   const [refreshing, setRefreshing] = React.useState(false); //for refreshing
@@ -60,7 +61,8 @@ const Home = () => {
     setRefreshing(true);
 
     setTimeout(() => {
-      setStoreRefresh((prev) => prev + 1, console.log("hello"));
+      setStoreRefresh((prev) => prev + 1);
+      setRefreshCoupon((prev) => prev + 1);
       setRefreshing(false);
     }, 2000);
   }, []);
@@ -69,6 +71,7 @@ const Home = () => {
     setCallRefresh(true);
     setTimeout(() => {
       setStoreRefresh((prev) => prev + 1);
+      setRefreshCoupon((prev) => prev + 1);
       setRefreshing(false);
       setCallRefresh(false);
     }, 2000);
@@ -89,26 +92,11 @@ const Home = () => {
       </View>
       {/* =========header end here=========== */}
       <Divider style={HomeStyle.Divider} />
-      {!storeError ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#fff",
-          }}
-        >
-          {callRefresh === true ? (
-            <View style={{ height: 180 }}>
-              <LoadingSpinner />
-            </View>
-          ) : (
-            <Image source={require("../../assets/image/nointernet1.png")} />
-          )}
-          <TouchableOpacity onPress={() => handelNetWorkFu()}>
-            <Text>Reload your Data</Text>
-          </TouchableOpacity>
-        </View>
+      {storeError || couponError ? (
+        <ErrorPage
+          handelNetWorkFu={handelNetWorkFu}
+          callRefresh={callRefresh}
+        />
       ) : (
         <ScrollView
           refreshControl={
@@ -145,8 +133,10 @@ const Home = () => {
               </TouchableOpacity>
             </View>
             {/* ==================deals Item section start here=================== */}
-            <View>
-              <Deals />
+            <View style={{ marginTop: 20 }}>
+              {allCoupon?.map((deal) => {
+                return <Deals deal={deal} />;
+              })}
             </View>
             {/* ==================deals Item section end here=================== */}
           </View>
@@ -206,12 +196,14 @@ const Home = () => {
                   >
                     <TouchableOpacity
                       activeOpacity={0.3}
-                      onPress={() => navigation.navigate("ViewPage")}
+                      onPress={() =>
+                        navigation.navigate("ViewPage", { ...coupon })
+                      }
                       style={HomeStyle.couponLogoAndTextCon}
                     >
                       <Image
                         style={HomeStyle.couponLogo}
-                        source={{ uri: coupon?.store?.storePhotoURL }}
+                        source={{ uri: coupon?.postPhotoURL }}
                       />
                       <Text>{coupon?.store?.storeName}</Text>
                     </TouchableOpacity>

@@ -4,8 +4,9 @@ import {
   TouchableOpacity,
   ScrollView,
   RefreshControl,
+  Image,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackArrow2, Magnify } from "../../constants/AllSvg";
 import { StoreStyle } from "./StoreStyle";
@@ -15,12 +16,16 @@ import AllStore from "../../components/allStore/AllStore";
 import { useAllStore } from "../../hooks/AllHooks";
 import LoadingSpinner from "../../constants/LoadingSpinner";
 import ErrorComponent from "../../constants/ErrorComponent";
+import ErrorPage from "../../Shared/ErrorPage";
+import EmptyData from "../../Shared/EmptyData";
 
 const Store = () => {
   const navigation = useNavigation();
-  const { allStore, storeError, storeDataIsLoading } = useAllStore();
+  const { allStore, storeError, storeDataIsLoading, setStoreRefresh } =
+    useAllStore();
 
   const [refreshing, setRefreshing] = React.useState(false);
+  const [callRefresh, setCallRefresh] = useState(false);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -29,8 +34,19 @@ const Store = () => {
     }, 2000);
   }, []);
 
+  const handelNetWorkFu = () => {
+    setCallRefresh(true);
+    setTimeout(() => {
+      setStoreRefresh((prev) => prev + 1);
+      setRefreshing(false);
+      setCallRefresh(false);
+    }, 2000);
+  };
+
+  console.log(allStore);
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       {/* store header */}
       <View style={StoreStyle.headerContainer}>
         <View style={StoreStyle.backArrowAndTitleCon}>
@@ -44,42 +60,51 @@ const Store = () => {
         </TouchableOpacity>
       </View>
       {/* store header end */}
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-        <View style={StoreStyle.horizontalStoreItemCon}>
-          <Text style={StoreStyle.StoreTitle}>Top Store</Text>
-          {storeDataIsLoading ? (
-            <LoadingSpinner />
-          ) : storeError ? (
-            <ErrorComponent />
-          ) : (
-            <View style={StoreStyle.storeItemContainer}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-              >
-                {allStore?.map((topStore) => {
-                  return (
-                    <HorizontalStore key={topStore?._id} store={topStore} />
-                  );
-                })}
-              </ScrollView>
-            </View>
-          )}
-        </View>
-        {/* ======================= */}
-        <View style={StoreStyle.allStoreContainer}>
-          <Text style={StoreStyle.allStoreText}>All Store</Text>
-          <View style={StoreStyle.storeContainer}>
-            {allStore?.map((store) => {
-              return <AllStore store={store} />;
-            })}
+      {storeError ? (
+        // <View style={{ flex: 1, backgroundColor: "red" }}>
+        <ErrorPage
+          handelNetWorkFu={handelNetWorkFu}
+          callRefresh={callRefresh}
+        />
+      ) : allStore?.length === 0 ? (
+        <EmptyData />
+      ) : (
+        // </View>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
+          <View style={StoreStyle.horizontalStoreItemCon}>
+            <Text style={StoreStyle.StoreTitle}>Top Store</Text>
+            {storeDataIsLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <View style={StoreStyle.storeItemContainer}>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  {allStore?.map((topStore) => {
+                    return (
+                      <HorizontalStore key={topStore?._id} store={topStore} />
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            )}
           </View>
-        </View>
-      </ScrollView>
+          {/* ======================= */}
+          <View style={StoreStyle.allStoreContainer}>
+            <Text style={StoreStyle.allStoreText}>All Store</Text>
+            <View style={StoreStyle.storeContainer}>
+              {allStore?.map((store) => {
+                return <AllStore store={store} />;
+              })}
+            </View>
+          </View>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };

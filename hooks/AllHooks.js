@@ -30,6 +30,7 @@ export const useAllCoupon = (type) => {
   const [allCoupon, setAllCoupon] = useState([]);
   const [couponError, setCouponError] = useState(null);
   const [couponDataLoading, setCouponDataLoading] = useState(true);
+  const [refreshCoupon, setRefreshCoupon] = useState(0);
 
   useEffect(() => {
     const getAllCoupon = () => {
@@ -44,11 +45,12 @@ export const useAllCoupon = (type) => {
         });
     };
     getAllCoupon();
-  }, []);
+  }, [refreshCoupon]);
   return {
     allCoupon,
     couponError,
     couponDataLoading,
+    setRefreshCoupon,
   };
 };
 

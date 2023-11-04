@@ -12,14 +12,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { BackArrow, FavouritIcon } from "../../constants/AllSvg";
 import { useNavigation } from "@react-navigation/native";
 import { Divider } from "react-native-paper";
+import { getExpireInAtDays } from "../../utils/formattedDate";
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+  const deal = props?.route?.params;
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
         resizeMode="contain"
-        source={require("../../assets/image/amazon.png")}
+        source={{ uri: deal?.postPhotoURL }}
         style={ProductDStyle.imgSection}
       >
         <View style={ProductDStyle.backAndFavCon}>
@@ -38,7 +40,7 @@ const ProductDetails = () => {
         </View>
       </ImageBackground>
       <View style={ProductDStyle.bottomSection}>
-        <Text style={ProductDStyle.productName}>Nike Pink color Shoes</Text>
+        <Text style={ProductDStyle.productName}>{deal?.postTitle}</Text>
         <View style={ProductDStyle.discountTextBox}>
           <View style={ProductDStyle.discountAllText}>
             <View style={ProductDStyle.ActivePriceAndlessPrice}>
@@ -61,53 +63,28 @@ const ProductDetails = () => {
             <Image
               style={ProductDStyle.img}
               resizeMode="contain"
-              source={require("../../assets/image/noon.png")}
+              source={{ uri: deal?.brand?.brandPhotoURL }}
             />
           </View>
-          <Text style={ProductDStyle.brandName}>Nike</Text>
+          <Text style={ProductDStyle.brandName}>{deal?.brand?.brandName}</Text>
           <Text style={[ProductDStyle.dashe, { marginRight: 10 }]}>-</Text>
-          <Text>
-            Expire in <Text>14</Text> days
+          <Text style={ProductDStyle.exDate}>
+            Expire in{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {getExpireInAtDays(deal?.expireDate)}
+            </Text>{" "}
+            days
           </Text>
         </View>
         <Divider style={[ProductDStyle.Divider, { marginTop: 15 }]} />
-        <Text style={ProductDStyle.desc}>Description</Text>
         <ScrollView>
+          <Text style={ProductDStyle.desc}>Description</Text>
           <View style={ProductDStyle.descTCon}>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Text>
+            <Text>{deal?.postDescription}</Text>
           </View>
         </ScrollView>
         <TouchableOpacity activeOpacity={0.5} style={ProductDStyle.ClimButton}>
-          <Text style={ProductDStyle.climText}>Clim</Text>
+          <Text style={ProductDStyle.climText}>Claim</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -154,6 +154,10 @@ export const HomeStyle = StyleSheet.create({
   },
   couponLogo: {
     marginBottom: 10,
+    height: 40,
+    borderRadius: 5,
+    resizeMode: "contain",
+    width: 50,
   },
   postTitleBox: {
     height: 20,

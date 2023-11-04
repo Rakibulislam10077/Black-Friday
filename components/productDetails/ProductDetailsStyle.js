@@ -109,7 +109,7 @@ export const ProductDStyle = StyleSheet.create({
     marginTop: 10,
   },
   brandImg: {
-    borderRadius: 50,
+    borderRadius: 4,
     width: hp(4),
     height: hp(4),
     borderWidth: 1,
@@ -126,6 +126,11 @@ export const ProductDStyle = StyleSheet.create({
   brandName: {
     fontSize: 16,
     marginRight: 10,
+    color: "rgba(0,0,0,0.6)",
+  },
+  exDate: {
+    color: "rgba(0,0,0,0.5)",
+    fontSize: 16,
   },
   desc: {
     fontSize: 18,

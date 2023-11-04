@@ -18,7 +18,6 @@ const CampaignViewPage = (props) => {
   const cam = props?.route?.params;
   const navigation = useNavigation();
   const { campaign } = useCampaign();
-  console.log(cam);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

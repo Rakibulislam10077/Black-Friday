@@ -25,6 +25,7 @@ export const ViewPageStyle = StyleSheet.create({
     shadowColor: "rgba(0,0,0,0.7)",
     elevation: 15,
     flex: 2,
+    width: 90,
   },
   SN_And_Rn_Con: {
     flex: 4,

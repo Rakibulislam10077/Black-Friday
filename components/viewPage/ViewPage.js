@@ -32,11 +32,12 @@ import {
   Star,
 } from "../../constants/AllSvg";
 const ViewStore = (props) => {
-  const store = props?.route?.params;
+  const data = props?.route?.params;
   // data from coupon file in screen folder
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
 
+  console.log(data);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -68,12 +69,12 @@ const ViewStore = (props) => {
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
-              source={{ uri: store?.storePhotoURL }}
+              source={{ uri: data?.storePhotoURL || data?.postPhotoURL }}
             />
           </TouchableOpacity>
           <View style={ViewPageStyle.SN_And_Rn_Con}>
             <Text style={ViewPageStyle.storeBrandName}>
-              {store?.storeName || store?.store?.storeName}
+              {data?.storeName || data?.store?.storeName}
             </Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
               {/* ============================= */}
@@ -134,7 +135,7 @@ const ViewStore = (props) => {
             paddingHorizontal: 30,
           }}
         >
-          {store?.storeDescription}
+          {data?.storeDescription || data?.postDescription}
         </Text>
       </View>
       <View style={ViewPageStyle.TabNavigateContainer}>
@@ -231,7 +232,7 @@ const ViewStore = (props) => {
       {selected == 0 ? (
         <Deals />
       ) : selected == 1 ? (
-        <CouponItem store={store} />
+        <CouponItem store={data} />
       ) : selected == 2 ? (
         <Voucher />
       ) : (
@@ -243,12 +244,12 @@ const ViewStore = (props) => {
           <Image
             style={ViewPageStyle.btmBtnImg}
             resizeMode="contain"
-            source={{ uri: store?.storePhotoURL }}
+            source={{ uri: data?.storePhotoURL }}
           />
-          <Text style={ViewPageStyle.bttmBtnText}>{store?.storeName}</Text>
+          <Text style={ViewPageStyle.bttmBtnText}>{data?.storeName}</Text>
         </View>
         <TouchableOpacity
-          onPress={() => Linking.openURL("http:www.google.com")}
+          onPress={() => Linking.openURL(data?.storeLink)}
           style={ViewPageStyle.visitBtn}
         >
           <Text style={ViewPageStyle.visitBtnText}>Visit store</Text>

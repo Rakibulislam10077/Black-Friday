@@ -9,10 +9,10 @@ export const DealsStyle = StyleSheet.create({
     alignSelf: "center",
     width: " 90%",
     borderRadius: 10,
-    shadowColor: "rgba(0,0,0,0.3)",
-    elevation: 15,
+    shadowColor: "rgba(0,0,0,0.7)",
+    elevation: 20,
     padding: 10,
-    marginVertical: 10,
+    marginBottom: 15,
   },
   dealsCartContainer: {
     backgroundColor: "#fff",
@@ -65,6 +65,8 @@ export const DealsStyle = StyleSheet.create({
   },
   brandImgAnaNameCon: {
     flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
   },
   BrandingAndLogo: {
     flexDirection: "row",
@@ -74,11 +76,24 @@ export const DealsStyle = StyleSheet.create({
   brandImg: {
     height: 20,
     width: 20,
+    borderRadius: 4,
+    resizeMode: "contain",
+  },
+  imgCon: {
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "rgba(0,0,0,0.4)",
+    elevation: 15,
+    width: 22,
+    height: 22,
     marginRight: 8,
+    borderRadius: 2,
+    backgroundColor: "#fff",
   },
   BrandName: {
     fontSize: 14,
     color: "rgba(0,0,0,0.6)",
+    flex: 1,
   },
   activityText: {
     fontSize: 7,
@@ -99,12 +114,14 @@ export const DealsStyle = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
+    justifyContent: "center",
   },
   descIcon: {
     marginHorizontal: 10,
   },
   descCon: {
     paddingRight: 10,
+    flex: 1,
   },
   desc: {
     fontSize: 12,

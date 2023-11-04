@@ -5,15 +5,16 @@ import { DealsStyle } from "./DealsStyle";
 import { Divider } from "react-native-paper";
 import { DescIcon } from "../../constants/AllSvg";
 import { useNavigation } from "@react-navigation/native";
+import { getExpireInAtDays } from "../../utils/formattedDate";
 
-const Deals = () => {
+const Deals = ({ deal }) => {
   const navigation = useNavigation();
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigation.navigate("ProductDetails", {})}
+          onPress={() => navigation.navigate("ProductDetails", { ...deal })}
           style={DealsStyle.mainContainer}
         >
           <View style={DealsStyle.dealsCartContainer}>
@@ -21,12 +22,18 @@ const Deals = () => {
               <Image
                 resizeMode="contain"
                 style={DealsStyle.itemImg}
-                source={require("../../assets/image/black.png")}
+                source={{ uri: deal?.postPhotoURL }}
               />
             </View>
             <View style={DealsStyle.itemDeailsCon}>
-              <Text style={DealsStyle.itemName}>Nike Pink color Shoes</Text>
-              <Text style={DealsStyle.exDate}>Expire Date</Text>
+              <Text style={DealsStyle.itemName}>{deal?.postTitle}</Text>
+              <Text style={DealsStyle.exDate}>
+                Expire in{" "}
+                <Text style={{ fontWeight: "700" }}>
+                  {getExpireInAtDays(deal?.expireDate)}
+                </Text>{" "}
+                days
+              </Text>
               <View style={DealsStyle.allPriceContainer}>
                 <Text style={DealsStyle.activePrice}>20$</Text>
                 <Text style={DealsStyle.discountedPrice}>27%</Text>
@@ -35,11 +42,15 @@ const Deals = () => {
               </View>
               <View style={DealsStyle.BrandingAndLogo}>
                 <View style={DealsStyle.brandImgAnaNameCon}>
-                  <Image
-                    style={DealsStyle.brandImg}
-                    source={require("../../assets/image/black.png")}
-                  />
-                  <Text style={DealsStyle.BrandName}>Nike</Text>
+                  <View style={DealsStyle.imgCon}>
+                    <Image
+                      style={DealsStyle.brandImg}
+                      source={{ uri: deal?.brand?.brandPhotoURL }}
+                    />
+                  </View>
+                  <Text style={DealsStyle.BrandName}>
+                    {deal?.brand?.brandName}
+                  </Text>
                 </View>
                 <View>
                   <Text style={DealsStyle.activityText}>test</Text>
@@ -57,11 +68,7 @@ const Deals = () => {
               <DescIcon />
             </View>
             <View style={DealsStyle.descCon}>
-              <Text style={DealsStyle.desc}>
-                dlkfjsd;jfputperoudsmknvk;ldfklasdfj klasdfkjsdfkj lkasdfld asdf
-                asldkfal;skdf;lkasdfj
-                asdlkfjla;skdjf;laksdjf;lkasdjf;lkasjdfl;aksdjf
-              </Text>
+              <Text style={DealsStyle.desc}>{deal?.postDescription}</Text>
             </View>
           </View>
         </TouchableOpacity>
