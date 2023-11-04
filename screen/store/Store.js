@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackArrow2, Magnify } from "../../constants/AllSvg";
@@ -13,6 +19,16 @@ import ErrorComponent from "../../constants/ErrorComponent";
 const Store = () => {
   const navigation = useNavigation();
   const { allStore, storeError, storeDataIsLoading } = useAllStore();
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
     <SafeAreaView>
       {/* store header */}
@@ -28,7 +44,11 @@ const Store = () => {
         </TouchableOpacity>
       </View>
       {/* store header end */}
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <View style={StoreStyle.horizontalStoreItemCon}>
           <Text style={StoreStyle.StoreTitle}>Top Store</Text>
           {storeDataIsLoading ? (

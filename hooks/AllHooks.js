@@ -7,9 +7,10 @@ export const useAllStore = (type) => {
   const [allStore, setAllStore] = useState([]);
   const [storeError, setStoreError] = useState(null);
   const [storeDataIsLoading, setStoreDataIsLoading] = useState(true);
+  const [storeRefresh, setStoreRefresh] = useState(0);
   useEffect(() => {
     const getAllStore = () => {
-      fetch(`${APIurl}/store`)
+      fetch(`${APIurl}/store?${type}`)
         .then((res) => res.json())
         .then((data) => {
           setAllStore(data?.data);
@@ -20,19 +21,19 @@ export const useAllStore = (type) => {
         });
     };
     getAllStore();
-  }, []);
-  return { allStore, storeError, storeDataIsLoading };
+  }, [storeRefresh]);
+  return { allStore, storeError, storeDataIsLoading, setStoreRefresh };
 };
 
 // get all coupon
-export const useAllCoupon = () => {
+export const useAllCoupon = (type) => {
   const [allCoupon, setAllCoupon] = useState([]);
   const [couponError, setCouponError] = useState(null);
   const [couponDataLoading, setCouponDataLoading] = useState(true);
 
   useEffect(() => {
     const getAllCoupon = () => {
-      fetch(`${APIurl}/post`)
+      fetch(`${APIurl}/post?${type}`)
         .then((res) => res.json())
         .then((data) => {
           setAllCoupon(data?.data);
@@ -80,7 +81,7 @@ export const useCarousel = () => {
   useEffect(() => {
     fetch(`${APIurl}/carousel`)
       .then((res) => res.json())
-      .then((data) => setCarousels(data));
+      .then((data) => setCarousels(data?.data));
   }, []);
   return { carousels };
 };
