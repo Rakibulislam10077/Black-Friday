@@ -4,14 +4,18 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 export const ProductDStyle = StyleSheet.create({
-  imgSection: {
-    height: 310,
+  iconSection: {
     width: "100%",
+    height: 300,
   },
   backIconCon: {
-    height: 40,
+    height: 43,
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 50,
+    paddingRight: 10,
+    paddingLeft: 1,
     // marginTop: 40,
     //   marginLeft: 20,
     // position: "absolute",
@@ -22,28 +26,32 @@ export const ProductDStyle = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    marginTop: 30,
     paddingHorizontal: 20,
+    marginTop: 30,
   },
   backText: {
     fontSize: 18,
     fontWeight: "700",
+    color: "rgba(0,0,0,0.7)",
   },
   backIcon: {
-    width: hp(5),
-    height: hp(5),
+    width: 40,
+    height: 40,
     backgroundColor: "#fff",
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 10,
+    marginRight: 5,
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.4)",
   },
   favourit: {
     borderWidth: 1,
     borderRadius: 50,
     borderColor: "rgba(0,0,0,0.4)",
-    width: hp(5),
-    height: hp(5),
+    width: 43,
+    height: 43,
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     // position: "absolute",
@@ -54,7 +62,7 @@ export const ProductDStyle = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     marginTop: -30,
-    flex: 1,
+    // flex: 1.8,
     backgroundColor: "#fff",
     paddingHorizontal: 30,
     paddingTop: 30,
@@ -62,7 +70,6 @@ export const ProductDStyle = StyleSheet.create({
   productName: {
     fontSize: 20,
     fontWeight: "700",
-    marginBottom: 10,
   },
   discountTextBox: {
     flexDirection: "row",
@@ -96,17 +103,17 @@ export const ProductDStyle = StyleSheet.create({
   },
   activeText: {
     fontSize: 8,
-    marginTop: -10,
   },
   storeLogo: {
-    width: hp(7),
-    height: hp(2),
+    width: 40,
+    height: 20,
     marginTop: 8,
+    borderRadius: 4,
+    resizeMode: "contain",
   },
   brandAndEx: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
   },
   brandImg: {
     borderRadius: 4,
@@ -116,7 +123,7 @@ export const ProductDStyle = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.1)",
     alignItems: "center",
     justifyContent: "center",
-    padding: 3,
+    padding: 2,
     marginRight: 10,
   },
   img: {
@@ -124,13 +131,13 @@ export const ProductDStyle = StyleSheet.create({
     height: "90%",
   },
   brandName: {
-    fontSize: 16,
+    fontSize: 14,
     marginRight: 10,
     color: "rgba(0,0,0,0.6)",
   },
   exDate: {
     color: "rgba(0,0,0,0.5)",
-    fontSize: 16,
+    fontSize: 14,
   },
   desc: {
     fontSize: 18,

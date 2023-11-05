@@ -8,14 +8,16 @@ import { getExpireInAtDays } from "../../utils/formattedDate";
 import CouponButton from "../../Shared/CouponButton";
 import DealButton from "../../Shared/dealButton/DealButton";
 
-const StoreDetails = ({ couponData, store }) => {
+const StoreDetails = ({ couponData, store, item }) => {
   const navigation = useNavigation();
+
+  console.log(item, ".......................");
 
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() =>
-        navigation.navigate("ViewPage", { ...store, ...couponData })
+        navigation.navigate("ViewPage", { ...store, ...couponData, ...item })
       }
       style={StoreDetailsStyle.storeDetailsCard}
     >
@@ -26,18 +28,25 @@ const StoreDetails = ({ couponData, store }) => {
               style={StoreDetailsStyle.cartImg}
               resizeMode="contain"
               source={{
-                uri: couponData?.store?.storePhotoURL || store?.storePhotoURL,
+                uri:
+                  couponData?.store?.storePhotoURL ||
+                  store?.store?.storePhotoURL ||
+                  item?.store?.storePhotoURL,
               }}
             />
           </TouchableOpacity>
           <View style={StoreDetailsStyle.postTitleAndDateCon}>
             <Text numberOfLines={2} style={StoreDetailsStyle.postTitle}>
-              {couponData?.postTitle || store?.postTitle}
+              {couponData?.postTitle || store?.postTitle || item?.postTitle}
             </Text>
             <Text style={StoreDetailsStyle.exDate}>
               End in{" "}
               <Text style={{ fontWeight: "600" }}>
-                {getExpireInAtDays(couponData?.expireDate || store?.expireDate)}
+                {getExpireInAtDays(
+                  couponData?.expireDate ||
+                    store?.expireDate ||
+                    item?.expireDate
+                )}
               </Text>{" "}
               days
             </Text>
@@ -45,10 +54,11 @@ const StoreDetails = ({ couponData, store }) => {
         </View>
         <View style={{ flex: 1.3 }} activeOpacity={0.7}>
           {/* button components */}
-          {(couponData?.postType || store?.postType) !== "Coupon" ? (
-            <DealButton couponData={couponData} store={store} />
+          {(couponData?.postType || store?.postType || item?.postType) !==
+          "Coupon" ? (
+            <DealButton couponData={couponData} store={store} item={item} />
           ) : (
-            <CouponButton couponData={couponData} store={store}>
+            <CouponButton couponData={couponData} item={item} store={store}>
               Show Code
             </CouponButton>
           )}
@@ -74,15 +84,17 @@ const StoreDetails = ({ couponData, store }) => {
 
       {/* this is description section optional */}
 
-      {(store?.storeDescription || couponData?.postDescription) && (
+      {(store?.postDescription || couponData?.postDescription) && (
         <View style={[StoreDetailsStyle.verifiedCon, { marginTop: 15 }]}>
           <View style={StoreDetailsStyle.verifyIcon}>
             <DescIcon />
           </View>
 
           <View style={{ flex: 3 }}>
-            <Text>
-              {couponData?.postDescription || store?.storeDescription}
+            <Text style={StoreDetailsStyle.desc}>
+              {couponData?.postDescription ||
+                store?.postDescription ||
+                item?.postDescription}
             </Text>
           </View>
         </View>

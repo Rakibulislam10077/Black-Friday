@@ -118,6 +118,8 @@ export const LoginStyle = StyleSheet.create({
   },
   flag: {
     marginRight: 10,
+    width: 30,
+    height: 20,
   },
   selectedBox: {
     flexDirection: "row",

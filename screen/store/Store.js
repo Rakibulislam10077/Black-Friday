@@ -6,7 +6,7 @@ import {
   RefreshControl,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackArrow2, Magnify } from "../../constants/AllSvg";
 import { StoreStyle } from "./StoreStyle";
@@ -18,6 +18,7 @@ import LoadingSpinner from "../../constants/LoadingSpinner";
 import ErrorComponent from "../../constants/ErrorComponent";
 import ErrorPage from "../../Shared/ErrorPage";
 import EmptyData from "../../Shared/EmptyData";
+import NetInfo from "@react-native-community/netinfo";
 
 const Store = () => {
   const navigation = useNavigation();
@@ -26,6 +27,9 @@ const Store = () => {
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [callRefresh, setCallRefresh] = useState(false);
+  const [netIsConnected, setNetIsConnected] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -37,14 +41,26 @@ const Store = () => {
   const handelNetWorkFu = () => {
     setCallRefresh(true);
     setTimeout(() => {
-      setStoreRefresh((prev) => prev + 1);
       setRefreshing(false);
       setCallRefresh(false);
+      setStoreRefresh((prev) => prev + 1);
     }, 2000);
   };
 
-  console.log(allStore);
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsOnline(state.isConnected);
+      if (!state.isConnected) {
+        setErrorMessage("No network connection.");
+      } else {
+        setErrorMessage("");
+      }
+    });
 
+    return () => {
+      unsubscribe();
+    };
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* store header */}
@@ -60,11 +76,12 @@ const Store = () => {
         </TouchableOpacity>
       </View>
       {/* store header end */}
-      {storeError ? (
+      {!isOnline ? (
         // <View style={{ flex: 1, backgroundColor: "red" }}>
         <ErrorPage
           handelNetWorkFu={handelNetWorkFu}
           callRefresh={callRefresh}
+          errorMessage={errorMessage}
         />
       ) : allStore?.length === 0 ? (
         <EmptyData />

@@ -54,6 +54,29 @@ export const useAllCoupon = (type) => {
   };
 };
 
+
+// QUERY COUPON
+export const useQueryCoupon = (name, type) => {
+  const [couponData, setCouponData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getStoreByCountry = async () => {
+      const url = `${APIurl}/post/?storeName=${name}&postType=${type}`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setCouponData(data?.data);
+          setIsLoading(false);
+        })
+    };
+    getStoreByCountry();
+  }, []);
+  return { couponData, isLoading };
+};
+
+
+
 // get all category
 export const useAllCategory = () => {
   const [categoryData, setCategoryData] = useState([]);

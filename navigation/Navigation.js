@@ -186,7 +186,7 @@ const TabScreen = () => {
 
 const StackNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Onboarding">
       <Stack.Screen
         options={{ headerShown: false }}
         name="TabScreen"

@@ -5,9 +5,14 @@ import { BackArrow2, Magnify } from "../../constants/AllSvg";
 import { AllVoucherStyle } from "./AllVoucherStyle";
 import { useNavigation } from "@react-navigation/native";
 import Voucher from "../voucher/Voucher";
+import { useAllCoupon } from "../../hooks/AllHooks";
 
 const AllVoucher = () => {
   const navigation = useNavigation();
+  const { allCoupon: voucherData } = useAllCoupon("Voucher");
+
+  console.log(voucherData);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={AllVoucherStyle.headerContainer}>
@@ -24,7 +29,9 @@ const AllVoucher = () => {
       <View style={AllVoucherStyle.itemContainer}>
         <ScrollView>
           <View>
-            <Voucher />
+            {voucherData?.map((voucher) => {
+              return <Voucher voucher={voucher} />;
+            })}
           </View>
         </ScrollView>
       </View>

@@ -19,26 +19,33 @@ const ProductDetails = (props) => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ImageBackground
-        resizeMode="contain"
-        source={{ uri: deal?.postPhotoURL }}
-        style={ProductDStyle.imgSection}
-      >
-        <View style={ProductDStyle.backAndFavCon}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={ProductDStyle.backIconCon}
-          >
-            <View style={ProductDStyle.backIcon}>
-              <BackArrow />
-            </View>
-            <Text style={ProductDStyle.backText}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={ProductDStyle.favourit}>
-            <FavouritIcon />
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
+      <View style={[ProductDStyle.iconSection]}>
+        <Image
+          style={{
+            width: "100%",
+            height: 300,
+            position: "absolute",
+            top: 0,
+          }}
+          source={{ uri: deal?.postPhotoURL }}
+        />
+        <SafeAreaView>
+          <View style={ProductDStyle.backAndFavCon}>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={ProductDStyle.backIconCon}
+            >
+              <View style={ProductDStyle.backIcon}>
+                <BackArrow />
+              </View>
+              <Text style={ProductDStyle.backText}>Back</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={ProductDStyle.favourit}>
+              <FavouritIcon />
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </View>
       <View style={ProductDStyle.bottomSection}>
         <Text style={ProductDStyle.productName}>{deal?.postTitle}</Text>
         <View style={ProductDStyle.discountTextBox}>
@@ -54,7 +61,7 @@ const ProductDetails = (props) => {
             <Text style={ProductDStyle.activeText}>Available On</Text>
             <Image
               style={ProductDStyle.storeLogo}
-              source={require("../../assets/image/amazon.png")}
+              source={{ uri: deal?.store?.storePhotoURL }}
             />
           </View>
         </View>

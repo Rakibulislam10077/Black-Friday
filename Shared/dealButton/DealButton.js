@@ -3,12 +3,16 @@ import React from "react";
 import { DealbuttonStyle } from "./DealButtonStyle";
 import { useNavigation } from "@react-navigation/native";
 
-const DealButton = ({ couponData, store }) => {
+const DealButton = ({ couponData, store, voucher }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate("CouponAndDealCart", { ...couponData, ...store })
+        navigation.navigate("CouponAndDealCart", {
+          ...couponData,
+          ...store,
+          ...voucher,
+        })
       }
       style={DealbuttonStyle.button}
     >

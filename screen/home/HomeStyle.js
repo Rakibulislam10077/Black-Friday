@@ -41,7 +41,6 @@ export const HomeStyle = StyleSheet.create({
   dealsHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
     alignItems: "center",
     paddingHorizontal: 20,
   },

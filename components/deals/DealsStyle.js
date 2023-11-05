@@ -12,7 +12,8 @@ export const DealsStyle = StyleSheet.create({
     shadowColor: "rgba(0,0,0,0.7)",
     elevation: 20,
     padding: 10,
-    marginBottom: 15,
+    marginBottom: 10,
+    marginTop: 10,
   },
   dealsCartContainer: {
     backgroundColor: "#fff",
@@ -32,7 +33,6 @@ export const DealsStyle = StyleSheet.create({
   },
   itemName: {
     fontSize: 18,
-    marginBottom: 3,
   },
   exDate: {
     fontSize: 12,
@@ -97,10 +97,13 @@ export const DealsStyle = StyleSheet.create({
   },
   activityText: {
     fontSize: 7,
-    marginTop: -5,
+    alignSelf: "center",
   },
   storeLogo: {
     marginTop: 5,
+    width: 40,
+    height: 20,
+    borderRadius: 4,
   },
   divider: {
     height: 1,

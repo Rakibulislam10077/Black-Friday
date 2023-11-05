@@ -37,7 +37,13 @@ const ViewStore = (props) => {
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
 
-  console.log(data);
+  // console.log(data);
+
+  console.log(
+    data?.store?.storeName,
+    data?.postType,
+    "----------------------=======================-------------"
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -69,7 +75,7 @@ const ViewStore = (props) => {
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
-              source={{ uri: data?.storePhotoURL || data?.postPhotoURL }}
+              source={{ uri: data?.store?.storePhotoURL || data?.postPhotoURL }}
             />
           </TouchableOpacity>
           <View style={ViewPageStyle.SN_And_Rn_Con}>
@@ -230,11 +236,23 @@ const ViewStore = (props) => {
       </View>
       {/* <Divider /> */}
       {selected == 0 ? (
-        <Deals />
+        <Deals
+          storeName={data?.store?.storeName}
+          postType="Deal"
+          store={data}
+        />
       ) : selected == 1 ? (
-        <CouponItem store={data} />
+        <CouponItem
+          storeName={data?.store?.storeName}
+          postType="Coupon"
+          store={data}
+        />
       ) : selected == 2 ? (
-        <Voucher />
+        <Voucher
+          storeName={data?.store?.storeName}
+          postType="Voucher"
+          store={data}
+        />
       ) : (
         <HowToUs />
       )}
@@ -244,9 +262,11 @@ const ViewStore = (props) => {
           <Image
             style={ViewPageStyle.btmBtnImg}
             resizeMode="contain"
-            source={{ uri: data?.storePhotoURL }}
+            source={{ uri: data?.store?.storePhotoURL }}
           />
-          <Text style={ViewPageStyle.bttmBtnText}>{data?.storeName}</Text>
+          <Text style={ViewPageStyle.bttmBtnText}>
+            {data?.store?.storeName}
+          </Text>
         </View>
         <TouchableOpacity
           onPress={() => Linking.openURL(data?.storeLink)}

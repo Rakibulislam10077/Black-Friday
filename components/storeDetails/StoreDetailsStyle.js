@@ -69,4 +69,8 @@ export const StoreDetailsStyle = StyleSheet.create({
     opacity: 0.7,
     fontSize: 12,
   },
+  desc: {
+    fontSize: 12,
+    color: "rgba(0,0,0,0.7)",
+  },
 });

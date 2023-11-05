@@ -11,7 +11,6 @@ export const AllProductStyle = StyleSheet.create({
     elevation: 14,
     borderBottomColor: "rgba(0,0,0,0.1)",
     borderBottomWidth: 1,
-    marginBottom: 10,
     height: 70,
   },
   backArrowAndTitleCon: {

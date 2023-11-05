@@ -9,7 +9,7 @@ export const DealbuttonStyle = StyleSheet.create({
     height: 40,
   },
   buttonText: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#fff",
   },
 });

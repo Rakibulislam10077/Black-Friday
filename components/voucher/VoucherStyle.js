@@ -25,6 +25,10 @@ export const VoucherStyle = StyleSheet.create({
     marginRight: 15,
     borderRadius: 8,
   },
+  voucherImg: {
+    width: 40,
+    height: 40,
+  },
   textContainer: {
     flex: 2,
   },

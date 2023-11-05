@@ -2,7 +2,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { ActivityIndicator } from "react-native-paper";
 
-const ErrorPage = ({ callRefresh, handelNetWorkFu }) => {
+const ErrorPage = ({ callRefresh, handelNetWorkFu, errorMessage }) => {
   return (
     <View
       style={{
@@ -19,9 +19,7 @@ const ErrorPage = ({ callRefresh, handelNetWorkFu }) => {
             resizeMode="contain"
             source={require("../assets/image/offline-removebg-preview.png")}
           />
-          <Text style={{ fontSize: 12, color: "#0C1B32" }}>
-            Please Check your internet connection
-          </Text>
+          <Text style={{ fontSize: 12, color: "#0C1B32" }}>{errorMessage}</Text>
         </View>
       }
       <TouchableOpacity
