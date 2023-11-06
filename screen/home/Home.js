@@ -277,7 +277,9 @@ const Home = () => {
                       source={{ uri: store?.storePhotoURL }}
                     />
                   </View>
-                  <Text style={HomeStyle.storeName}>{store?.storeName}</Text>
+                  <Text numberOfLines={2} style={HomeStyle.storeName}>
+                    {store?.storeName}
+                  </Text>
                   <Divider style={HomeStyle.storeDivider} />
                   <Text style={HomeStyle.storeOfferText}>
                     <Text>{store?.totalPosts}</Text> offers

@@ -70,8 +70,8 @@ export const HomeStyle = StyleSheet.create({
     color: "#000",
   },
   topStoreItem: {
-    height: 140,
-    maxWidth: 140,
+    height: 150,
+    maxWidth: 180,
     minWidth: 120,
     backgroundColor: "#fff",
     borderRadius: 10,
@@ -80,17 +80,22 @@ export const HomeStyle = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 20,
     padding: 5,
+    alignItems: "center",
+    // justifyContent: "center",
   },
   storeImgCon: {
     height: 40,
     width: 60,
     backgroundColor: "#fff",
     alignSelf: "center",
+    marginTop: 10,
   },
   topStoreImg: {
-    marginTop: 18,
+    // marginTop: 18,
     alignSelf: "center",
     marginBottom: 8,
+    width: 40,
+    height: 40,
   },
   storeName: {
     fontSize: 16,
@@ -98,6 +103,7 @@ export const HomeStyle = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 10,
     textAlign: "center",
+    marginTop: 8,
   },
   storeDivider: {
     height: 1,

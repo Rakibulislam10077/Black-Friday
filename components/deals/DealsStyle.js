@@ -104,6 +104,7 @@ export const DealsStyle = StyleSheet.create({
     width: 40,
     height: 20,
     borderRadius: 4,
+    resizeMode: "contain",
   },
   divider: {
     height: 1,

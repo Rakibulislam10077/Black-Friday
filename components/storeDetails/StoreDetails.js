@@ -11,7 +11,6 @@ import DealButton from "../../Shared/dealButton/DealButton";
 const StoreDetails = ({ couponData, store, item }) => {
   const navigation = useNavigation();
 
-  console.log(item, ".......................");
 
   return (
     <TouchableOpacity

@@ -71,7 +71,12 @@ const ViewStore = (props) => {
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
-              source={{ uri: data?.store?.storePhotoURL || data?.postPhotoURL }}
+              source={{
+                uri:
+                  data?.store?.storePhotoURL ||
+                  data?.postPhotoURL ||
+                  data?.storePhotoURL,
+              }}
             />
           </TouchableOpacity>
           <View style={ViewPageStyle.SN_And_Rn_Con}>
@@ -258,10 +263,10 @@ const ViewStore = (props) => {
           <Image
             style={ViewPageStyle.btmBtnImg}
             resizeMode="contain"
-            source={{ uri: data?.store?.storePhotoURL }}
+            source={{ uri: data?.store?.storePhotoURL || data?.storePhotoURL }}
           />
           <Text style={ViewPageStyle.bttmBtnText}>
-            {data?.store?.storeName}
+            {data?.store?.storeName || data?.storeName}
           </Text>
         </View>
         <TouchableOpacity

@@ -83,8 +83,6 @@ const Store = () => {
           callRefresh={callRefresh}
           errorMessage={errorMessage}
         />
-      ) : allStore?.length === 0 ? (
-        <EmptyData />
       ) : (
         // </View>
         <ScrollView
@@ -112,14 +110,18 @@ const Store = () => {
             )}
           </View>
           {/* ======================= */}
-          <View style={StoreStyle.allStoreContainer}>
-            <Text style={StoreStyle.allStoreText}>All Store</Text>
-            <View style={StoreStyle.storeContainer}>
-              {allStore?.map((store) => {
-                return <AllStore store={store} />;
-              })}
+          {allStore?.length === 0 ? (
+            <EmptyData />
+          ) : (
+            <View style={StoreStyle.allStoreContainer}>
+              <Text style={StoreStyle.allStoreText}>All Store</Text>
+              <View style={StoreStyle.storeContainer}>
+                {allStore?.map((store) => {
+                  return <AllStore store={store} />;
+                })}
+              </View>
             </View>
-          </View>
+          )}
         </ScrollView>
       )}
     </SafeAreaView>
