@@ -10,14 +10,14 @@ export const useAllStore = (type) => {
   const [storeDataIsLoading, setStoreDataIsLoading] = useState(true);
   const [storeRefresh, setStoreRefresh] = useState(0);
   useEffect(() => {
-    const getCountry = async () => {
-      const userCountry = await AsyncStorage.getItem("selected_country");
-      return userCountry;
-      // console.log(userCountry);
-    };
+    // const getCountry = async () => {
+    //   const userCountry = await AsyncStorage.getItem("selected_country");
+    //   return userCountry;
+    //   // console.log(userCountry);
+    // };
 
     const getAllStore = async () => {
-      fetch(`${APIurl}/store?${type}&countries=${await getCountry()}`)
+      fetch(`${APIurl}/store?${type}`)
         .then((res) => res.json())
         .then((data) => {
           setAllStore(data?.data);
@@ -118,4 +118,46 @@ export const useCarousel = () => {
       .then((data) => setCarousels(data?.data));
   }, []);
   return { carousels };
+};
+
+// global search
+export const useSearch = () => {
+  const [isLoading, setIsLoading] = useState(true); // for Loader
+  const [error, setError] = useState(null); // handle error
+  const [searchedData, setSearchedData] = useState([]);
+  const [searchKey, setSearchKey] = useState(" ");
+  const [refetch, setRefetch] = useState(0);
+
+  // const handleGlobalSearch = () => {
+  useEffect(() => {
+    const getCountry = async () => {
+      const userCountry = await AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
+
+    const getSearchApi = async () => {
+      const url = `${APIurl}/post/search?country=${await getCountry()}&searchTerm=${searchKey}`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setSearchedData(data?.data);
+          // setIsLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    };
+    getSearchApi();
+    // };
+  }, [searchKey, refetch]);
+
+  return {
+    searchedData,
+    isLoading,
+    setIsLoading,
+    setSearchKey,
+    error,
+    setRefetch,
+    // handleGlobalSearch,
+  };
 };

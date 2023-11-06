@@ -23,10 +23,46 @@ import { AccountStyle } from "./AccountStyle";
 import { useNavigation } from "@react-navigation/native";
 import { Divider } from "react-native-paper";
 import { LoginStyle } from "../../components/login/LoginStyle";
+import { countries } from "../../constants/Countries";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
+import { refetchHomePost, refetchHomeStore } from "../home/Home";
 const Account = () => {
   const navigation = useNavigation();
-
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [countryPhotoURL, setCountryPhotoURL] = useState("");
+  const [refetchCountry, setRefetchCounty] = useState(0);
+  const refetchHomeStoreData = refetchHomeStore;
+  const refetchHomePosteData = refetchHomePost;
+  const handleSelectCounty = async (country) => {
+    setSelectedCountry(country);
+    await AsyncStorage.setItem("selected_country", country.name);
+    console.log(await AsyncStorage.getItem("selected_country"));
+  };
+
+  useEffect(() => {
+    const getCountry = async () => {
+      const userCountry = await AsyncStorage.getItem("selected_country");
+      const selected_country = countries.find(
+        (country) => country.name === userCountry
+      );
+      console.log(selected_country);
+      setCountryPhotoURL(selected_country.img);
+    };
+    getCountry();
+  }, [refetchCountry]);
+
+  const handleSaveAndContinueButton = async () => {
+    // country flag refresh
+    // await props.route.params.setRefetch((prev) => prev + 1);
+    setModalVisible(false);
+    setSelectedCountry((prev) => prev + 1);
+    await refetchHomeStoreData((prev) => prev + 1);
+    await refetchHomePosteData((prev) => prev + 1);
+    navigation.navigate("TabScreen");
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={AccountStyle.headerContainer}>
@@ -38,12 +74,12 @@ const Account = () => {
         </View>
         <TouchableOpacity
           style={AccountStyle.countryBox}
-          onPress={() => setModalVisible(true)}
+          onPress={async () => {
+            setModalVisible(true);
+            setSelectedCountry((prev) => prev + 1);
+          }}
         >
-          <Image
-            style={AccountStyle.img}
-            source={require("../../assets/image/flag.png")}
-          />
+          <Image style={AccountStyle.img} source={countryPhotoURL} />
         </TouchableOpacity>
       </View>
       <View>
@@ -120,9 +156,12 @@ const Account = () => {
       <Modal animationType="slide" visible={modalVisible}>
         <View style={LoginStyle.countryPageHeader}>
           <View style={LoginStyle.arrowAndTextCon}>
-            {/* <TouchableOpacity onPress={() => setModalVisible(false)}>
+            <TouchableOpacity
+              style={{ marginRight: 10 }}
+              onPress={() => setModalVisible(false)}
+            >
               <BackArrow2 />
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             <Text style={LoginStyle.headerTitle}>Continue with country</Text>
           </View>
         </View>
@@ -132,263 +171,26 @@ const Account = () => {
               {" "}
               Please Select Your country
             </Text>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
-            <View style={LoginStyle.selectedBox}>
-              <View style={LoginStyle.flagAndNameBox}>
-                <Image
-                  style={LoginStyle.flag}
-                  source={require("../../assets/image/flag.png")}
-                />
-                <Text>United State</Text>
-              </View>
-              <TikMark />
-            </View>
+            {countries?.map((country) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => handleSelectCounty(country)}
+                  style={LoginStyle.selectedBox}
+                >
+                  <View style={LoginStyle.flagAndNameBox}>
+                    <Image style={LoginStyle.flag} source={country?.img} />
+                    <Text>{country?.name}</Text>
+                  </View>
+                  {selectedCountry?.id === country?.id && <TikMark />}
+                </TouchableOpacity>
+              );
+            })}
           </View>
         </ScrollView>
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => {
-            // navigation.navigate("Home");
-            setModalVisible(false);
+            handleSaveAndContinueButton();
           }}
           style={LoginStyle.saveAndContinueBtn}
         >

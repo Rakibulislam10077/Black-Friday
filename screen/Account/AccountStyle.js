@@ -23,13 +23,19 @@ export const AccountStyle = StyleSheet.create({
     marginLeft: 10,
   },
   countryBox: {
-    width: 38,
-    height: 38,
+    width: 40,
+    height: 28,
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.1)",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 1,
+    backgroundColor: "rgba(0,0,0,0,3)",
   },
   img: {
     resizeMode: "contain",
-    height: "100%",
-    width: "100%",
+    height: 30,
+    width: 38,
   },
   boxes: {
     paddingVertical: 20,

@@ -205,7 +205,7 @@ const StackNavigation = () => {
     return null;
   }
 
-  if (!showOnboarding) {
+  if (showOnboarding) {
     return (
       <Stack.Navigator initialRouteName="Onboarding">
         <Stack.Screen

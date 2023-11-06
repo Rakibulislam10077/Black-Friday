@@ -41,10 +41,14 @@ import { DealsStyle } from "../../components/deals/DealsStyle";
 import { VoucherStyle } from "../../components/voucher/VoucherStyle";
 import DealButton from "../../Shared/dealButton/DealButton";
 import { DealbuttonStyle } from "../../Shared/dealButton/DealButtonStyle";
+
+export let refetchHomeStore;
+export let refetchHomePost;
+
 const Home = () => {
   const navigation = useNavigation();
   const { allStore, storeError, setStoreRefresh } = useAllStore("limit=6");
-  const { allCoupon, couponError, setRefreshCoupon } = useAllCoupon("limit=6");
+  const { couponError, setRefreshCoupon } = useAllCoupon("limit=6");
   const { allCoupon: couponData } = useAllCoupon("Coupon&limit=6");
   const { allCoupon: dealData } = useAllCoupon("Deal&limit=6");
   const { allCoupon: voucherData } = useAllCoupon("Voucher&limit=6");
@@ -54,6 +58,8 @@ const Home = () => {
   const [callRefresh, setCallRefresh] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  refetchHomeStore = setStoreRefresh;
+  refetchHomePost = setRefreshCoupon;
   useEffect(() => {
     const error = async () => {
       if (storeError || couponError) {
@@ -100,6 +106,12 @@ const Home = () => {
       unsubscribe();
     };
   }, []);
+
+  console.log(
+    couponData?.map((c) => {
+      return c;
+    })
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -301,7 +313,7 @@ const Home = () => {
                   >
                     <Image
                       style={HomeStyle.couponLogo}
-                      source={{ uri: coupon?.postPhotoURL }}
+                      source={{ uri: coupon?.store?.storePhotoURL }}
                     />
                     <Text>{coupon?.store?.storeName}</Text>
                   </TouchableOpacity>
@@ -336,7 +348,8 @@ const Home = () => {
           {/* ================popular Voucher section start here================ */}
           {voucherData?.map((voucher) => {
             return (
-              <View
+              <TouchableOpacity
+                activeOpacity={0.8}
                 onPress={() =>
                   navigation.navigate("CouponAndDealCart", { ...voucher })
                 }
@@ -365,7 +378,7 @@ const Home = () => {
                     <Text style={DealbuttonStyle.buttonText}>Buy It</Text>
                   </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             );
           })}
         </View>

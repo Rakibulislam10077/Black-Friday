@@ -12,8 +12,10 @@ import { SearchStyle } from "./SearchStyle";
 import HorizontalStore from "../horizontalStore/HorizontalStore";
 import { Divider } from "react-native-paper";
 import StoreDetails from "../storeDetails/StoreDetails";
+import { useSearch } from "../../hooks/AllHooks";
 
 const Search = () => {
+  const { searchedData, setRefetch, setSearchKey } = useSearch();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={SearchStyle.searchContainer}>
@@ -21,19 +23,26 @@ const Search = () => {
           <Magnify />
         </View>
         <View style={SearchStyle.textInputBox}>
-          <TextInput placeholder="Search" />
+          <TextInput
+            onChangeText={(query) => setSearchKey(query)}
+            placeholder="Search"
+          />
         </View>
       </View>
       <Text style={SearchStyle.resultText}>Result</Text>
       <View style={SearchStyle.searchResultStoreCon}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <HorizontalStore />
+          {searchedData?.stores?.data.map((store) => {
+            return <HorizontalStore store={store} />;
+          })}
         </ScrollView>
       </View>
       <Divider style={SearchStyle.divider} />
       <View style={{ flex: 1 }}>
         <ScrollView>
-          <StoreDetails />
+          {searchedData?.posts?.data.map((couponData) => {
+            return <StoreDetails couponData={couponData} />;
+          })}
         </ScrollView>
       </View>
     </SafeAreaView>
