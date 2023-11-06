@@ -39,11 +39,7 @@ const ViewStore = (props) => {
 
   // console.log(data);
 
-  console.log(
-    data?.store?.storeName,
-    data?.postType,
-    "----------------------=======================-------------"
-  );
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

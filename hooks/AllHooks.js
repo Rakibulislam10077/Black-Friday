@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
 const APIurl = "https://black-friday-affiliate-server.vercel.app/api/v1";
@@ -9,8 +10,14 @@ export const useAllStore = (type) => {
   const [storeDataIsLoading, setStoreDataIsLoading] = useState(true);
   const [storeRefresh, setStoreRefresh] = useState(0);
   useEffect(() => {
-    const getAllStore = () => {
-      fetch(`${APIurl}/store?${type}`)
+    const getCountry = async () => {
+      const userCountry = await AsyncStorage.getItem("selected_country");
+      return userCountry;
+      // console.log(userCountry);
+    };
+
+    const getAllStore = async () => {
+      fetch(`${APIurl}/store?${type}&countries=${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => {
           setAllStore(data?.data);
@@ -33,8 +40,13 @@ export const useAllCoupon = (type) => {
   const [refreshCoupon, setRefreshCoupon] = useState(0);
 
   useEffect(() => {
-    const getAllCoupon = () => {
-      fetch(`${APIurl}/post?${type}`)
+    const getCountry = async () => {
+      const userCountry = AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
+
+    const getAllCoupon = async () => {
+      fetch(`${APIurl}/post?${type}&countries=${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => {
           setAllCoupon(data?.data);
@@ -54,7 +66,6 @@ export const useAllCoupon = (type) => {
   };
 };
 
-
 // QUERY COUPON
 export const useQueryCoupon = (name, type) => {
   const [couponData, setCouponData] = useState([]);
@@ -68,14 +79,12 @@ export const useQueryCoupon = (name, type) => {
         .then((data) => {
           setCouponData(data?.data);
           setIsLoading(false);
-        })
+        });
     };
     getStoreByCountry();
   }, []);
   return { couponData, isLoading };
 };
-
-
 
 // get all category
 export const useAllCategory = () => {

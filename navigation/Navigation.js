@@ -5,6 +5,7 @@ import Home from "../screen/home/Home";
 import Store from "../screen/store/Store";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import React from "react";
 import {
   TouchableOpacity,
   View,
@@ -42,6 +43,7 @@ import {
   WhatsappIconInTab,
 } from "../constants/AllSvg";
 import CampaignViewPage from "../components/compainViewPage/CampaignViewPage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -185,79 +187,169 @@ const TabScreen = () => {
 };
 
 const StackNavigation = () => {
-  return (
-    <Stack.Navigator initialRouteName="Onboarding">
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="TabScreen"
-        component={TabScreen}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Notification"
-        component={Notification}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Search"
-        component={Search}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Deals"
-        component={Deals}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="ProductDetails"
-        component={ProductDetails}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Login"
-        component={Login}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="SignUp"
-        component={SignUp}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="CampaignViewPage"
-        component={CampaignViewPage}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="Onboarding"
-        component={Onboard}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="ViewPage"
-        component={ViewPage}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="AllVoucher"
-        component={AllVoucher}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="AllProduct"
-        component={AllProduct}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="PrivacyPolicy"
-        component={PrivacyPolicy}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="CouponAndDealCart"
-        component={CouponAndDealCart}
-      />
-    </Stack.Navigator>
-  );
+  const [showOnboarding, setShowOnboarding] = React.useState(null);
+
+  React.useEffect(() => {
+    const checkIfAlreadyOnborded = async () => {
+      let onboard = await AsyncStorage.getItem("setOnboard");
+      if (onboard == 1) {
+        setShowOnboarding(false);
+      } else {
+        setShowOnboarding(true);
+      }
+    };
+    checkIfAlreadyOnborded();
+  }, []);
+
+  if (showOnboarding == null) {
+    return null;
+  }
+
+  if (!showOnboarding) {
+    return (
+      <Stack.Navigator initialRouteName="Onboarding">
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="TabScreen"
+          component={TabScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Notification"
+          component={Notification}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Search"
+          component={Search}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Deals"
+          component={Deals}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ProductDetails"
+          component={ProductDetails}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SignUp"
+          component={SignUp}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="CampaignViewPage"
+          component={CampaignViewPage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Onboarding"
+          component={Onboard}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ViewPage"
+          component={ViewPage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AllVoucher"
+          component={AllVoucher}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AllProduct"
+          component={AllProduct}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="CouponAndDealCart"
+          component={CouponAndDealCart}
+        />
+      </Stack.Navigator>
+    );
+  } else {
+    return (
+      <Stack.Navigator initialRouteName="TabScreen">
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="TabScreen"
+          component={TabScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Notification"
+          component={Notification}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Search"
+          component={Search}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Deals"
+          component={Deals}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ProductDetails"
+          component={ProductDetails}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SignUp"
+          component={SignUp}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="CampaignViewPage"
+          component={CampaignViewPage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ViewPage"
+          component={ViewPage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AllVoucher"
+          component={AllVoucher}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AllProduct"
+          component={AllProduct}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="CouponAndDealCart"
+          component={CouponAndDealCart}
+        />
+      </Stack.Navigator>
+    );
+  }
 };
 export default StackNavigation;

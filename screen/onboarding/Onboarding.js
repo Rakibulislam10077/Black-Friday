@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, Dimensions, Image, Modal } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Image,
+  Modal,
+  ToastAndroid,
+} from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
@@ -14,24 +22,32 @@ const Onboard = () => {
   const navigation = useNavigation();
   const { height, width } = Dimensions.get("window");
   const [modalVisible, setModalVisible] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(null);
   const DotComponent = ({ selected }) => {
     return (
       <View style={selected ? styles.selectedDot : styles.defaultDot}></View>
     );
   };
 
-  const handleSelectedCountry = () => {
-    setIsSelected(true);
+  const handleSelectedCountry = async (country) => {
+    setSelectedCountry(country);
+    await AsyncStorage.setItem("selected_country", country.name);
   };
-
-  console.log(countries.map((c) => c.name));
 
   const handleDone = async () => {
-    // navigation.navigate("ChooseCountry");
-    // await AsyncStorage.setItem("onboarded", "1");
     setModalVisible(true);
   };
+
+  const handleSelectCountryDone = async () => {
+    if (!selectedCountry) {
+      return ToastAndroid.show("Please select a country!", ToastAndroid.SHORT);
+    } else {
+      setModalVisible(false);
+      navigation.navigate("TabScreen");
+      await AsyncStorage.setItem("setOnboard", "1");
+    }
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Onboarding
@@ -146,14 +162,14 @@ const Onboard = () => {
               return (
                 <TouchableOpacity
                   key={country?.id}
-                  onPress={() => handleSelectedCountry()}
+                  onPress={() => handleSelectedCountry(country)}
                   style={LoginStyle.selectedBox}
                 >
                   <View style={LoginStyle.flagAndNameBox}>
                     <Image style={LoginStyle.flag} source={country?.img} />
                     <Text>{country?.name}</Text>
                   </View>
-                  {isSelected && <TikMark />}
+                  {selectedCountry?.id === country?.id && <TikMark />}
                 </TouchableOpacity>
               );
             })}
@@ -162,8 +178,7 @@ const Onboard = () => {
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => {
-            setModalVisible(false);
-            navigation.navigate("TabScreen");
+            handleSelectCountryDone();
           }}
           style={LoginStyle.saveAndContinueBtn}
         >

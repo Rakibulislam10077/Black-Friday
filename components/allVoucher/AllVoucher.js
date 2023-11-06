@@ -11,7 +11,6 @@ const AllVoucher = () => {
   const navigation = useNavigation();
   const { allCoupon: voucherData } = useAllCoupon("Voucher");
 
-  console.log(voucherData);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
