@@ -27,7 +27,7 @@ export const DealsStyle = StyleSheet.create({
     width: 100,
     borderRadius: 10,
   },
-  itemDeailsCon: {
+  itemDealsCon: {
     flex: 2,
     marginLeft: 15,
   },

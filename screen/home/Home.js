@@ -41,17 +41,25 @@ import { DealsStyle } from "../../components/deals/DealsStyle";
 import { VoucherStyle } from "../../components/voucher/VoucherStyle";
 import DealButton from "../../Shared/dealButton/DealButton";
 import { DealbuttonStyle } from "../../Shared/dealButton/DealButtonStyle";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export let refetchHomeStore;
 export let refetchHomePost;
 
 const Home = () => {
   const navigation = useNavigation();
+  const [selectedCategory, setSelectedCategory] = useState("");
   const { allStore, storeError, setStoreRefresh } = useAllStore("limit=6");
   const { couponError, setRefreshCoupon } = useAllCoupon("limit=6");
-  const { allCoupon: couponData } = useAllCoupon("Coupon&limit=6");
-  const { allCoupon: dealData } = useAllCoupon("Deal&limit=6");
-  const { allCoupon: voucherData } = useAllCoupon("Voucher&limit=6");
+  const { allCoupon: couponData } = useAllCoupon(
+    `Coupon&limit=6&categoryName=${selectedCategory}`
+  );
+  const { allCoupon: dealData } = useAllCoupon(
+    `Deal&limit=6&categoryName=${selectedCategory}`
+  );
+  const { allCoupon: voucherData } = useAllCoupon(
+    `Voucher&limit=6&categoryName=${selectedCategory}`
+  );
   const { categoryData } = useAllCategory();
   const { campaign } = useCampaign();
   const [refreshing, setRefreshing] = React.useState(false); //for refreshing
@@ -107,11 +115,7 @@ const Home = () => {
     };
   }, []);
 
-  console.log(
-    couponData?.map((c) => {
-      return c;
-    })
-  );
+  console.log(selectedCategory);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -150,7 +154,11 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
       >
         {/* ==========category start here=========*/}
-        <Category categoryData={categoryData} />
+        <Category
+          setSelectedCategory={setSelectedCategory}
+          categoryData={categoryData}
+          setRefreshCoupon={setRefreshCoupon}
+        />
         {/* ==========category end here=========*/}
         {/* =============chip item start here============== */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>

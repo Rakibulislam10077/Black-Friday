@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   ScrollView,
+  Alert,
 } from "react-native";
 import React from "react";
 import { ProductDStyle } from "./ProductDetailsStyle";
@@ -40,7 +41,12 @@ const ProductDetails = (props) => {
               </View>
               <Text style={ProductDStyle.backText}>Back</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={ProductDStyle.favourit}>
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert("asfsdfsadf");
+              }}
+              style={ProductDStyle.favourit}
+            >
               <FavouritIcon />
             </TouchableOpacity>
           </View>

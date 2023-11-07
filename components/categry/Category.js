@@ -1,13 +1,12 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { CategoryStyle } from "./CategoryStyle";
 import { Electronics, Fashion, Newest, Tranding } from "../../constants/AllSvg";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Category = ({ categoryData }) => {
+const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
   const navigation = useNavigation();
-
-  const cgImg = [<Tranding />, <Electronics />, <Newest />, <Fashion />];
 
   return (
     <View style={CategoryStyle.categoryItemContainer}>
@@ -16,13 +15,18 @@ const Category = ({ categoryData }) => {
           {categoryData?.map((category) => {
             return (
               <TouchableOpacity
+                onPress={() => {
+                  setRefreshCoupon((prev) => prev + 1, console.log("data"));
+                  setSelectedCategory(category?.categoryName);
+                }}
+                key={category?._id}
                 style={[CategoryStyle.categoryItem, { marginLeft: 20 }]}
               >
                 {/* {cgImg.map((c) => {
                   return c;
                 })} */}
                 <Text style={CategoryStyle.categoryItemText}>
-                  {category.categoryName}
+                  {category?.categoryName}
                 </Text>
               </TouchableOpacity>
             );

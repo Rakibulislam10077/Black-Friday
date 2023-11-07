@@ -41,7 +41,7 @@ const Deals = ({ storeName, postType }) => {
                         source={{ uri: deal?.postPhotoURL }}
                       />
                     </View>
-                    <View style={DealsStyle.itemDeailsCon}>
+                    <View style={DealsStyle.itemDealsCon}>
                       <Text style={DealsStyle.itemName}>{deal?.postTitle}</Text>
                       <Text style={DealsStyle.exDate}>
                         Expire in{" "}

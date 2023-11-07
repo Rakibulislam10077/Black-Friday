@@ -38,7 +38,6 @@ const Account = () => {
   const handleSelectCounty = async (country) => {
     setSelectedCountry(country);
     await AsyncStorage.setItem("selected_country", country.name);
-    console.log(await AsyncStorage.getItem("selected_country"));
   };
 
   useEffect(() => {
@@ -47,7 +46,6 @@ const Account = () => {
       const selected_country = countries.find(
         (country) => country.name === userCountry
       );
-      console.log(selected_country);
       setCountryPhotoURL(selected_country.img);
     };
     getCountry();

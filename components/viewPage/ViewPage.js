@@ -7,6 +7,7 @@ import {
   Button,
   Linking,
   Dimensions,
+  Alert,
 } from "react-native";
 import { Svg, Path, G, Defs, ClipPath, Rect } from "react-native-svg";
 import React, {
@@ -36,10 +37,6 @@ const ViewStore = (props) => {
   // data from coupon file in screen folder
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
-
-  // console.log(data);
-
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -106,7 +103,7 @@ const ViewStore = (props) => {
           <View style={ViewPageStyle.ST_and_FV}>
             <TouchableOpacity
               onPress={() => {
-                return <ComingSoonAlert />;
+                return Alert.alert("lsakdflkasdfl");
               }}
               style={ViewPageStyle.startCon}
             >
@@ -115,7 +112,7 @@ const ViewStore = (props) => {
             <TouchableOpacity
               // onPress={() => addOrRemoveFav(item)}
               onPress={() => {
-                return <ComingSoonAlert />;
+                return Alert.alert("aslkdfkasdjf");
               }}
               style={ViewPageStyle.startCon}
             >
@@ -270,7 +267,7 @@ const ViewStore = (props) => {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => Linking.openURL(data?.storeLink)}
+          onPress={() => Linking.openURL(data?.storeLink || data?.dealLink)}
           style={ViewPageStyle.visitBtn}
         >
           <Text style={ViewPageStyle.visitBtnText}>Visit store</Text>

@@ -46,7 +46,7 @@ export const useAllCoupon = (type) => {
     };
 
     const getAllCoupon = async () => {
-      fetch(`${APIurl}/post?${type}&countries=${await getCountry()}`)
+      fetch(`${APIurl}/post?${type}`)
         .then((res) => res.json())
         .then((data) => {
           setAllCoupon(data?.data);

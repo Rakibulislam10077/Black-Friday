@@ -30,7 +30,7 @@ export const ProductDStyle = StyleSheet.create({
     marginTop: 30,
   },
   backText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700",
     color: "rgba(0,0,0,0.7)",
   },
@@ -62,7 +62,7 @@ export const ProductDStyle = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     marginTop: -30,
-    // flex: 1.8,
+    flex: 1,
     backgroundColor: "#fff",
     paddingHorizontal: 30,
     paddingTop: 30,

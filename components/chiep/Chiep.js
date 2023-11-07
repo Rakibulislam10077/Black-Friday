@@ -1,12 +1,13 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { ChiepStyle } from "./ChiepStyle";
 import { ScrollView } from "react-native-gesture-handler";
-import { Image } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 
 const Chiep = ({ cam }) => {
   const navigation = useNavigation();
+
+  console.log(cam?.campaignPhotoURL);
 
   return (
     <View style={ChiepStyle.chiepContainer}>

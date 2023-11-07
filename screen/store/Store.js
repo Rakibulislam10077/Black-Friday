@@ -110,9 +110,7 @@ const Store = () => {
             )}
           </View>
           {/* ======================= */}
-          {allStore?.length === 0 ? (
-            <EmptyData />
-          ) : (
+          {
             <View style={StoreStyle.allStoreContainer}>
               <Text style={StoreStyle.allStoreText}>All Store</Text>
               <View style={StoreStyle.storeContainer}>
@@ -121,7 +119,7 @@ const Store = () => {
                 })}
               </View>
             </View>
-          )}
+          }
         </ScrollView>
       )}
     </SafeAreaView>
