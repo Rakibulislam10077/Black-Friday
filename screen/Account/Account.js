@@ -7,6 +7,7 @@ import {
   ScrollView,
   Linking,
   Modal,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -47,6 +48,7 @@ const Account = () => {
         (country) => country.name === userCountry
       );
       setCountryPhotoURL(selected_country.img);
+      console.log(userCountry);
     };
     getCountry();
   }, [refetchCountry]);
@@ -83,7 +85,10 @@ const Account = () => {
       <View>
         <ScrollView>
           <View style={{ paddingHorizontal: 20 }}>
-            <TouchableOpacity style={AccountStyle.boxes}>
+            <TouchableOpacity
+              onPress={() => Alert.alert("laksdjf;kasjdfj")}
+              style={AccountStyle.boxes}
+            >
               <View style={AccountStyle.iconAndText}>
                 <EmptyHeart />
                 <Text style={AccountStyle.text}>Favorite</Text>
@@ -128,7 +133,14 @@ const Account = () => {
               </View>
             </TouchableOpacity>
             <Divider style={AccountStyle.divider} />
-            <TouchableOpacity style={AccountStyle.boxes}>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  "https://play.google.com/store/apps/details?id=com.expertsquad.net.menacoupon&pcampaignid=web_share"
+                )
+              }
+              style={AccountStyle.boxes}
+            >
               <View style={AccountStyle.iconAndText}>
                 <RatingsIcon />
                 <View>
@@ -172,6 +184,7 @@ const Account = () => {
             {countries?.map((country) => {
               return (
                 <TouchableOpacity
+                  key={country?.id}
                   onPress={() => handleSelectCounty(country)}
                   style={LoginStyle.selectedBox}
                 >

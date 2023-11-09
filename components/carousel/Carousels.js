@@ -46,7 +46,7 @@ const Carousels = () => {
           paddingTop: 5,
           paddingBottom: 10,
         }}
-        dotsLength={carousel?.length}
+        dotsLength={carousel?.length ? carousel?.length : null}
         activeDotIndex={index}
         carouselRef={isCarousel}
         dotStyle={styles.carouselDot}

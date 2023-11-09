@@ -19,8 +19,8 @@ export const countries = [
   },
   {
     id: 4,
-    name: "German",
-    sortName: "German",
+    name: "Germany",
+    sortName: "Germany",
     img: require("../assets/image/german.png"),
   },
   {

@@ -32,11 +32,14 @@ import {
   SmallStart,
   Star,
 } from "../../constants/AllSvg";
+import DealsItem from "../dealsItem/DealsItem";
 const ViewStore = (props) => {
   const data = props?.route?.params;
   // data from coupon file in screen folder
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
+
+  console.log(data);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -234,20 +237,20 @@ const ViewStore = (props) => {
       </View>
       {/* <Divider /> */}
       {selected == 0 ? (
-        <Deals
-          storeName={data?.store?.storeName}
+        <DealsItem
+          storeName={data?.store?.storeName || data?.storeName}
           postType="Deal"
           store={data}
         />
       ) : selected == 1 ? (
         <CouponItem
-          storeName={data?.store?.storeName}
+          storeName={data?.store?.storeName || data?.storeName}
           postType="Coupon"
           store={data}
         />
       ) : selected == 2 ? (
         <Voucher
-          storeName={data?.store?.storeName}
+          storeName={data?.store?.storeName || data?.storeName}
           postType="Voucher"
           store={data}
         />

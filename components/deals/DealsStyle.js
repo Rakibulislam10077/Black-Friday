@@ -9,11 +9,10 @@ export const DealsStyle = StyleSheet.create({
     alignSelf: "center",
     width: " 90%",
     borderRadius: 10,
-    shadowColor: "rgba(0,0,0,0.7)",
-    elevation: 20,
+    shadowColor: "rgba(0,0,0,0.3)",
+    elevation: 15,
     padding: 10,
-    marginBottom: 10,
-    marginTop: 10,
+    marginBottom: 15,
   },
   dealsCartContainer: {
     backgroundColor: "#fff",
@@ -66,7 +65,7 @@ export const DealsStyle = StyleSheet.create({
   brandImgAnaNameCon: {
     flexDirection: "row",
     alignItems: "center",
-    flex: 1,
+    flex: 2,
   },
   BrandingAndLogo: {
     flexDirection: "row",

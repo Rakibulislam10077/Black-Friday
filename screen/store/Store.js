@@ -115,7 +115,7 @@ const Store = () => {
               <Text style={StoreStyle.allStoreText}>All Store</Text>
               <View style={StoreStyle.storeContainer}>
                 {allStore?.map((store) => {
-                  return <AllStore store={store} />;
+                  return <AllStore store={store} key={store?._id} />;
                 })}
               </View>
             </View>

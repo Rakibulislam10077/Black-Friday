@@ -16,6 +16,7 @@ import { useSearch } from "../../hooks/AllHooks";
 
 const Search = () => {
   const { searchedData, setRefetch, setSearchKey } = useSearch();
+  console.log(searchedData);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={SearchStyle.searchContainer}>
@@ -40,7 +41,7 @@ const Search = () => {
       <Divider style={SearchStyle.divider} />
       <View style={{ flex: 1 }}>
         <ScrollView>
-          {searchedData?.posts?.data.map((couponData) => {
+          {searchedData?.posts?.data?.map((couponData) => {
             return <StoreDetails couponData={couponData} />;
           })}
         </ScrollView>

@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 const Chiep = ({ cam }) => {
   const navigation = useNavigation();
 
-  console.log(cam?.campaignPhotoURL);
+  // console.log(cam?.campaignPhotoURL);
 
   return (
     <View style={ChiepStyle.chiepContainer}>

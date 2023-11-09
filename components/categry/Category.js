@@ -10,13 +10,13 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
 
   return (
     <View style={CategoryStyle.categoryItemContainer}>
-      <View style={CategoryStyle.categoryItemSubcontainer}>
+      <View style={CategoryStyle.categoryItemSubContainer}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {categoryData?.map((category) => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  setRefreshCoupon((prev) => prev + 1, console.log("data"));
+                  setRefreshCoupon((prev) => prev + 1);
                   setSelectedCategory(category?.categoryName);
                 }}
                 key={category?._id}

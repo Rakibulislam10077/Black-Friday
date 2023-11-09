@@ -16,6 +16,8 @@ export const HomeStyle = StyleSheet.create({
   MagnifyAndBell: {
     flexDirection: "row",
     alignItems: "center",
+    width: 50,
+    justifyContent: "space-between",
   },
   notificationBell: {
     borderRadius: 30,

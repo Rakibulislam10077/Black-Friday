@@ -46,7 +46,7 @@ export const useAllCoupon = (type) => {
     };
 
     const getAllCoupon = async () => {
-      fetch(`${APIurl}/post?${type}`)
+      fetch(`${APIurl}/post?${type}&countries=${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => {
           setAllCoupon(data?.data);
@@ -90,9 +90,17 @@ export const useQueryCoupon = (name, type) => {
 export const useAllCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
   useEffect(() => {
-    fetch(`${APIurl}/category`)
-      .then((res) => res.json())
-      .then((data) => setCategoryData(data?.data));
+    const getCountry = async () => {
+      const userCountry = AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
+
+    const getCategory = async () => {
+      fetch(`${APIurl}/category?countries=${await getCountry()}`)
+        .then((res) => res.json())
+        .then((data) => setCategoryData(data?.data));
+    };
+    getCategory();
   }, []);
   return {
     categoryData,
@@ -102,9 +110,17 @@ export const useAllCategory = () => {
 export const useCampaign = () => {
   const [campaign, setCampaign] = useState([]);
   useState(() => {
-    fetch(`${APIurl}/campaign`)
-      .then((res) => res.json())
-      .then((data) => setCampaign(data?.data));
+    const getCountry = async () => {
+      const userCountry = AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
+
+    const getCampaign = async () => {
+      fetch(`${APIurl}/campaign&countries=${await getCountry()}`)
+        .then((res) => res.json())
+        .then((data) => setCampaign(data?.data));
+    };
+    getCampaign();
   }, []);
   return { campaign };
 };
@@ -113,9 +129,17 @@ export const useCampaign = () => {
 export const useCarousel = () => {
   const [carousels, setCarousels] = useState([]);
   useEffect(() => {
-    fetch(`${APIurl}/carousel`)
-      .then((res) => res.json())
-      .then((data) => setCarousels(data?.data));
+    const getCountry = async () => {
+      const userCountry = AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
+
+    const getCarousel = async () => {
+      fetch(`${APIurl}/carousel?countries=${await getCountry()}`)
+        .then((res) => res.json())
+        .then((data) => setCarousels(data?.data));
+    };
+    getCarousel();
   }, []);
   return { carousels };
 };
@@ -136,7 +160,7 @@ export const useSearch = () => {
     };
 
     const getSearchApi = async () => {
-      const url = `${APIurl}/post/search?country=${await getCountry()}&searchTerm=${searchKey}`;
+      const url = `${APIurl}/post/search?countries=${await getCountry()}&searchTerm=${searchKey}`;
       fetch(url)
         .then((response) => response.json())
         .then((data) => {

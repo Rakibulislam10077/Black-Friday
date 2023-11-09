@@ -12,12 +12,13 @@ import { useNavigation } from "@react-navigation/native";
 import Chiep from "../chiep/Chiep";
 import Category from "../categry/Category";
 import Deals from "../deals/Deals";
-import { useCampaign } from "../../hooks/AllHooks";
+import { useAllCoupon, useCampaign } from "../../hooks/AllHooks";
 
 const CampaignViewPage = (props) => {
   const cam = props?.route?.params;
   const navigation = useNavigation();
   const { campaign } = useCampaign();
+  const { allCoupon } = useAllCoupon("Deal");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -59,7 +60,9 @@ const CampaignViewPage = (props) => {
       <View style={{ flex: 1 }}>
         <View>
           <ScrollView>
-            <Deals />
+            {allCoupon?.map((deal) => {
+              return <Deals deal={deal} key={deal?._id} />;
+            })}
           </ScrollView>
         </View>
       </View>
