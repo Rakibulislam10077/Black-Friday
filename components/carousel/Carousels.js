@@ -24,12 +24,20 @@ const Carousels = () => {
     })
   );
 
+  console.log(
+    carousels?.map((d) =>
+      d?.items?.map((element) => {
+        return element;
+      })
+    )
+  );
+
   return (
     <View style={styles.carouselContainer}>
       <Carousel
         containerCustomStyle={{ overflow: "visible" }}
         data={carousel}
-        renderItem={({ item }) => <CarouselItem item={item} />}
+        renderItem={({ item }) => <CarouselItem key={item?._id} item={item} />}
         ref={isCarousel}
         loop={true}
         firstItem={1}

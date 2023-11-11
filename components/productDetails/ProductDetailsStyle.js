@@ -149,7 +149,7 @@ export const ProductDStyle = StyleSheet.create({
     paddingBottom: 50,
     paddingHorizontal: 5,
   },
-  ClimButton: {
+  ClaimButton: {
     width: "98%",
     borderRadius: 30,
     justifyContent: "center",
@@ -162,7 +162,7 @@ export const ProductDStyle = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
   },
-  climText: {
+  claimText: {
     fontSize: 18,
     color: "#fff",
   },

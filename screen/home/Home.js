@@ -122,13 +122,6 @@ const Home = () => {
     };
   }, []);
 
-  // console.log(selectedCategory);
-  // console.log(
-  //   "Post",
-  //   dealData
-  //   // dealData.forEach((d) => d)
-  // );
-
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
@@ -265,7 +258,7 @@ const Home = () => {
                         </Text>
                         <View style={DealsStyle.allPriceContainer}>
                           <Text style={DealsStyle.activePrice}>
-                            20<Text>$</Text>
+                            20<Text style={{ fontSize: 12 }}>$</Text>
                           </Text>
                           <Text style={DealsStyle.discountedPrice}>
                             27<Text>%</Text>

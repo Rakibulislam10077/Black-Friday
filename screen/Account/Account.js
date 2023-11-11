@@ -48,7 +48,6 @@ const Account = () => {
         (country) => country.name === userCountry
       );
       setCountryPhotoURL(selected_country.img);
-      console.log(userCountry);
     };
     getCountry();
   }, [refetchCountry]);

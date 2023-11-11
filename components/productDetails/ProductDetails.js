@@ -6,6 +6,7 @@ import {
   ImageBackground,
   ScrollView,
   Alert,
+  Linking,
 } from "react-native";
 import React from "react";
 import { ProductDStyle } from "./ProductDetailsStyle";
@@ -18,6 +19,7 @@ import { getExpireInAtDays } from "../../utils/formattedDate";
 const ProductDetails = (props) => {
   const deal = props?.route?.params;
   const navigation = useNavigation();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={[ProductDStyle.iconSection]}>
@@ -28,6 +30,7 @@ const ProductDetails = (props) => {
             position: "absolute",
             top: 0,
           }}
+          resizeMode="cover"
           source={{ uri: deal?.postPhotoURL }}
         />
         <SafeAreaView>
@@ -96,8 +99,12 @@ const ProductDetails = (props) => {
             <Text>{deal?.postDescription}</Text>
           </View>
         </ScrollView>
-        <TouchableOpacity activeOpacity={0.5} style={ProductDStyle.ClimButton}>
-          <Text style={ProductDStyle.climText}>Claim</Text>
+        <TouchableOpacity
+          onPress={() => Linking.openURL(deal?.dealLink)}
+          activeOpacity={0.7}
+          style={ProductDStyle.ClaimButton}
+        >
+          <Text style={ProductDStyle.claimText}>Claim</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

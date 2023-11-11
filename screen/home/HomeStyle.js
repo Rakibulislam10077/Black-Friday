@@ -167,12 +167,12 @@ export const HomeStyle = StyleSheet.create({
     width: 50,
   },
   postTitleBox: {
-    height: 20,
+    height: 25,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 5,
   },
   postTitle: {
     fontSize: 16,

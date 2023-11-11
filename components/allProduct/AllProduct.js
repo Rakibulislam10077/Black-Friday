@@ -32,8 +32,6 @@ const AllProduct = () => {
     }, 2000);
   }, []);
 
-  console.log(dealData.length);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={AllProductStyle.headerContainer}>
@@ -56,7 +54,7 @@ const AllProduct = () => {
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
           >
-            <View>
+            <View style={{ paddingTop: 10 }}>
               {dealData?.map((dealsDataFromAllProduct) => {
                 return (
                   <Deals

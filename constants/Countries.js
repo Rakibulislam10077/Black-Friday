@@ -3,13 +3,13 @@ export const countries = [
     id: 1,
     name: "United State",
     sortName: "United State",
-    img: require("../assets/image/united-state.png"),
+    img: require("../assets/image/Un.png"),
   },
   {
     id: 2,
     name: "Canada",
     sortName: "Canada",
-    img: require("../assets/image/canada.png"),
+    img: require("../assets/image/Canada.png"),
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const countries = [
     id: 4,
     name: "Germany",
     sortName: "Germany",
-    img: require("../assets/image/german.png"),
+    img: require("../assets/image/German.png"),
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ export const countries = [
     id: 8,
     name: "France",
     sortName: "France",
-    img: require("../assets/image/france.png"),
+    img: require("../assets/image/Fn.png"),
   },
   {
     id: 9,

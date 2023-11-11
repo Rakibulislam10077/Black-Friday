@@ -6,9 +6,6 @@ import { Divider } from "react-native-paper";
 import { DescIcon } from "../../constants/AllSvg";
 import { useNavigation } from "@react-navigation/native";
 import { getExpireInAtDays } from "../../utils/formattedDate";
-import { useAllCoupon, useQueryCoupon } from "../../hooks/AllHooks";
-import LoadingSpinner from "../../constants/LoadingSpinner";
-import Empty_ViewPage from "../../Shared/Empty_ViewPage";
 
 const Deals = ({ deal, dealItem, dealsDataFromAllProduct }) => {
   const navigation = useNavigation();
@@ -16,7 +13,6 @@ const Deals = ({ deal, dealItem, dealsDataFromAllProduct }) => {
     deal?.postDescription ||
     dealItem?.postDescription ||
     dealsDataFromAllProduct?.postDescription;
-  console.log(dealsDataFromAllProduct, "this is deal data from viewPage");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -65,7 +61,7 @@ const Deals = ({ deal, dealItem, dealsDataFromAllProduct }) => {
                 </Text>
                 <View style={DealsStyle.allPriceContainer}>
                   <Text style={DealsStyle.activePrice}>
-                    20<Text>$</Text>
+                    20<Text style={{ fontSize: 12 }}>$</Text>
                   </Text>
                   <Text style={DealsStyle.discountedPrice}>
                     27<Text>%</Text>

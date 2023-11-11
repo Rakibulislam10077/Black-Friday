@@ -9,7 +9,7 @@ export const DealsStyle = StyleSheet.create({
     alignSelf: "center",
     width: " 90%",
     borderRadius: 10,
-    shadowColor: "rgba(0,0,0,0.3)",
+    shadowColor: "rgba(0,0,0,0.5)",
     elevation: 15,
     padding: 10,
     marginBottom: 15,

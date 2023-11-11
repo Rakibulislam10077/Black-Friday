@@ -39,8 +39,6 @@ const ViewStore = (props) => {
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
 
-  console.log(data);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
