@@ -90,7 +90,7 @@ const StoreDetails = ({ couponData, store, item }) => {
           </View>
 
           <View style={{ flex: 3 }}>
-            <Text style={StoreDetailsStyle.desc}>
+            <Text numberOfLines={3} style={StoreDetailsStyle.desc}>
               {couponData?.postDescription ||
                 store?.postDescription ||
                 item?.postDescription}

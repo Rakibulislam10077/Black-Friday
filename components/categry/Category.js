@@ -15,12 +15,13 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
           {categoryData?.map((category) => {
             return (
               <TouchableOpacity
+                activeOpacity={0.8}
                 onPress={() => {
                   setRefreshCoupon((prev) => prev + 1);
                   setSelectedCategory(category?.categoryName);
                 }}
                 key={category?._id}
-                style={[CategoryStyle.categoryItem, { marginLeft: 20 }]}
+                style={[CategoryStyle.categoryItem]}
               >
                 {/* {cgImg.map((c) => {
                   return c;

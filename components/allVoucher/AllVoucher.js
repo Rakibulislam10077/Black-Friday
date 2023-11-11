@@ -9,8 +9,9 @@ import { useAllCoupon } from "../../hooks/AllHooks";
 
 const AllVoucher = () => {
   const navigation = useNavigation();
-  const { allCoupon: voucherData } = useAllCoupon("Voucher");
+  const { allCoupon: voucherData } = useAllCoupon("postType=Voucher");
 
+  console.log(voucherData);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -29,7 +30,7 @@ const AllVoucher = () => {
         <ScrollView>
           <View>
             {voucherData?.map((voucher) => {
-              return <Voucher voucher={voucher} />;
+              return <Voucher voucher={voucher} key={voucher?._id} />;
             })}
           </View>
         </ScrollView>

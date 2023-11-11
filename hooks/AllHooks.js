@@ -89,6 +89,7 @@ export const useQueryCoupon = (name, type) => {
 // get all category
 export const useAllCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
+  const [isLoadCategoryData, setIsLoadCategoryData] = useState(null);
   useEffect(() => {
     const getCountry = async () => {
       const userCountry = AsyncStorage.getItem("selected_country");
@@ -110,13 +111,8 @@ export const useAllCategory = () => {
 export const useCampaign = () => {
   const [campaign, setCampaign] = useState([]);
   useState(() => {
-    const getCountry = async () => {
-      const userCountry = AsyncStorage.getItem("selected_country");
-      return userCountry;
-    };
-
     const getCampaign = async () => {
-      fetch(`${APIurl}/campaign&countries=${await getCountry()}`)
+      fetch(`${APIurl}/campaign`)
         .then((res) => res.json())
         .then((data) => setCampaign(data?.data));
     };

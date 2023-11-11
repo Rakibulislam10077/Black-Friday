@@ -50,7 +50,7 @@ const Coupon = () => {
     const unsubscribe = NetInfo.addEventListener((state) => {
       setIsOnline(state.isConnected);
       if (!state.isConnected) {
-        setErrorMessage("No network connection.");
+        setErrorMessage("No internet connection.");
       } else {
         setErrorMessage("");
       }
@@ -70,9 +70,11 @@ const Coupon = () => {
           </TouchableOpacity>
           <Text style={CouponStyle.title}>Offers</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-          <Magnify />
-        </TouchableOpacity>
+        {isOnline && (
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+            <Magnify />
+          </TouchableOpacity>
+        )}
       </View>
       {!isOnline ? (
         <ErrorPage

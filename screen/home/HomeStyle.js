@@ -16,7 +16,6 @@ export const HomeStyle = StyleSheet.create({
   MagnifyAndBell: {
     flexDirection: "row",
     alignItems: "center",
-    width: 50,
     justifyContent: "space-between",
   },
   notificationBell: {
@@ -32,7 +31,7 @@ export const HomeStyle = StyleSheet.create({
   },
   Divider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
   },
 
   dealSectionContainer: {
@@ -98,6 +97,7 @@ export const HomeStyle = StyleSheet.create({
     marginBottom: 8,
     width: 40,
     height: 40,
+    resizeMode: "stretch",
   },
   storeName: {
     fontSize: 16,
@@ -109,7 +109,7 @@ export const HomeStyle = StyleSheet.create({
   },
   storeDivider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
     width: "92%",
     alignSelf: "center",
     marginBottom: 10,
@@ -163,11 +163,10 @@ export const HomeStyle = StyleSheet.create({
     marginBottom: 10,
     height: 40,
     borderRadius: 5,
-    resizeMode: "contain",
+    resizeMode: "stretch",
     width: 50,
   },
   postTitleBox: {
-    height: 25,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",

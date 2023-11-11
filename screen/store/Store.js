@@ -51,7 +51,7 @@ const Store = () => {
     const unsubscribe = NetInfo.addEventListener((state) => {
       setIsOnline(state.isConnected);
       if (!state.isConnected) {
-        setErrorMessage("No network connection.");
+        setErrorMessage("No internet connection.");
       } else {
         setErrorMessage("");
       }
@@ -71,9 +71,11 @@ const Store = () => {
           </TouchableOpacity>
           <Text style={StoreStyle.title}>Store</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-          <Magnify />
-        </TouchableOpacity>
+        {isOnline && (
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+            <Magnify />
+          </TouchableOpacity>
+        )}
       </View>
       {/* store header end */}
       {!isOnline ? (

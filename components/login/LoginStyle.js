@@ -21,7 +21,7 @@ export const LoginStyle = StyleSheet.create({
   },
   Divider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
     marginTop: 10,
     marginBottom: 20,
   },

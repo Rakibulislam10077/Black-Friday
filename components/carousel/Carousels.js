@@ -44,7 +44,7 @@ const Carousels = () => {
         inactiveSlideOpacity={0.7}
         inactiveSlideScale={0.8}
         sliderWidth={400}
-        itemWidth={280}
+        itemWidth={290}
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
         slideStyle={{ display: "flex", alignItems: "center" }}

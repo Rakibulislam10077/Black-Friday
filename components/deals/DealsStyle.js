@@ -25,6 +25,7 @@ export const DealsStyle = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 10,
+    resizeMode: "stretch",
   },
   itemDealsCon: {
     flex: 2,
@@ -55,7 +56,7 @@ export const DealsStyle = StyleSheet.create({
     textDecorationLine: "line-through",
   },
   verticalDivider: {
-    color: "rgba(0,0,0,0.1)",
+    opacity: 0.1,
     marginRight: 10,
   },
   offPrice: {
@@ -107,7 +108,7 @@ export const DealsStyle = StyleSheet.create({
   },
   divider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
     width: "90%",
     alignSelf: "center",
     marginTop: 20,

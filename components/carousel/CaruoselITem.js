@@ -20,7 +20,7 @@ const CarouselItem = ({ item }) => {
       {item?.map((c) => {
         return (
           <Image
-            resizeMode="contain"
+            resizeMode="stretch"
             style={{ width: "100%", borderRadius: 10, height: 160 }}
             source={{ uri: c?.photoURL }}
           />

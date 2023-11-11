@@ -33,6 +33,7 @@ import {
   Star,
 } from "../../constants/AllSvg";
 import DealsItem from "../dealsItem/DealsItem";
+import VoucherItem from "../voucherItem/VoucherItem";
 const ViewStore = (props) => {
   const data = props?.route?.params;
   // data from coupon file in screen folder
@@ -126,7 +127,7 @@ const ViewStore = (props) => {
             height: 1,
             width: "90%",
             alignSelf: "center",
-            opacity: 0.3,
+            opacity: 0.1,
           }}
         />
         <Text
@@ -247,7 +248,7 @@ const ViewStore = (props) => {
           store={data}
         />
       ) : selected == 2 ? (
-        <Voucher
+        <VoucherItem
           storeName={data?.store?.storeName || data?.storeName}
           postType="Voucher"
           store={data}

@@ -39,7 +39,7 @@ export const SearchStyle = StyleSheet.create({
   },
   divider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
     width: "90%",
     alignSelf: "center",
     marginTop: 20,

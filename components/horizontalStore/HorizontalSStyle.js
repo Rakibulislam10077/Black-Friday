@@ -7,15 +7,15 @@ export const HorizontalSStyle = StyleSheet.create({
   storeContainer: {
     flexDirection: "row",
     paddingLeft: 15,
-    paddingBottom: 10,
+    backgroundColor: "#fff",
+    alignItems: "center",
   },
   storeSubContainer: {
     backgroundColor: "#fff",
     alignItems: "center",
     width: 60,
     paddingHorizontal: 8,
-    justifyContent: "center",
-    height: "100%",
+    height: "90%",
   },
   imgContainer: {
     backgroundColor: "#fff",
@@ -27,11 +27,12 @@ export const HorizontalSStyle = StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 10,
+    marginTop: 10,
   },
   storeName: {
     fontSize: 12,
     color: "rgba(0,0,0,0.5)",
     textAlign: "center",
+    marginTop: 5,
   },
 });

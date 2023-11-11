@@ -33,8 +33,8 @@ export const AccountStyle = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0,3)",
   },
   img: {
-    resizeMode: "contain",
-    height: 30,
+    resizeMode: "stretch",
+    height: 25,
     width: 38,
   },
   boxes: {
@@ -49,7 +49,7 @@ export const AccountStyle = StyleSheet.create({
   },
   divider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
   },
   iconAndText: {
     flexDirection: "row",

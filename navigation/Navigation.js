@@ -5,7 +5,7 @@ import Home from "../screen/home/Home";
 import Store from "../screen/store/Store";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
   View,
@@ -47,7 +47,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
 const TabScreen = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -87,6 +86,7 @@ const TabScreen = () => {
             },
           }}
         />
+
         <Tab.Screen
           name="Store"
           component={Store}

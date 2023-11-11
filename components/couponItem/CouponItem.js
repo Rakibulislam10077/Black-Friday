@@ -12,7 +12,7 @@ const CouponItem = ({ storeName, postType, store }) => {
   // console.log(".....................", store);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       {isLoading ? (
         <LoadingSpinner />
       ) : couponData.length === 0 ? (

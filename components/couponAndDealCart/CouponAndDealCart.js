@@ -33,6 +33,8 @@ export default function CouponAndDealCart(props) {
   };
 
 
+  console.log(data?.postType);
+
   return (
     <SafeAreaView
       style={{
@@ -57,7 +59,7 @@ export default function CouponAndDealCart(props) {
                   uri: data?.store?.storePhotoURL || data?.postPhotoURL,
                 }}
                 style={styles.BSimg}
-                resizeMode="contain"
+                resizeMode="stretch"
               />
             </View>
             <View>

@@ -239,6 +239,6 @@ const styles = StyleSheet.create({
   },
   DividerStyle: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
   },
 });

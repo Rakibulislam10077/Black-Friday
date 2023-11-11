@@ -8,13 +8,16 @@ import { useNavigation } from "@react-navigation/native";
 import Deals from "../deals/Deals";
 import { useQueryCoupon } from "../../hooks/AllHooks";
 import LoadingSpinner from "../../constants/LoadingSpinner";
+import Empty_ViewPage from "../../Shared/Empty_ViewPage";
 const DealsItem = ({ storeName, postType }) => {
   const { couponData, isLoading } = useQueryCoupon(storeName, postType);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       {isLoading ? (
         <LoadingSpinner />
+      ) : couponData.length === 0 ? (
+        <Empty_ViewPage />
       ) : (
         <ScrollView>
           <View style={{ paddingBottom: 100, paddingTop: 10 }}>

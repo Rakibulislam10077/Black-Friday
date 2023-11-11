@@ -13,6 +13,7 @@ export const VoucherStyle = StyleSheet.create({
     borderRadius: 10,
     width: "90%",
     alignSelf: "center",
+    marginBottom: 100,
   },
   voucherImgCon: {
     width: 60,

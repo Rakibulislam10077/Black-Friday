@@ -32,7 +32,7 @@ export const AllStoreStyle = StyleSheet.create({
   },
   divider: {
     height: 1,
-    opacity: 0.3,
+    opacity: 0.1,
     width: "98%",
     alignSelf: "center",
     marginBottom: 10,

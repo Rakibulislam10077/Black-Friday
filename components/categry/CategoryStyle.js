@@ -23,6 +23,7 @@ export const CategoryStyle = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: 30,
+    marginHorizontal: 10,
   },
   categoryItemText: {
     fontSize: 14,

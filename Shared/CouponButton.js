@@ -7,6 +7,7 @@ const CouponButton = ({ couponData, children, coupon, store }) => {
   const [clickedButton, setClickedButton] = useState(false);
   return (
     <TouchableOpacity
+      activeOpacity={0.7}
       style={styles.buttonContainer}
       onPress={() => {
         navigation.navigate("CouponAndDealCart", {

@@ -50,7 +50,7 @@ export const StoreDetailsStyle = StyleSheet.create({
   divider: {
     height: 1,
     color: "#000",
-    opacity: 0.3,
+    opacity: 0.1,
     marginTop: 15,
   },
   verifiedCon: {

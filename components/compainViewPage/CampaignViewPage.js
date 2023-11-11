@@ -13,12 +13,12 @@ import Chiep from "../chiep/Chiep";
 import Category from "../categry/Category";
 import Deals from "../deals/Deals";
 import { useAllCoupon, useCampaign } from "../../hooks/AllHooks";
+import LoadingSpinner from "../../constants/LoadingSpinner";
 
-const CampaignViewPage = (props) => {
-  const cam = props?.route?.params;
+const CampaignViewPage = () => {
   const navigation = useNavigation();
   const { campaign } = useCampaign();
-  const { allCoupon } = useAllCoupon("Deal");
+  const { allCoupon, couponDataLoading } = useAllCoupon("Deal");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -32,12 +32,6 @@ const CampaignViewPage = (props) => {
         </View>
         <View style={CompainVStyle.BellAndMagnifyCon}>
           <Magnify />
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Notification")}
-            style={CompainVStyle.bellCon}
-          >
-            <NotificationBell />
-          </TouchableOpacity>
         </View>
       </View>
       {/* header end */}
@@ -58,13 +52,15 @@ const CampaignViewPage = (props) => {
       </View>
       {/* category item end */}
       <View style={{ flex: 1 }}>
-        <View>
+        {couponDataLoading ? (
+          <LoadingSpinner />
+        ) : (
           <ScrollView>
             {allCoupon?.map((deal) => {
               return <Deals deal={deal} key={deal?._id} />;
             })}
           </ScrollView>
-        </View>
+        )}
       </View>
     </SafeAreaView>
   );

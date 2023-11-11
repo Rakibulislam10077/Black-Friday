@@ -90,6 +90,10 @@ export const ProductDStyle = StyleSheet.create({
     color: "rgba(0,0,0,0.4)",
     fontSize: 24,
   },
+  Divider: {
+    height: 1,
+    opacity: 0.1,
+  },
   lessPrice: {
     fontSize: 14,
     color: "rgba(255, 0, 0, 0.6)",
