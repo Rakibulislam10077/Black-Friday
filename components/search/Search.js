@@ -34,7 +34,7 @@ const Search = () => {
       <View style={SearchStyle.searchResultStoreCon}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {searchedData?.stores?.data.map((store) => {
-            return <HorizontalStore store={store} />;
+            return <HorizontalStore key={store?._id} store={store} />;
           })}
         </ScrollView>
       </View>
@@ -42,7 +42,7 @@ const Search = () => {
       <View style={{ flex: 1 }}>
         <ScrollView>
           {searchedData?.posts?.data?.map((couponData) => {
-            return <StoreDetails couponData={couponData} />;
+            return <StoreDetails key={couponData?._id} couponData={couponData} />;
           })}
         </ScrollView>
       </View>

@@ -8,6 +8,7 @@ import {
   Linking,
   Dimensions,
   Alert,
+  Pressable,
 } from "react-native";
 import { Svg, Path, G, Defs, ClipPath, Rect } from "react-native-svg";
 import React, {
@@ -18,7 +19,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Divider } from "react-native-paper";
+import { Divider, Modal, PaperProvider, Portal } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Deals from "../deals/Deals";
@@ -34,11 +35,33 @@ import {
 } from "../../constants/AllSvg";
 import DealsItem from "../dealsItem/DealsItem";
 import VoucherItem from "../voucherItem/VoucherItem";
+import { ScrollView } from "react-native-gesture-handler";
 const ViewStore = (props) => {
   const data = props?.route?.params;
   // data from coupon file in screen folder
   const navigation = useNavigation(); // navigation
   const [selected, setSelected] = React.useState(0);
+  const [showMoreButton, setShowMoreButton] = useState(false);
+  const [textShown, setTextShown] = useState(false);
+  const [numLines, setNumLines] = useState(undefined);
+
+  const toggleTextShown = () => {
+    setTextShown(!textShown);
+  };
+
+  useEffect(() => {
+    setNumLines(textShown ? undefined : 3);
+  }, [textShown]);
+
+  const onTextLayout = useCallback(
+    (e) => {
+      if (e.nativeEvent.lines.length > 3 && !textShown) {
+        setShowMoreButton(true);
+        setNumLines(3);
+      }
+    },
+    [textShown]
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -131,18 +154,46 @@ const ViewStore = (props) => {
           }}
         />
         <Text
-          // numberOfLines={}
+          onTextLayout={onTextLayout}
+          numberOfLines={numLines}
           style={{
             color: "rgba(0,0,0,0.4)",
             fontSize: 13,
-            marginTop: 15,
-            marginBottom: 15,
+            marginTop: 10,
+            marginBottom: 10,
             textAlign: "center",
             paddingHorizontal: 30,
           }}
         >
           {data?.storeDescription || data?.postDescription}
         </Text>
+        {showMoreButton ? (
+          <TouchableOpacity
+            onPress={toggleTextShown}
+            style={{
+              width: 95,
+              height: 30,
+              borderRadius: 5,
+              borderColor: textShown ? "#ff9999" : "#ededed",
+              alignSelf: "center",
+              borderWidth: 2,
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: 10,
+              backgroundColor: textShown ? "#ff4d4d" : "#d0d0d0",
+            }}
+          >
+            <Text
+              style={{
+                color: "#000",
+                fontSize: 14,
+                fontWeight: "700",
+              }}
+            >
+              {textShown ? "Read Less" : "Read More"}
+            </Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
       <View style={ViewPageStyle.TabNavigateContainer}>
         <TouchableOpacity
@@ -234,6 +285,7 @@ const ViewStore = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
+
       {/* <Divider /> */}
       {selected == 0 ? (
         <DealsItem
@@ -262,7 +314,9 @@ const ViewStore = (props) => {
           <Image
             style={ViewPageStyle.btmBtnImg}
             resizeMode="contain"
-            source={{ uri: data?.store?.storePhotoURL || data?.storePhotoURL }}
+            source={{
+              uri: data?.store?.storePhotoURL || data?.storePhotoURL,
+            }}
           />
           <Text style={ViewPageStyle.bttmBtnText}>
             {data?.store?.storeName || data?.storeName}
