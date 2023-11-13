@@ -40,13 +40,15 @@ export const useAllCoupon = (type) => {
   const [refreshCoupon, setRefreshCoupon] = useState(0);
 
   useEffect(() => {
-    const getCountry = async () => {
-      const userCountry = AsyncStorage.getItem("selected_country");
-      return userCountry;
-    };
+    // const getCountry = async () => {
+    //   const userCountry = AsyncStorage.getItem("selected_country");
+    //   return userCountry;
+    // };
+
+    // &countries=${await getCountry()}
 
     const getAllCoupon = async () => {
-      fetch(`${APIurl}/post?${type}&countries=${await getCountry()}`)
+      fetch(`${APIurl}/post?${type}`)
         .then((res) => res.json())
         .then((data) => {
           setAllCoupon(data?.data);

@@ -19,7 +19,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Divider, Modal, PaperProvider, Portal } from "react-native-paper";
+import { Divider, PaperProvider, Portal } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Deals from "../deals/Deals";
@@ -35,7 +35,8 @@ import {
 } from "../../constants/AllSvg";
 import DealsItem from "../dealsItem/DealsItem";
 import VoucherItem from "../voucherItem/VoucherItem";
-import { ScrollView } from "react-native-gesture-handler";
+import Modal from "react-native-modal";
+import { NotifyStyle } from "../notification/NotifyStyle";
 const ViewStore = (props) => {
   const data = props?.route?.params;
   // data from coupon file in screen folder
@@ -43,25 +44,20 @@ const ViewStore = (props) => {
   const [selected, setSelected] = React.useState(0);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [textShown, setTextShown] = useState(false);
-  const [numLines, setNumLines] = useState(undefined);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const toggleTextShown = () => {
     setTextShown(!textShown);
+    setModalVisible(true);
   };
 
-  useEffect(() => {
-    setNumLines(textShown ? undefined : 3);
-  }, [textShown]);
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
 
-  const onTextLayout = useCallback(
-    (e) => {
-      if (e.nativeEvent.lines.length > 3 && !textShown) {
-        setShowMoreButton(true);
-        setNumLines(3);
-      }
-    },
-    [textShown]
-  );
+  const description = data?.storeDescription || data?.postDescription;
+  const sortText =
+    description?.length > 120 ? description.slice(0, 120) + "..." : description;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -153,9 +149,8 @@ const ViewStore = (props) => {
             opacity: 0.1,
           }}
         />
+
         <Text
-          onTextLayout={onTextLayout}
-          numberOfLines={numLines}
           style={{
             color: "rgba(0,0,0,0.4)",
             fontSize: 13,
@@ -165,35 +160,19 @@ const ViewStore = (props) => {
             paddingHorizontal: 30,
           }}
         >
-          {data?.storeDescription || data?.postDescription}
-        </Text>
-        {showMoreButton ? (
-          <TouchableOpacity
-            onPress={toggleTextShown}
-            style={{
-              width: 95,
-              height: 30,
-              borderRadius: 5,
-              borderColor: textShown ? "#ff9999" : "#ededed",
-              alignSelf: "center",
-              borderWidth: 2,
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: 10,
-              backgroundColor: textShown ? "#ff4d4d" : "#d0d0d0",
-            }}
-          >
+          {description && sortText}
+          {description?.length > 120 && (
             <Text
-              style={{
-                color: "#000",
-                fontSize: 14,
-                fontWeight: "700",
+              onPress={() => {
+                toggleTextShown();
               }}
+              style={{ color: "#000", fontSize: 14, fontWeight: "700" }}
             >
-              {textShown ? "Read Less" : "Read More"}
+              {" "}
+              See More
             </Text>
-          </TouchableOpacity>
-        ) : null}
+          )}
+        </Text>
       </View>
       <View style={ViewPageStyle.TabNavigateContainer}>
         <TouchableOpacity
@@ -329,6 +308,46 @@ const ViewStore = (props) => {
           <Text style={ViewPageStyle.visitBtnText}>Visit store</Text>
         </TouchableOpacity>
       </View>
+      <Modal
+        onBackdropPress={() => setModalVisible(false)}
+        onBackButtonPress={() => setModalVisible(false)}
+        swipeDirection="down"
+        onSwipeComplete={() => toggleModal()}
+        animationIn="bounceInUp"
+        animationOut="bounceOutDown"
+        animationInTiming={900}
+        animationOutTiming={500}
+        isVisible={modalVisible}
+        style={NotifyStyle.modal}
+        backdropTransitionInTiming={500}
+        backdropTransitionOutTiming={300}
+      >
+        <View style={NotifyStyle.modalContent}>
+          <View style={NotifyStyle.insideToggleBar}></View>
+          <View>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "700",
+                alignSelf: "center",
+                textDecorationLine: "underline",
+              }}
+            >
+              About : {data?.store?.storeName || data?.storeName}
+            </Text>
+            <Text
+              style={{
+                color: "rgba(0,0,0,0.5)",
+                fontSize: 14,
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              {data?.storeDescription || data?.postDescription}
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };

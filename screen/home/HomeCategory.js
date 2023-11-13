@@ -1,13 +1,16 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import { CategoryStyle } from "./CategoryStyle";
-import { Electronics, Fashion, Newest, Tranding } from "../../constants/AllSvg";
-import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, Text } from "react-native";
+import React from "react";
+import { CategoryStyle } from "../../components/categry/CategoryStyle";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
-const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
-  const navigation = useNavigation();
-  const [selectedCategoryColor, setSelectedCategoryColor] = useState(null);
+const HomeCategory = ({
+  categoryData,
+  setSelectedCategory,
+  setRefreshCoupon,
+  refreshVoucher,
+  refreshDeal,
+}) => {
+  console.log(categoryData);
 
   return (
     <View style={CategoryStyle.categoryItemContainer}>
@@ -20,16 +23,11 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
                 onPress={() => {
                   setSelectedCategory(category?.categoryName);
                   setRefreshCoupon((prev) => prev + 1);
-                  setSelectedCategoryColor(category);
+                  refreshDeal((prev) => prev + 1);
+                  refreshVoucher((prev) => prev + 1);
                 }}
                 key={category?._id}
-                style={[
-                  CategoryStyle.categoryItem,
-                  {
-                    backgroundColor:
-                      selectedCategoryColor?._id === category?._id && "#E7F0F2",
-                  },
-                ]}
+                style={[CategoryStyle.categoryItem]}
               >
                 {/* {cgImg.map((c) => {
                   return c;
@@ -46,4 +44,4 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
   );
 };
 
-export default Category;
+export default HomeCategory;

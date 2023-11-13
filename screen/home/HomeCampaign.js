@@ -1,0 +1,33 @@
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import React from "react";
+import { ChiepStyle } from "../../components/chiep/ChiepStyle";
+import { useNavigation } from "@react-navigation/native";
+
+const HomeCampaign = ({ cam }) => {
+  const navigation = useNavigation();
+  return (
+    <View style={ChiepStyle.chiepContainer}>
+      <View style={ChiepStyle.chiepSubContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("CampaignViewPage", {
+              ...cam,
+            });
+            // setSelectedCampaign(cam?.campaignName);
+          }}
+          style={[ChiepStyle.chiepItem]}
+        >
+          <Image
+            style={ChiepStyle.chiepItemImage}
+            source={{
+              uri: cam?.campaignPhotoURL,
+            }}
+          />
+          <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default HomeCampaign;

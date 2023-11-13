@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   BackArrow,
@@ -12,13 +12,34 @@ import { useNavigation } from "@react-navigation/native";
 import Chiep from "../chiep/Chiep";
 import Category from "../categry/Category";
 import Deals from "../deals/Deals";
-import { useAllCoupon, useCampaign } from "../../hooks/AllHooks";
+import {
+  useAllCategory,
+  useAllCoupon,
+  useCampaign,
+} from "../../hooks/AllHooks";
 import LoadingSpinner from "../../constants/LoadingSpinner";
 
-const CampaignViewPage = () => {
+const CampaignViewPage = (props) => {
+  const campaignDataFromHome = props?.route?.params;
   const navigation = useNavigation();
   const { campaign } = useCampaign();
-  const { allCoupon, couponDataLoading } = useAllCoupon("Deal");
+  const [selectedCampaign, setSelectedCampaign] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const { allCoupon, couponDataLoading, setRefreshCoupon } = useAllCoupon(
+    `${selectedCampaign && `&campaignName=${selectedCampaign}`}&${
+      selectedCategory && `categoryName=${selectedCategory}`
+    }`
+  );
+  const { categoryData } = useAllCategory();
+  // const checkCampaignData = () => {
+  //   campaign?.map((dealData) => {
+  //     console.log("this is campaign===============", dealData);
+  //     // if (
+  //     //   dealData?.campaign?.campaignName === campaignDataFromHome?.campaignName
+  //     // );
+  //   });
+  // };
+  // checkCampaignData();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -40,7 +61,15 @@ const CampaignViewPage = () => {
       <View style={CompainVStyle.chiepContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {campaign?.map((cam) => {
-            return <Chiep cam={cam} />;
+            return (
+              <Chiep
+                setSelectedCampaign={setSelectedCampaign}
+                campaignDataFromHome={campaignDataFromHome}
+                setRefreshCoupon={setRefreshCoupon}
+                cam={cam}
+                key={cam?._id}
+              />
+            );
           })}
         </ScrollView>
       </View>
@@ -48,7 +77,13 @@ const CampaignViewPage = () => {
       {/* ======================== */}
       {/* category item */}
       <View style={CompainVStyle.categoryContainer}>
-        <Category />
+        <ScrollView horizontal={true}>
+          <Category
+            setSelectedCategory={setSelectedCategory}
+            setRefreshCoupon={setRefreshCoupon}
+            categoryData={categoryData}
+          />
+        </ScrollView>
       </View>
       {/* category item end */}
       <View style={{ flex: 1 }}>

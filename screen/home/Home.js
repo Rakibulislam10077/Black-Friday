@@ -34,6 +34,8 @@ import HomeStore from "./HomeStore";
 import HomeCoupon from "./HomeCoupon";
 import HomeVoucher from "./HomeVoucher";
 import ErrorPage from "../../Shared/ErrorPage";
+import HomeCampaign from "./HomeCampaign";
+import HomeCategory from "./HomeCategory";
 
 export let refetchHomeStore;
 export let refetchHomePost;
@@ -42,23 +44,28 @@ const Home = () => {
   const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState("");
   const { allStore, storeError, setStoreRefresh } = useAllStore("limit=6");
-  const { couponError, setRefreshCoupon } = useAllCoupon("limit=6");
   const [visible, setVisible] = React.useState(false);
-  const { allCoupon: couponData, couponDataLoading } = useAllCoupon(
+  const {
+    allCoupon: couponData,
+    couponDataLoading,
+    couponError,
+    setRefreshCoupon,
+  } = useAllCoupon(
     `postType=Coupon&limit=6${
-      selectedCategory && `&categoryName=${selectedCategory}`
+      selectedCategory && `&categoryName=${selectedCategory}&limit=6`
     }`
   );
-  const { allCoupon: dealData } = useAllCoupon(
+  const { allCoupon: dealData, setRefreshCoupon: refreshDeal } = useAllCoupon(
     `postType=Deal&limit=6${
-      selectedCategory && `&categoryName=${selectedCategory}`
+      selectedCategory && `&categoryName=${selectedCategory}&limit=6`
     }`
   );
-  const { allCoupon: voucherData } = useAllCoupon(
-    `postType=Voucher&limit=6${
-      selectedCategory && `&categoryName=${selectedCategory}`
-    }`
-  );
+  const { allCoupon: voucherData, setRefreshCoupon: refreshVoucher } =
+    useAllCoupon(
+      `postType=Voucher&limit=6${
+        selectedCategory && `&categoryName=${selectedCategory}&limit=6`
+      }`
+    );
   const { categoryData } = useAllCategory();
   const { campaign } = useCampaign();
   const [refreshing, setRefreshing] = React.useState(false); //for refreshing
@@ -170,16 +177,18 @@ const Home = () => {
             showsVerticalScrollIndicator={false}
           >
             {/* ==========category start here=========*/}
-            <Category
+            <HomeCategory
               setSelectedCategory={setSelectedCategory}
               categoryData={categoryData}
               setRefreshCoupon={setRefreshCoupon}
+              refreshDeal={refreshDeal}
+              refreshVoucher={refreshVoucher}
             />
             {/* ==========category end here=========*/}
             {/* =============chip item start here============== */}
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {campaign?.map((cam) => {
-                return <Chiep key={cam?._id} cam={cam} />;
+                return <HomeCampaign key={cam?._id} cam={cam} />;
               })}
             </ScrollView>
             {/* =============chip item end here============== */}

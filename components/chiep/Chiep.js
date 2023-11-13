@@ -1,24 +1,44 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { ChiepStyle } from "./ChiepStyle";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-const Chiep = ({ cam }) => {
+const Chiep = ({
+  cam,
+  setSelectedCampaign,
+  setRefreshCoupon,
+  campaignDataFromHome,
+}) => {
   const navigation = useNavigation();
+  const [selectedCampaignColor, setSelectedCampaignColor] = useState(null);
 
-  // console.log(cam?.campaignPhotoURL);
+  const handleCampaignEventListener = (cam) => {
+    setSelectedCampaign(cam?.campaignName);
+    setSelectedCampaignColor(cam);
+    setRefreshCoupon((prev) => prev + 1);
+  };
 
   return (
     <View style={ChiepStyle.chiepContainer}>
       <View style={ChiepStyle.chiepSubContainer}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("CampaignViewPage", { ...cam })}
-          style={ChiepStyle.chiepItem}
+          onPress={() => {
+            handleCampaignEventListener(cam);
+          }}
+          style={[
+            ChiepStyle.chiepItem,
+            {
+              backgroundColor:
+                selectedCampaignColor?._id === cam?._id && "#E7F0F2",
+            },
+          ]}
         >
           <Image
             style={ChiepStyle.chiepItemImage}
-            source={{ uri: cam?.campaignPhotoURL }}
+            source={{
+              uri: cam?.campaignPhotoURL,
+            }}
           />
           <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
         </TouchableOpacity>

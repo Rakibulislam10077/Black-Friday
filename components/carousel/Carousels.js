@@ -24,13 +24,7 @@ const Carousels = () => {
     })
   );
 
-  console.log(
-    carousels?.map((d) =>
-      d?.items?.map((element) => {
-        return element;
-      })
-    )
-  );
+
 
   return (
     <View style={styles.carouselContainer}>

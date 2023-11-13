@@ -51,7 +51,8 @@ export const NotifyStyle = StyleSheet.create({
     backgroundColor: "#fff",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    minHeight: 400,
+    minHeight: 450,
+    paddingHorizontal: 20,
   },
   insideToggleBar: {
     borderRadius: 10,
@@ -59,6 +60,7 @@ export const NotifyStyle = StyleSheet.create({
     width: 50,
     marginTop: 10,
     alignSelf: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#797979",
+    marginBottom: 20,
   },
 });
