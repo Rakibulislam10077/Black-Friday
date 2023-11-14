@@ -33,8 +33,6 @@ export default function CouponAndDealCart(props) {
   };
 
 
-  console.log(data?.postType);
-
   return (
     <SafeAreaView
       style={{

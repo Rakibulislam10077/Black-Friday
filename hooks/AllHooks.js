@@ -10,14 +10,13 @@ export const useAllStore = (type) => {
   const [storeDataIsLoading, setStoreDataIsLoading] = useState(true);
   const [storeRefresh, setStoreRefresh] = useState(0);
   useEffect(() => {
-    // const getCountry = async () => {
-    //   const userCountry = await AsyncStorage.getItem("selected_country");
-    //   return userCountry;
-    //   // console.log(userCountry);
-    // };
+    const getCountry = async () => {
+      const userCountry = await AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
 
     const getAllStore = async () => {
-      fetch(`${APIurl}/store?${type}`)
+      fetch(`${APIurl}/store?${type}&${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => {
           setAllStore(data?.data);
@@ -40,15 +39,12 @@ export const useAllCoupon = (type) => {
   const [refreshCoupon, setRefreshCoupon] = useState(0);
 
   useEffect(() => {
-    // const getCountry = async () => {
-    //   const userCountry = AsyncStorage.getItem("selected_country");
-    //   return userCountry;
-    // };
-
-    // &countries=${await getCountry()}
-
+    const getCountry = async () => {
+      const userCountry = AsyncStorage.getItem("selected_country");
+      return userCountry;
+    };
     const getAllCoupon = async () => {
-      fetch(`${APIurl}/post?${type}`)
+      fetch(`${APIurl}/post?${type}&countries=${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => {
           setAllCoupon(data?.data);
@@ -74,7 +70,7 @@ export const useQueryCoupon = (name, type) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getStoreByCountry = async () => {
+    const getDataByStore = async () => {
       const url = `${APIurl}/post/?storeName=${name}&postType=${type}`;
       fetch(url)
         .then((response) => response.json())
@@ -83,7 +79,7 @@ export const useQueryCoupon = (name, type) => {
           setIsLoading(false);
         });
     };
-    getStoreByCountry();
+    getDataByStore();
   }, []);
   return { couponData, isLoading };
 };
@@ -91,13 +87,11 @@ export const useQueryCoupon = (name, type) => {
 // get all category
 export const useAllCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
-  const [isLoadCategoryData, setIsLoadCategoryData] = useState(null);
   useEffect(() => {
     const getCountry = async () => {
       const userCountry = AsyncStorage.getItem("selected_country");
       return userCountry;
     };
-
     const getCategory = async () => {
       fetch(`${APIurl}/category?countries=${await getCountry()}`)
         .then((res) => res.json())
@@ -131,7 +125,6 @@ export const useCarousel = () => {
       const userCountry = AsyncStorage.getItem("selected_country");
       return userCountry;
     };
-
     const getCarousel = async () => {
       fetch(`${APIurl}/carousel?countries=${await getCountry()}`)
         .then((res) => res.json())
@@ -149,8 +142,6 @@ export const useSearch = () => {
   const [searchedData, setSearchedData] = useState([]);
   const [searchKey, setSearchKey] = useState(" ");
   const [refetch, setRefetch] = useState(0);
-
-  // const handleGlobalSearch = () => {
   useEffect(() => {
     const getCountry = async () => {
       const userCountry = await AsyncStorage.getItem("selected_country");
@@ -158,21 +149,19 @@ export const useSearch = () => {
     };
 
     const getSearchApi = async () => {
-      const url = `${APIurl}/post/search?countries=${await getCountry()}&searchTerm=${searchKey}`;
-      fetch(url)
+      fetch(
+        `${APIurl}/post/search?countries=${await getCountry()}&searchTerm=${searchKey}`
+      )
         .then((response) => response.json())
         .then((data) => {
           setSearchedData(data?.data);
-          // setIsLoading(false);
         })
         .catch((error) => {
           setError(error);
         });
     };
     getSearchApi();
-    // };
   }, [searchKey, refetch]);
-
   return {
     searchedData,
     isLoading,
@@ -180,6 +169,5 @@ export const useSearch = () => {
     setSearchKey,
     error,
     setRefetch,
-    // handleGlobalSearch,
   };
 };

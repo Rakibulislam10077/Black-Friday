@@ -38,7 +38,9 @@ import HomeCampaign from "./HomeCampaign";
 import HomeCategory from "./HomeCategory";
 
 export let refetchHomeStore;
-export let refetchHomePost;
+export let refetchHomeCouponData;
+export let refetchHomeDealData;
+export let refetchHomeVoucherData;
 
 const Home = () => {
   const navigation = useNavigation();
@@ -72,7 +74,10 @@ const Home = () => {
   const [isOnline, setIsOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   refetchHomeStore = setStoreRefresh;
-  refetchHomePost = setRefreshCoupon;
+  refetchHomeCouponData = setRefreshCoupon;
+  refetchHomeDealData = refreshDeal;
+  refetchHomeVoucherData = refreshVoucher;
+
   useEffect(() => {
     const error = async () => {
       if (storeError || couponError) {
@@ -84,6 +89,14 @@ const Home = () => {
     };
     error();
   }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setRefreshCoupon((prev) => prev + 1);
+  //     refreshVoucher((prev) => prev + 1);
+  //     refreshDeal((prev) => prev + 1);
+  //   }, 2000);
+  // }, [couponData, dealData, voucherData]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

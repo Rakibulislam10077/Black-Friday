@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 
-const ErrorPage = ({ errorMessage }) => {
+const ErrorPage = () => {
   return (
     <View
       style={{
@@ -18,7 +18,6 @@ const ErrorPage = ({ errorMessage }) => {
             resizeMode="contain"
             source={require("../assets/image/offline-removebg-preview.png")}
           />
-          <Text style={{ fontSize: 12, color: "#0C1B32" }}>{errorMessage}</Text>
         </View>
       }
     </View>

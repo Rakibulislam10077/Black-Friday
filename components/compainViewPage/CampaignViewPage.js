@@ -18,6 +18,8 @@ import {
   useCampaign,
 } from "../../hooks/AllHooks";
 import LoadingSpinner from "../../constants/LoadingSpinner";
+import EmptyData from "../../Shared/EmptyData";
+import Empty_ViewPage from "../../Shared/Empty_ViewPage";
 
 const CampaignViewPage = (props) => {
   const campaignDataFromHome = props?.route?.params;
@@ -31,15 +33,6 @@ const CampaignViewPage = (props) => {
     }`
   );
   const { categoryData } = useAllCategory();
-  // const checkCampaignData = () => {
-  //   campaign?.map((dealData) => {
-  //     console.log("this is campaign===============", dealData);
-  //     // if (
-  //     //   dealData?.campaign?.campaignName === campaignDataFromHome?.campaignName
-  //     // );
-  //   });
-  // };
-  // checkCampaignData();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -89,6 +82,8 @@ const CampaignViewPage = (props) => {
       <View style={{ flex: 1 }}>
         {couponDataLoading ? (
           <LoadingSpinner />
+        ) : allCoupon.length === 0 ? (
+          <Empty_ViewPage />
         ) : (
           <ScrollView>
             {allCoupon?.map((deal) => {

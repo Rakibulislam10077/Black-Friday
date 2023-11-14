@@ -27,7 +27,15 @@ import { LoginStyle } from "../../components/login/LoginStyle";
 import { countries } from "../../constants/Countries";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
-import { refetchHomePost, refetchHomeStore } from "../home/Home";
+import {
+  refetchHomeCouponData,
+  refetchHomeDealData,
+  refetchHomeStore,
+  refetchHomeVoucherData,
+} from "../home/Home";
+import { useAllCoupon } from "../../hooks/AllHooks";
+import { refreshStoreDataFromStorePage } from "../store/Store";
+import { refreshDataFromCouponPage } from "../Coupon/Coupon";
 const Account = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
@@ -35,7 +43,12 @@ const Account = () => {
   const [countryPhotoURL, setCountryPhotoURL] = useState("");
   const [refetchCountry, setRefetchCounty] = useState(0);
   const refetchHomeStoreData = refetchHomeStore;
-  const refetchHomePosteData = refetchHomePost;
+  const refetchHomePostCouponData = refetchHomeCouponData;
+  const refetchHomePostDealData = refetchHomeDealData;
+  const refetchHomePostVoucherData = refetchHomeVoucherData;
+  const refetchStoreDataFromStore = refreshStoreDataFromStorePage;
+  const refetchCouponDataFromCoupon = refreshDataFromCouponPage;
+  const { allCoupon, setRefreshCoupon } = useAllCoupon();
   const handleSelectCounty = async (country) => {
     setSelectedCountry(country);
     await AsyncStorage.setItem("selected_country", country.name);
@@ -53,13 +66,14 @@ const Account = () => {
   }, [refetchCountry]);
 
   const handleSaveAndContinueButton = async () => {
-    // country flag refresh
-    // await props.route.params.setRefetch((prev) => prev + 1);
+    setSelectedCountry((prev) => prev + 1, console.log(selectedCountry));
+    refetchHomeStoreData((prev) => prev + 1);
+    refetchHomePostCouponData((prev) => prev + 1);
+    refetchHomePostDealData((prev) => prev + 1);
+    refetchHomePostVoucherData((prev) => prev + 1);
+    refetchCouponDataFromCoupon((prev) => prev + 1);
+    refetchStoreDataFromStore((prev) => prev + 1);
     setModalVisible(false);
-    setSelectedCountry((prev) => prev + 1);
-    await refetchHomeStoreData((prev) => prev + 1);
-    await refetchHomePosteData((prev) => prev + 1);
-    navigation.navigate("TabScreen");
   };
 
   return (
@@ -73,9 +87,9 @@ const Account = () => {
         </View>
         <TouchableOpacity
           style={AccountStyle.countryBox}
-          onPress={async () => {
-            setModalVisible(true);
+          onPress={() => {
             setSelectedCountry((prev) => prev + 1);
+            setModalVisible(true);
           }}
         >
           <Image style={AccountStyle.img} source={countryPhotoURL} />

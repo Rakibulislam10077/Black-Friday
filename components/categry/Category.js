@@ -27,7 +27,9 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
                   CategoryStyle.categoryItem,
                   {
                     backgroundColor:
-                      selectedCategoryColor?._id === category?._id && "#E7F0F2",
+                      selectedCategoryColor?._id === category?._id
+                        ? "#E7F0F2"
+                        : "#ffffff",
                   },
                 ]}
               >

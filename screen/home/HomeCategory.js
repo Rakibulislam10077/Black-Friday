@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { CategoryStyle } from "../../components/categry/CategoryStyle";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
@@ -10,7 +10,7 @@ const HomeCategory = ({
   refreshVoucher,
   refreshDeal,
 }) => {
-  console.log(categoryData);
+  const [selectedCategoryColor, setSelectedCategoryColor] = useState(null);
 
   return (
     <View style={CategoryStyle.categoryItemContainer}>
@@ -25,9 +25,18 @@ const HomeCategory = ({
                   setRefreshCoupon((prev) => prev + 1);
                   refreshDeal((prev) => prev + 1);
                   refreshVoucher((prev) => prev + 1);
+                  setSelectedCategoryColor(category);
                 }}
                 key={category?._id}
-                style={[CategoryStyle.categoryItem]}
+                style={[
+                  CategoryStyle.categoryItem,
+                  {
+                    backgroundColor:
+                      selectedCategoryColor?._id === category?._id
+                        ? "#E7F0F2"
+                        : "#ffffff",
+                  },
+                ]}
               >
                 {/* {cgImg.map((c) => {
                   return c;

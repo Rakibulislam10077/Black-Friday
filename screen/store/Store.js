@@ -20,16 +20,19 @@ import ErrorPage from "../../Shared/ErrorPage";
 import EmptyData from "../../Shared/EmptyData";
 import NetInfo from "@react-native-community/netinfo";
 
+
+export let refreshStoreDataFromStorePage;
+
 const Store = () => {
   const navigation = useNavigation();
-  const { allStore, storeError, storeDataIsLoading, setStoreRefresh } =
-    useAllStore();
-
+  const { allStore, storeDataIsLoading, setStoreRefresh } = useAllStore();
   const [refreshing, setRefreshing] = React.useState(false);
   const [callRefresh, setCallRefresh] = useState(false);
   const [netIsConnected, setNetIsConnected] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
+  refreshStoreDataFromStorePage = setStoreRefresh;
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -37,15 +40,6 @@ const Store = () => {
       setRefreshing(false);
     }, 2000);
   }, []);
-
-  const handelNetWorkFu = () => {
-    setCallRefresh(true);
-    setTimeout(() => {
-      setRefreshing(false);
-      setCallRefresh(false);
-      setStoreRefresh((prev) => prev + 1);
-    }, 2000);
-  };
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {
@@ -80,11 +74,7 @@ const Store = () => {
       {/* store header end */}
       {!isOnline ? (
         // <View style={{ flex: 1, backgroundColor: "red" }}>
-        <ErrorPage
-          handelNetWorkFu={handelNetWorkFu}
-          callRefresh={callRefresh}
-          errorMessage={errorMessage}
-        />
+        <ErrorPage callRefresh={callRefresh} errorMessage={errorMessage} />
       ) : (
         // </View>
         <ScrollView

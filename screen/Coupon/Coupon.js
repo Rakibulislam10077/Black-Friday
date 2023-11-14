@@ -16,30 +16,22 @@ import { BackArrow2, Magnify } from "../../constants/AllSvg";
 import LoadingSpinner from "../../constants/LoadingSpinner";
 import ErrorComponent from "../../constants/ErrorComponent";
 import ErrorPage from "../../Shared/ErrorPage";
-
 import NetInfo from "@react-native-community/netinfo";
+
+export let refreshDataFromCouponPage;
+
 const Coupon = () => {
   const navigation = useNavigation();
   const { allCoupon, couponDataLoading, couponError, setRefreshCoupon } =
     useAllCoupon();
-  const [callRefresh, setCallRefresh] = useState(false);
-  const [netIsConnected, setNetIsConnected] = useState(null);
   const [isOnline, setIsOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const handelNetWorkFu = () => {
-    setCallRefresh(true);
-    setTimeout(() => {
-      setRefreshCoupon((prev) => prev + 1);
-      setRefreshing(false);
-      setCallRefresh(false);
-    }, 2000);
-  };
+  refreshDataFromCouponPage = setRefreshCoupon;
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-
     setTimeout(() => {
       setRefreshCoupon((prev) => prev + 1);
       setRefreshing(false);
@@ -77,11 +69,7 @@ const Coupon = () => {
         )}
       </View>
       {!isOnline ? (
-        <ErrorPage
-          handelNetWorkFu={handelNetWorkFu}
-          callRefresh={callRefresh}
-          errorMessage={errorMessage}
-        />
+        <ErrorPage />
       ) : (
         <View style={CouponStyle.itemBox}>
           <Text style={CouponStyle.allCouponText}>All Coupon code</Text>
