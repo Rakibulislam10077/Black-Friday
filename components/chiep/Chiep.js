@@ -19,6 +19,7 @@ const Chiep = ({
     setRefreshCoupon((prev) => prev + 1);
   };
 
+
   return (
     <View style={ChiepStyle.chiepContainer}>
       <View style={ChiepStyle.chiepSubContainer}>
@@ -30,7 +31,7 @@ const Chiep = ({
             ChiepStyle.chiepItem,
             {
               backgroundColor:
-                selectedCampaignColor?._id === cam?._id && "#E7F0F2",
+                selectedCampaignColor?._id === cam?._id ? "#E7F0F2" : "#ffffff",
             },
           ]}
         >
