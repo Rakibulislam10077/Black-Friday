@@ -36,6 +36,7 @@ import {
 import { useAllCoupon } from "../../hooks/AllHooks";
 import { refreshStoreDataFromStorePage } from "../store/Store";
 import { refreshDataFromCouponPage } from "../Coupon/Coupon";
+import { refetchCarousel } from "../../components/carousel/Carousels";
 const Account = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
@@ -48,8 +49,8 @@ const Account = () => {
   const refetchHomePostVoucherData = refetchHomeVoucherData;
   const refetchStoreDataFromStore = refreshStoreDataFromStorePage;
   const refetchCouponDataFromCoupon = refreshDataFromCouponPage;
-  const { allCoupon, setRefreshCoupon } = useAllCoupon();
-  const handleSelectCounty = async (country) => {
+  const refetchCarouselFromCarousel = refetchCarousel;
+  const handleSelectCountry = async (country) => {
     setSelectedCountry(country);
     await AsyncStorage.setItem("selected_country", country.name);
   };
@@ -66,14 +67,15 @@ const Account = () => {
   }, [refetchCountry]);
 
   const handleSaveAndContinueButton = async () => {
-    setSelectedCountry((prev) => prev + 1, console.log(selectedCountry));
-    refetchHomeStoreData((prev) => prev + 1);
-    refetchHomePostCouponData((prev) => prev + 1);
-    refetchHomePostDealData((prev) => prev + 1);
-    refetchHomePostVoucherData((prev) => prev + 1);
-    refetchCouponDataFromCoupon((prev) => prev + 1);
-    refetchStoreDataFromStore((prev) => prev + 1);
+    setRefetchCounty((prev) => prev + 1);
     setModalVisible(false);
+    await refetchHomeStoreData((prev) => prev + 1);
+    await refetchHomePostCouponData((prev) => prev + 1);
+    await refetchHomePostDealData((prev) => prev + 1);
+    await refetchHomePostVoucherData((prev) => prev + 1);
+    await refetchStoreDataFromStore((prev) => prev + 1);
+    await refetchCouponDataFromCoupon((prev) => prev + 1);
+    await refetchCarouselFromCarousel((prev) => prev + 1);
   };
 
   return (
@@ -88,7 +90,7 @@ const Account = () => {
         <TouchableOpacity
           style={AccountStyle.countryBox}
           onPress={() => {
-            setSelectedCountry((prev) => prev + 1);
+            setRefetchCounty((prev) => prev + 1);
             setModalVisible(true);
           }}
         >
@@ -198,7 +200,7 @@ const Account = () => {
               return (
                 <TouchableOpacity
                   key={country?.id}
-                  onPress={() => handleSelectCounty(country)}
+                  onPress={() => handleSelectCountry(country)}
                   style={LoginStyle.selectedBox}
                 >
                   <View style={LoginStyle.flagAndNameBox}>

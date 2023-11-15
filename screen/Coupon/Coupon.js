@@ -52,6 +52,7 @@ const Coupon = () => {
       unsubscribe();
     };
   }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* header box */}

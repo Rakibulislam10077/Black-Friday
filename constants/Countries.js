@@ -59,4 +59,10 @@ export const countries = [
     sortName: "Poland",
     img: require("../assets/image/Poland.png"),
   },
+  {
+    id: 11,
+    name: "India",
+    sortName: "India",
+    img: require("../assets/image/India.png"),
+  },
 ];

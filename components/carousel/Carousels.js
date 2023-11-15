@@ -11,20 +11,18 @@ import { useCarousel } from "../../hooks/AllHooks";
 import { Pagination } from "react-native-snap-carousel";
 import CarouselItem from "./CaruoselITem";
 import Carousel from "react-native-snap-carousel";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+export let refetchCarousel;
 const Carousels = () => {
-  const { carousels } = useCarousel();
+  const { carousels, setRefetchCarousel } = useCarousel();
   const isCarousel = React.useRef(null);
   const [index, setIndex] = React.useState(0);
   const carouselWidth = Dimensions.get("screen").width;
   const itemWidth = Dimensions.get("window").width;
 
-  const carousel = carousels?.map((d) =>
-    d?.items?.map((c) => {
-      return c;
-    })
-  );
+  refetchCarousel = setRefetchCarousel;
 
-
+  const carousel = carousels?.items;
 
   return (
     <View style={styles.carouselContainer}>

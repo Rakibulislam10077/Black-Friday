@@ -285,7 +285,7 @@ const ViewStore = (props) => {
           store={data}
         />
       ) : (
-        <HowToUs />
+        <HowToUs data={data} />
       )}
       {/* bottom visit button container */}
       <View style={ViewPageStyle.bottomBtnForVisit}>

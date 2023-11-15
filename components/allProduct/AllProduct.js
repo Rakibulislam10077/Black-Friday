@@ -20,7 +20,7 @@ const AllProduct = () => {
     allCoupon: dealData,
     couponDataLoading,
     setRefreshCoupon,
-  } = useAllCoupon("Deal");
+  } = useAllCoupon("postType=Deal");
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {

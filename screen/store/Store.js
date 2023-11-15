@@ -38,8 +38,15 @@ const Store = () => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
+      setStoreRefresh(
+        (prev) => prev + 1,
+        console.log("fsldkfjlskjdfkjsadlfkjslkdflksjdf ==================")
+      );
     }, 2000);
   }, []);
+
+  console.log(allStore?.length);
+
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {

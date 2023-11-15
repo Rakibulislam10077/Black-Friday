@@ -19,7 +19,6 @@ const Chiep = ({
     setRefreshCoupon((prev) => prev + 1);
   };
 
-
   return (
     <View style={ChiepStyle.chiepContainer}>
       <View style={ChiepStyle.chiepSubContainer}>

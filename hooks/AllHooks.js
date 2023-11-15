@@ -16,7 +16,7 @@ export const useAllStore = (type) => {
     };
 
     const getAllStore = async () => {
-      fetch(`${APIurl}/store?${type}&${await getCountry()}`)
+      fetch(`${APIurl}/store?${type}&countries=${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => {
           setAllStore(data?.data);
@@ -40,7 +40,7 @@ export const useAllCoupon = (type) => {
 
   useEffect(() => {
     const getCountry = async () => {
-      const userCountry = AsyncStorage.getItem("selected_country");
+      const userCountry = await AsyncStorage.getItem("selected_country");
       return userCountry;
     };
     const getAllCoupon = async () => {
@@ -89,7 +89,7 @@ export const useAllCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
   useEffect(() => {
     const getCountry = async () => {
-      const userCountry = AsyncStorage.getItem("selected_country");
+      const userCountry = await AsyncStorage.getItem("selected_country");
       return userCountry;
     };
     const getCategory = async () => {
@@ -120,19 +120,20 @@ export const useCampaign = () => {
 // get carousel
 export const useCarousel = () => {
   const [carousels, setCarousels] = useState([]);
+  const [refetchCarousel, setRefetchCarousel] = useState(0);
   useEffect(() => {
     const getCountry = async () => {
-      const userCountry = AsyncStorage.getItem("selected_country");
+      const userCountry = await AsyncStorage.getItem("selected_country");
       return userCountry;
     };
     const getCarousel = async () => {
-      fetch(`${APIurl}/carousel?countries=${await getCountry()}`)
+      fetch(`${APIurl}/carousel/${await getCountry()}`)
         .then((res) => res.json())
         .then((data) => setCarousels(data?.data));
     };
     getCarousel();
-  }, []);
-  return { carousels };
+  }, [refetchCarousel]);
+  return { carousels, setRefetchCarousel };
 };
 
 // global search
