@@ -33,22 +33,29 @@ import {
   refetchHomeStore,
   refetchHomeVoucherData,
 } from "../home/Home";
-import { useAllCoupon } from "../../hooks/AllHooks";
-import { refreshStoreDataFromStorePage } from "../store/Store";
-import { refreshDataFromCouponPage } from "../Coupon/Coupon";
+import {
+  refreshStoreDataFromStore,
+  refreshStoreDataFromStoreForTest,
+} from "../store/Store";
+import {
+  refreshDataFromCouponPage,
+  refreshDataFromCouponTest,
+} from "../Coupon/Coupon";
 import { refetchCarousel } from "../../components/carousel/Carousels";
+import { useAllCoupon } from "../../hooks/AllHooks";
 const Account = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [countryPhotoURL, setCountryPhotoURL] = useState("");
   const [refetchCountry, setRefetchCounty] = useState(0);
+  const { allCoupon } = useAllCoupon();
   const refetchHomeStoreData = refetchHomeStore;
   const refetchHomePostCouponData = refetchHomeCouponData;
   const refetchHomePostDealData = refetchHomeDealData;
   const refetchHomePostVoucherData = refetchHomeVoucherData;
-  const refetchStoreDataFromStore = refreshStoreDataFromStorePage;
-  const refetchCouponDataFromCoupon = refreshDataFromCouponPage;
+  const refetchStoreDataFromStore = refreshStoreDataFromStoreForTest;
+  const refetchCouponDataFromCoupon = refreshDataFromCouponTest;
   const refetchCarouselFromCarousel = refetchCarousel;
   const handleSelectCountry = async (country) => {
     setSelectedCountry(country);
@@ -66,17 +73,19 @@ const Account = () => {
     getCountry();
   }, [refetchCountry]);
 
-  const handleSaveAndContinueButton = async () => {
-    setRefetchCounty((prev) => prev + 1);
-    setModalVisible(false);
-    await refetchHomeStoreData((prev) => prev + 1);
-    await refetchHomePostCouponData((prev) => prev + 1);
-    await refetchHomePostDealData((prev) => prev + 1);
-    await refetchHomePostVoucherData((prev) => prev + 1);
-    await refetchStoreDataFromStore((prev) => prev + 1);
-    await refetchCouponDataFromCoupon((prev) => prev + 1);
-    await refetchCarouselFromCarousel((prev) => prev + 1);
-  };
+  console.log(allCoupon?.length);
+
+  // const handleSaveAndContinueButton = async () => {
+  //   setModalVisible(false);
+  //   setRefetchCounty((prev) => prev + 1);
+  //   await refetchHomeStoreData((prev) => prev + 1);
+  //   await refetchHomePostCouponData((prev) => prev + 1);
+  //   await refetchHomePostDealData((prev) => prev + 1);
+  //   await refetchHomePostVoucherData((prev) => prev + 1);
+  //   await refetchStoreDataFromStore((prev) => prev + 1);
+  //   await refetchCouponDataFromCoupon((prev) => prev + 1);
+  //   await refetchCarouselFromCarousel((prev) => prev + 1);
+  // };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -216,7 +225,15 @@ const Account = () => {
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => {
-            handleSaveAndContinueButton();
+            setModalVisible(false);
+            setRefetchCounty((prev) => prev + 1);
+            refetchHomeStoreData((prev) => prev + 1);
+            refetchHomePostCouponData((prev) => prev + 1);
+            refetchHomePostDealData((prev) => prev + 1);
+            refetchHomePostVoucherData((prev) => prev + 1);
+            refetchStoreDataFromStore((prev) => prev + 1);
+            refetchCouponDataFromCoupon((prev) => prev + 1);
+            refetchCarouselFromCarousel((prev) => prev + 1);
           }}
           style={LoginStyle.saveAndContinueBtn}
         >

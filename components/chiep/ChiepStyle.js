@@ -5,14 +5,16 @@ import {
 } from "react-native-responsive-screen";
 export const ChiepStyle = StyleSheet.create({
   chiepContainer: {
-    height: hp(10),
+    height: 70,
     alignItems: "center",
     justifyContent: "center",
-    paddingLeft: 15,
+    backgroundColor: "#fff",
   },
   chiepSubContainer: {
-    height: hp(8),
-    marginTop: 20,
+    height: 70,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    flexDirection: "row",
   },
   chiepItem: {
     flexDirection: "row",
@@ -23,7 +25,8 @@ export const ChiepStyle = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 15,
-    marginRight: 10,
+    marginLeft: 10,
+    marginRight: 5,
   },
   chiepItemImage: {
     width: 40,

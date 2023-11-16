@@ -59,14 +59,14 @@ const HomeDeal = ({ deal }) => {
                 />
               </View>
               <Text style={DealsStyle.BrandName}>{deal?.brand?.brandName}</Text>
-            </View>
-            <View>
-              <Text style={DealsStyle.activityText}>Available on</Text>
-              <Image
-                style={DealsStyle.storeLogo}
-                resizeMode={"contain"}
-                source={{ uri: deal?.store?.storePhotoURL }}
-              />
+              <View>
+                <Text style={DealsStyle.activityText}>Available on</Text>
+                <Image
+                  style={DealsStyle.storeLogo}
+                  resizeMode={"contain"}
+                  source={{ uri: deal?.store?.storePhotoURL }}
+                />
+              </View>
             </View>
           </View>
         </View>

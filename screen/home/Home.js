@@ -45,7 +45,7 @@ export let refetchHomeVoucherData;
 const Home = () => {
   const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState("");
-  const { allStore, storeError, setStoreRefresh } = useAllStore("limit=6");
+  const { allStore, storeError, setStoreRefetch } = useAllStore("limit=6");
   const [visible, setVisible] = React.useState(false);
   const {
     allCoupon: couponData,
@@ -73,7 +73,7 @@ const Home = () => {
   const [refreshing, setRefreshing] = React.useState(false); //for refreshing
   const [isOnline, setIsOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  refetchHomeStore = setStoreRefresh;
+  refetchHomeStore = setStoreRefetch;
   refetchHomeCouponData = setRefreshCoupon;
   refetchHomeDealData = refreshDeal;
   refetchHomeVoucherData = refreshVoucher;
@@ -90,18 +90,10 @@ const Home = () => {
     error();
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setRefreshCoupon((prev) => prev + 1);
-  //     refreshVoucher((prev) => prev + 1);
-  //     refreshDeal((prev) => prev + 1);
-  //   }, 2000);
-  // }, [couponData, dealData, voucherData]);
-
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      setStoreRefresh((prev) => prev + 1);
+      setStoreRefetch((prev) => prev + 1);
       setRefreshCoupon((prev) => prev + 1);
       setRefreshing(false);
     }, 2000);
@@ -125,7 +117,7 @@ const Home = () => {
   const hideDialog = () => setVisibleDialog(false);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, paddingBottom: 70 }}>
       {/* =========header start here=========== */}
       <View style={HomeStyle.headerContainer}>
         <View>

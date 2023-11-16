@@ -67,6 +67,7 @@ export const DealsStyle = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     flex: 2,
+    paddingRight: 10,
   },
   BrandingAndLogo: {
     flexDirection: "row",

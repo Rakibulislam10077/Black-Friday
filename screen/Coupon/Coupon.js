@@ -19,6 +19,7 @@ import ErrorPage from "../../Shared/ErrorPage";
 import NetInfo from "@react-native-community/netinfo";
 
 export let refreshDataFromCouponPage;
+export let refreshDataFromCouponTest;
 
 const Coupon = () => {
   const navigation = useNavigation();
@@ -29,6 +30,7 @@ const Coupon = () => {
   const [refreshing, setRefreshing] = React.useState(false);
 
   refreshDataFromCouponPage = setRefreshCoupon;
+  refreshDataFromCouponTest = setRefreshCoupon;
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

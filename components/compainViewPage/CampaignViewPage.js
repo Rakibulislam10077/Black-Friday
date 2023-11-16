@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   BackArrow,
@@ -33,6 +33,12 @@ const CampaignViewPage = (props) => {
     }`
   );
   const { categoryData } = useAllCategory();
+  useLayoutEffect(() => {
+    setSelectedCampaign(campaignDataFromHome?.campaignName);
+    setRefreshCoupon((prev) => prev + 1);
+  }, []);
+
+  console.log(allCoupon, ".....................");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -53,17 +59,16 @@ const CampaignViewPage = (props) => {
       {/* chiep item */}
       <View style={CompainVStyle.chiepContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {campaign?.map((cam) => {
-            return (
-              <Chiep
-                setSelectedCampaign={setSelectedCampaign}
-                campaignDataFromHome={campaignDataFromHome}
-                setRefreshCoupon={setRefreshCoupon}
-                cam={cam}
-                key={cam?._id}
-              />
-            );
-          })}
+          {/* {campaign?.map((cam) => {
+            return ( */}
+          <Chiep
+            campaign={campaign}
+            setSelectedCampaign={setSelectedCampaign}
+            campaignDataFromHome={campaignDataFromHome}
+            setRefreshCoupon={setRefreshCoupon}
+          />
+          {/* );
+          })} */}
         </ScrollView>
       </View>
       {/* chiep item end */}

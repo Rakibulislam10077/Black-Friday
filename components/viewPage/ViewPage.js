@@ -37,6 +37,7 @@ import DealsItem from "../dealsItem/DealsItem";
 import VoucherItem from "../voucherItem/VoucherItem";
 import Modal from "react-native-modal";
 import { NotifyStyle } from "../notification/NotifyStyle";
+import { useGetStoreById, useGetStoreByStoreName } from "../../hooks/AllHooks";
 const ViewStore = (props) => {
   const data = props?.route?.params;
   // data from coupon file in screen folder
@@ -45,6 +46,9 @@ const ViewStore = (props) => {
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [textShown, setTextShown] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const { getStoreById } = useGetStoreById();
+  const { getStoreByStoreName } = useGetStoreByStoreName();
+  const [store, setStore] = useState({});
 
   const toggleTextShown = () => {
     setTextShown(!textShown);
@@ -58,6 +62,16 @@ const ViewStore = (props) => {
   const description = data?.storeDescription || data?.postDescription;
   const sortText =
     description?.length > 120 ? description.slice(0, 120) + "..." : description;
+
+  useEffect(() => {
+    const handleGetStoreById = async () => {
+      const fetchedStore = data?.storeName
+        ? await getStoreByStoreName(data?.storeName)
+        : await getStoreById(data?._id);
+      setStore(fetchedStore);
+    };
+    handleGetStoreById();
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -285,7 +299,7 @@ const ViewStore = (props) => {
           store={data}
         />
       ) : (
-        <HowToUs data={data} />
+        <HowToUs data={store} />
       )}
       {/* bottom visit button container */}
       <View style={ViewPageStyle.bottomBtnForVisit}>

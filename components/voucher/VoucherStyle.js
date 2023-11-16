@@ -29,6 +29,8 @@ export const VoucherStyle = StyleSheet.create({
   voucherImg: {
     width: 40,
     height: 40,
+    borderRadius: 4,
+    resizeMode: "contain",
   },
   textContainer: {
     flex: 2,

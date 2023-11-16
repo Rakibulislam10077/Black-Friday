@@ -21,32 +21,30 @@ import EmptyData from "../../Shared/EmptyData";
 import NetInfo from "@react-native-community/netinfo";
 
 
-export let refreshStoreDataFromStorePage;
+export let refreshStoreDataFromStore;
+export let refreshStoreDataFromStoreForTest;
 
 const Store = () => {
   const navigation = useNavigation();
-  const { allStore, storeDataIsLoading, setStoreRefresh } = useAllStore();
+  const { allStore, storeDataIsLoading, setStoreRefetch } = useAllStore();
   const [refreshing, setRefreshing] = React.useState(false);
   const [callRefresh, setCallRefresh] = useState(false);
   const [netIsConnected, setNetIsConnected] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
-  refreshStoreDataFromStorePage = setStoreRefresh;
+  refreshStoreDataFromStore = setStoreRefetch;
+  refreshStoreDataFromStoreForTest = setStoreRefetch;
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
-      setStoreRefresh(
-        (prev) => prev + 1,
-        console.log("fsldkfjlskjdfkjsadlfkjslkdflksjdf ==================")
-      );
+      setStoreRefetch((prev) => prev + 1);
     }, 2000);
   }, []);
 
   console.log(allStore?.length);
-
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {

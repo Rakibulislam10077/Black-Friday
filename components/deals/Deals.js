@@ -89,18 +89,19 @@ const Deals = ({ deal, dealItem, dealsDataFromAllProduct }) => {
                         dealItem?.brand?.brandName ||
                         dealsDataFromAllProduct?.brand?.BrandName}
                     </Text>
-                  </View>
-                  <View>
-                    <Text style={DealsStyle.activityText}>test</Text>
-                    <Image
-                      style={DealsStyle.storeLogo}
-                      source={{
-                        uri:
-                          deal?.store?.storePhotoURL ||
-                          dealItem?.store?.storePhotoURL ||
-                          dealsDataFromAllProduct?.store?.storePhotoURL,
-                      }}
-                    />
+
+                    <View>
+                      <Text style={DealsStyle.activityText}>test</Text>
+                      <Image
+                        style={DealsStyle.storeLogo}
+                        source={{
+                          uri:
+                            deal?.store?.storePhotoURL ||
+                            dealItem?.store?.storePhotoURL ||
+                            dealsDataFromAllProduct?.store?.storePhotoURL,
+                        }}
+                      />
+                    </View>
                   </View>
                 </View>
               </View>

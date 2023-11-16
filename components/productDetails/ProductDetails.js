@@ -30,25 +30,25 @@ const ProductDetails = (props) => {
             position: "absolute",
             top: 0,
           }}
-          resizeMode="cover"
+          resizeMode="stretch"
           source={{ uri: deal?.postPhotoURL }}
         />
         <SafeAreaView>
           <View style={ProductDStyle.backAndFavCon}>
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() => navigation.goBack()}
-              style={ProductDStyle.backIconCon}
             >
               <View style={ProductDStyle.backIcon}>
                 <BackArrow />
               </View>
-              <Text style={ProductDStyle.backText}>Back</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 Alert.alert("asfsdfsadf");
               }}
               style={ProductDStyle.favourit}
+              activeOpacity={0.7}
             >
               <FavouritIcon />
             </TouchableOpacity>

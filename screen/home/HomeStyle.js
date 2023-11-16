@@ -95,9 +95,10 @@ export const HomeStyle = StyleSheet.create({
     // marginTop: 18,
     alignSelf: "center",
     marginBottom: 8,
-    width: 40,
+    width: 50,
     height: 40,
     resizeMode: "stretch",
+    borderRadius: 4,
   },
   storeName: {
     fontSize: 16,

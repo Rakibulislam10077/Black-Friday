@@ -8,7 +8,7 @@ export const useAllStore = (type) => {
   const [allStore, setAllStore] = useState([]);
   const [storeError, setStoreError] = useState(null);
   const [storeDataIsLoading, setStoreDataIsLoading] = useState(true);
-  const [storeRefresh, setStoreRefresh] = useState(0);
+  const [storeRefetch, setStoreRefetch] = useState(0);
   useEffect(() => {
     const getCountry = async () => {
       const userCountry = await AsyncStorage.getItem("selected_country");
@@ -27,8 +27,8 @@ export const useAllStore = (type) => {
         });
     };
     getAllStore();
-  }, [storeRefresh]);
-  return { allStore, storeError, storeDataIsLoading, setStoreRefresh };
+  }, [storeRefetch]);
+  return { allStore, storeError, storeDataIsLoading, setStoreRefetch };
 };
 
 // get all coupon
@@ -37,6 +37,10 @@ export const useAllCoupon = (type) => {
   const [couponError, setCouponError] = useState(null);
   const [couponDataLoading, setCouponDataLoading] = useState(true);
   const [refreshCoupon, setRefreshCoupon] = useState(0);
+  const [
+    refetchCouponForCountryRedeclare,
+    setRefetchCouponForCountryRedeclare,
+  ] = useState(0);
 
   useEffect(() => {
     const getCountry = async () => {
@@ -55,12 +59,13 @@ export const useAllCoupon = (type) => {
         });
     };
     getAllCoupon();
-  }, [refreshCoupon]);
+  }, [refreshCoupon || refetchCouponForCountryRedeclare]);
   return {
     allCoupon,
     couponError,
     couponDataLoading,
     setRefreshCoupon,
+    setRefetchCouponForCountryRedeclare,
   };
 };
 
@@ -156,6 +161,7 @@ export const useSearch = () => {
         .then((response) => response.json())
         .then((data) => {
           setSearchedData(data?.data);
+          setIsLoading(false);
         })
         .catch((error) => {
           setError(error);
@@ -171,4 +177,23 @@ export const useSearch = () => {
     error,
     setRefetch,
   };
+};
+
+export const useGetStoreById = () => {
+  const getStoreById = async (id) => {
+    const res = await fetch(`${APIurl}/store/${id}`);
+    const data = await res.json();
+
+    return data;
+  };
+  return { getStoreById };
+};
+export const useGetStoreByStoreName = () => {
+  const getStoreByStoreName = async (storeName) => {
+    const res = await fetch(`${APIurl}/store/name/${storeName}`);
+    const data = await res.json();
+
+    return data;
+  };
+  return { getStoreByStoreName };
 };

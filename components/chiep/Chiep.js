@@ -5,7 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
 const Chiep = ({
-  cam,
+  campaign,
   setSelectedCampaign,
   setRefreshCoupon,
   campaignDataFromHome,
@@ -15,33 +15,42 @@ const Chiep = ({
 
   const handleCampaignEventListener = (cam) => {
     setSelectedCampaign(cam?.campaignName);
-    setSelectedCampaignColor(cam);
     setRefreshCoupon((prev) => prev + 1);
+    setSelectedCampaignColor(cam);
   };
+
+  console.log(campaign, "0000000000000000000");
+
+  const selectedCampaignId =
+    selectedCampaignColor?._id || campaignDataFromHome?._id;
 
   return (
     <View style={ChiepStyle.chiepContainer}>
       <View style={ChiepStyle.chiepSubContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            handleCampaignEventListener(cam);
-          }}
-          style={[
-            ChiepStyle.chiepItem,
-            {
-              backgroundColor:
-                selectedCampaignColor?._id === cam?._id ? "#E7F0F2" : "#ffffff",
-            },
-          ]}
-        >
-          <Image
-            style={ChiepStyle.chiepItemImage}
-            source={{
-              uri: cam?.campaignPhotoURL,
-            }}
-          />
-          <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
-        </TouchableOpacity>
+        {campaign?.map((cam) => {
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                handleCampaignEventListener(cam);
+              }}
+              style={[
+                ChiepStyle.chiepItem,
+                {
+                  backgroundColor:
+                    selectedCampaignId === cam?._id ? "#E7F0F2" : "#ffffff",
+                },
+              ]}
+            >
+              <Image
+                style={ChiepStyle.chiepItemImage}
+                source={{
+                  uri: cam?.campaignPhotoURL,
+                }}
+              />
+              <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </View>
   );

@@ -13,10 +13,13 @@ import HorizontalStore from "../horizontalStore/HorizontalStore";
 import { Divider } from "react-native-paper";
 import StoreDetails from "../storeDetails/StoreDetails";
 import { useSearch } from "../../hooks/AllHooks";
+import LoadingSpinner from "../../constants/LoadingSpinner";
+
+export let refetchGlobalSearch;
 
 const Search = () => {
-  const { searchedData, setRefetch, setSearchKey } = useSearch();
-
+  const { searchedData, setRefetch, setSearchKey, isLoading } = useSearch();
+  refetchGlobalSearch = setRefetch;
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={SearchStyle.searchContainer}>
@@ -39,13 +42,19 @@ const Search = () => {
         </ScrollView>
       </View>
       <Divider style={SearchStyle.divider} />
-      <View style={{ flex: 1 }}>
-        <ScrollView>
-          {searchedData?.posts?.data?.map((couponData) => {
-            return <StoreDetails key={couponData?._id} couponData={couponData} />;
-          })}
-        </ScrollView>
-      </View>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <View style={{ flex: 1 }}>
+          <ScrollView>
+            {searchedData?.posts?.data?.map((couponData) => {
+              return (
+                <StoreDetails key={couponData?._id} couponData={couponData} />
+              );
+            })}
+          </ScrollView>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
