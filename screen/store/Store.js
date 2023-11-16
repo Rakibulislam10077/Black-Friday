@@ -22,7 +22,6 @@ import NetInfo from "@react-native-community/netinfo";
 
 
 export let refreshStoreDataFromStore;
-export let refreshStoreDataFromStoreForTest;
 
 const Store = () => {
   const navigation = useNavigation();
@@ -34,7 +33,6 @@ const Store = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   refreshStoreDataFromStore = setStoreRefetch;
-  refreshStoreDataFromStoreForTest = setStoreRefetch;
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

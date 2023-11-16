@@ -205,6 +205,8 @@ const Home = () => {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
+                  flex: 1,
+                  height: 400,
                 }}
               >
                 <Text>Loading...</Text>

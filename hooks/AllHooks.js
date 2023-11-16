@@ -9,6 +9,7 @@ export const useAllStore = (type) => {
   const [storeError, setStoreError] = useState(null);
   const [storeDataIsLoading, setStoreDataIsLoading] = useState(true);
   const [storeRefetch, setStoreRefetch] = useState(0);
+  const [storeRefetchTow, setStoreRefetchTow] = useState(0);
   useEffect(() => {
     const getCountry = async () => {
       const userCountry = await AsyncStorage.getItem("selected_country");
@@ -27,8 +28,14 @@ export const useAllStore = (type) => {
         });
     };
     getAllStore();
-  }, [storeRefetch]);
-  return { allStore, storeError, storeDataIsLoading, setStoreRefetch };
+  }, [storeRefetch, storeRefetchTow]);
+  return {
+    allStore,
+    storeError,
+    storeDataIsLoading,
+    setStoreRefetch,
+    setStoreRefetchTow,
+  };
 };
 
 // get all coupon

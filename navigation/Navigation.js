@@ -16,6 +16,7 @@ import {
   Rect,
   Defs,
   Linking,
+  Pressable,
 } from "react-native";
 // import { ClipPath, Defs, G, Path, Rect, Svg } from "react-native-svg";
 import Notification from "../components/notification/Notification";
@@ -69,6 +70,7 @@ const TabScreen = () => {
             tabBarIcon: ({ focused }) => {
               return (
                 <View
+                  onPress={() => console.log("hello")}
                   style={{ alignItems: "center", justifyContent: "center" }}
                 >
                   {focused ? <ActiveHomeIcon /> : <DefaultHomeIcon />}

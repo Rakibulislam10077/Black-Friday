@@ -33,14 +33,8 @@ import {
   refetchHomeStore,
   refetchHomeVoucherData,
 } from "../home/Home";
-import {
-  refreshStoreDataFromStore,
-  refreshStoreDataFromStoreForTest,
-} from "../store/Store";
-import {
-  refreshDataFromCouponPage,
-  refreshDataFromCouponTest,
-} from "../Coupon/Coupon";
+import { refreshStoreDataFromStore } from "../store/Store";
+import { refreshDataFromCouponPage } from "../Coupon/Coupon";
 import { refetchCarousel } from "../../components/carousel/Carousels";
 import { useAllCoupon } from "../../hooks/AllHooks";
 const Account = () => {
@@ -54,8 +48,8 @@ const Account = () => {
   const refetchHomePostCouponData = refetchHomeCouponData;
   const refetchHomePostDealData = refetchHomeDealData;
   const refetchHomePostVoucherData = refetchHomeVoucherData;
-  const refetchStoreDataFromStore = refreshStoreDataFromStoreForTest;
-  const refetchCouponDataFromCoupon = refreshDataFromCouponTest;
+  const refetchStoreDataFromStore = refreshStoreDataFromStore;
+  const refetchCouponDataFromCoupon = refreshDataFromCouponPage;
   const refetchCarouselFromCarousel = refetchCarousel;
   const handleSelectCountry = async (country) => {
     setSelectedCountry(country);
@@ -74,18 +68,6 @@ const Account = () => {
   }, [refetchCountry]);
 
   console.log(allCoupon?.length);
-
-  // const handleSaveAndContinueButton = async () => {
-  //   setModalVisible(false);
-  //   setRefetchCounty((prev) => prev + 1);
-  //   await refetchHomeStoreData((prev) => prev + 1);
-  //   await refetchHomePostCouponData((prev) => prev + 1);
-  //   await refetchHomePostDealData((prev) => prev + 1);
-  //   await refetchHomePostVoucherData((prev) => prev + 1);
-  //   await refetchStoreDataFromStore((prev) => prev + 1);
-  //   await refetchCouponDataFromCoupon((prev) => prev + 1);
-  //   await refetchCarouselFromCarousel((prev) => prev + 1);
-  // };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -224,16 +206,16 @@ const Account = () => {
         </ScrollView>
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={() => {
+          onPress={async () => {
             setModalVisible(false);
             setRefetchCounty((prev) => prev + 1);
-            refetchHomeStoreData((prev) => prev + 1);
-            refetchHomePostCouponData((prev) => prev + 1);
-            refetchHomePostDealData((prev) => prev + 1);
-            refetchHomePostVoucherData((prev) => prev + 1);
-            refetchStoreDataFromStore((prev) => prev + 1);
-            refetchCouponDataFromCoupon((prev) => prev + 1);
-            refetchCarouselFromCarousel((prev) => prev + 1);
+            await refetchHomeStoreData((prev) => prev + 1);
+            await refetchHomePostCouponData((prev) => prev + 1);
+            await refetchHomePostDealData((prev) => prev + 1);
+            await refetchHomePostVoucherData((prev) => prev + 1);
+            await refetchStoreDataFromStore((prev) => prev + 1);
+            await refetchCouponDataFromCoupon((prev) => prev + 1);
+            await refetchCarouselFromCarousel((prev) => prev + 1);
           }}
           style={LoginStyle.saveAndContinueBtn}
         >
