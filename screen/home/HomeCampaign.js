@@ -6,32 +6,27 @@ import { useNavigation } from "@react-navigation/native";
 const HomeCampaign = ({ cam }) => {
   const navigation = useNavigation();
 
-
   const sendData = (cam) => {
     const camName = cam;
     navigation.navigate("CampaignViewPage", { ...camName });
   };
 
   return (
-    <View style={ChiepStyle.chiepContainer}>
-      <View style={ChiepStyle.chiepSubContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            // setSelectedCampaign(cam?.campaignName);
-            sendData(cam);
-          }}
-          style={[ChiepStyle.chiepItem]}
-        >
-          <Image
-            style={ChiepStyle.chiepItemImage}
-            source={{
-              uri: cam?.campaignPhotoURL,
-            }}
-          />
-          <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <TouchableOpacity
+      onPress={() => {
+        // setSelectedCampaign(cam?.campaignName);
+        sendData(cam);
+      }}
+      style={[ChiepStyle.chiepItem]}
+    >
+      <Image
+        style={ChiepStyle.chiepItemImage}
+        source={{
+          uri: cam?.campaignPhotoURL,
+        }}
+      />
+      <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
+    </TouchableOpacity>
   );
 };
 

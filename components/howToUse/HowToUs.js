@@ -3,8 +3,6 @@ import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
 
 const HowToUs = ({ data }) => {
-  console.log(data, "99999999999999999999999999999999999999");
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>

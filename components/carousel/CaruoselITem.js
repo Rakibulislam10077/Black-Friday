@@ -1,11 +1,4 @@
-import {
-  TouchableOpacity,
-  Image,
-  View,
-  Text,
-  FlatList,
-  Dimensions,
-} from "react-native";
+import { TouchableOpacity, Image } from "react-native";
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

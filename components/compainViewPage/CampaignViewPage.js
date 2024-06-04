@@ -38,8 +38,6 @@ const CampaignViewPage = (props) => {
     setRefreshCoupon((prev) => prev + 1);
   }, []);
 
-  console.log(allCoupon, ".....................");
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* header */}
@@ -59,16 +57,12 @@ const CampaignViewPage = (props) => {
       {/* chiep item */}
       <View style={CompainVStyle.chiepContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {/* {campaign?.map((cam) => {
-            return ( */}
           <Chiep
             campaign={campaign}
             setSelectedCampaign={setSelectedCampaign}
             campaignDataFromHome={campaignDataFromHome}
             setRefreshCoupon={setRefreshCoupon}
           />
-          {/* );
-          })} */}
         </ScrollView>
       </View>
       {/* chiep item end */}
@@ -84,13 +78,18 @@ const CampaignViewPage = (props) => {
         </ScrollView>
       </View>
       {/* category item end */}
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "#fff" }}>
         {couponDataLoading ? (
           <LoadingSpinner />
         ) : allCoupon.length === 0 ? (
           <Empty_ViewPage />
         ) : (
-          <ScrollView>
+          <ScrollView
+            contentContainerStyle={{
+              paddingBottom: 50,
+              paddingTop: 20,
+            }}
+          >
             {allCoupon?.map((deal) => {
               return <Deals deal={deal} key={deal?._id} />;
             })}

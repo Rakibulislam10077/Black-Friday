@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const AllStoreStyle = StyleSheet.create({
   storeContainer: {
     width: "48.5%",
-    height: 180,
     backgroundColor: "#fff",
     borderRadius: 12,
     shadowColor: "rgba(0,0,0,0.4)",
@@ -19,8 +18,8 @@ export const AllStoreStyle = StyleSheet.create({
     marginBottom: 10,
   },
   img: {
-    width: 40,
-    height: 40,
+    width: "50%",
+    height: 60,
     resizeMode: "contain",
   },
   storeName: {

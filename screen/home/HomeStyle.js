@@ -83,6 +83,7 @@ export const HomeStyle = StyleSheet.create({
     padding: 5,
     alignItems: "center",
     // justifyContent: "center",
+    paddingHorizontal: 10,
   },
   storeImgCon: {
     height: 40,

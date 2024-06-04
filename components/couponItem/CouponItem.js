@@ -9,8 +9,6 @@ import Empty_ViewPage from "../../Shared/Empty_ViewPage";
 const CouponItem = ({ storeName, postType, store }) => {
   const { couponData, isLoading } = useQueryCoupon(storeName, postType);
 
-  // console.log(".....................", store);
-
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       {isLoading ? (

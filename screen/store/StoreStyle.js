@@ -37,8 +37,6 @@ export const StoreStyle = StyleSheet.create({
   storeItemContainer: {
     backgroundColor: "#fff",
     height: 130,
-    // alignItems: "center",
-    // justifyContent: "center",
     width: "100%",
   },
   allStoreContainer: {
@@ -47,7 +45,7 @@ export const StoreStyle = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
     flex: 1,
-    paddingBottom: 100,
+    paddingBottom: 50,
   },
   allStoreText: {
     fontSize: 16,

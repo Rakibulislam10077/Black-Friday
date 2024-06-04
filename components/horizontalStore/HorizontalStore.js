@@ -13,18 +13,15 @@ const HorizontalStore = ({ store }) => {
       }}
       style={HorizontalSStyle.storeContainer}
     >
-      <View style={HorizontalSStyle.storeSubContainer}>
-        <View style={HorizontalSStyle.imgContainer}>
-          <Image
-            style={{ height: "100%", width: "100%" }}
-            resizeMode="contain"
-            source={{ uri: store?.storePhotoURL }}
-          />
-        </View>
-        <Text numberOfLines={2} style={HorizontalSStyle.storeName}>
-          {store?.storeName}
-        </Text>
+      <View style={HorizontalSStyle.imgContainer}>
+        <Image
+          style={HorizontalSStyle.img}
+          source={{ uri: store?.storePhotoURL }}
+        />
       </View>
+      <Text numberOfLines={2} style={HorizontalSStyle.storeName}>
+        {store?.storeName}
+      </Text>
     </TouchableOpacity>
   );
 };

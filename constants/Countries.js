@@ -9,7 +9,7 @@ export const countries = [
     id: 2,
     name: "Canada",
     sortName: "Canada",
-    img: require("../assets/image/Canada.png"),
+    img: require("../assets/image/canada.png"),
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const countries = [
     id: 4,
     name: "Germany",
     sortName: "Germany",
-    img: require("../assets/image/German.png"),
+    img: require("../assets/image/german.png"),
   },
   {
     id: 5,

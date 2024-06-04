@@ -67,8 +67,6 @@ const Account = () => {
     getCountry();
   }, [refetchCountry]);
 
-  console.log(allCoupon?.length);
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={AccountStyle.headerContainer}>

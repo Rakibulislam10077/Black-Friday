@@ -14,7 +14,7 @@ const VoucherItem = ({ storeName, postType }) => {
       ) : couponData?.length === 0 ? (
         <Empty_ViewPage />
       ) : (
-        <View>
+        <View style={{ flex: 1 }}>
           {couponData?.map((voucher) => {
             return <Voucher voucher={voucher} key={voucher?._id} />;
           })}

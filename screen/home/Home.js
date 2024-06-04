@@ -4,6 +4,7 @@ import {
   Image,
   TouchableOpacity,
   RefreshControl,
+  FlatList,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -191,11 +192,19 @@ const Home = () => {
             />
             {/* ==========category end here=========*/}
             {/* =============chip item start here============== */}
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {campaign?.map((cam) => {
-                return <HomeCampaign key={cam?._id} cam={cam} />;
-              })}
-            </ScrollView>
+            <FlatList
+              data={campaign}
+              contentContainerStyle={{
+                backgroundColor: "#fff",
+                padding: 20,
+                gap: 20,
+              }}
+              horizontal
+              renderItem={({ item }) => {
+                return <HomeCampaign cam={item} />;
+              }}
+              showsHorizontalScrollIndicator={false}
+            />
             {/* =============chip item end here============== */}
             {/* =============carousel start here============== */}
             <Carousels />
@@ -247,14 +256,15 @@ const Home = () => {
                       <Text style={HomeStyle.seeAllText}>See All</Text>
                     </TouchableOpacity>
                   </View>
-                  <ScrollView
-                    horizontal={true}
+                  <FlatList
+                    data={allStore}
+                    renderItem={({ item }) => {
+                      return <HomeStore store={item} />;
+                    }}
+                    horizontal
+                    contentContainerStyle={{ paddingRight: 20 }}
                     showsHorizontalScrollIndicator={false}
-                  >
-                    {allStore?.map((store) => {
-                      return <HomeStore store={store} key={store?._id} />;
-                    })}
-                  </ScrollView>
+                  />
                 </View>
                 {/* ============== top store ends here ========================= */}
                 {/* ============Best coupon section start here ================= */}

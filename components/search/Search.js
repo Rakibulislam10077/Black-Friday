@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,6 +21,7 @@ export let refetchGlobalSearch;
 const Search = () => {
   const { searchedData, setRefetch, setSearchKey, isLoading } = useSearch();
   refetchGlobalSearch = setRefetch;
+  console.log(searchedData?.posts?.data?.length);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={SearchStyle.searchContainer}>
@@ -35,18 +37,24 @@ const Search = () => {
       </View>
       <Text style={SearchStyle.resultText}>Result</Text>
       <View style={SearchStyle.searchResultStoreCon}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {searchedData?.stores?.data.map((store) => {
-            return <HorizontalStore key={store?._id} store={store} />;
-          })}
-        </ScrollView>
+        <FlatList
+          horizontal
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+            gap: 10,
+          }}
+          data={searchedData?.stores?.data}
+          renderItem={({ item }) => {
+            return <HorizontalStore store={item} />;
+          }}
+        />
       </View>
       <Divider style={SearchStyle.divider} />
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         <View style={{ flex: 1 }}>
-          <ScrollView>
+          <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
             {searchedData?.posts?.data?.map((couponData) => {
               return (
                 <StoreDetails key={couponData?._id} couponData={couponData} />

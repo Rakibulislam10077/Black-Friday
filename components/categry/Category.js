@@ -1,9 +1,7 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import React, { useState } from "react";
 import { CategoryStyle } from "./CategoryStyle";
-import { Electronics, Fashion, Newest, Tranding } from "../../constants/AllSvg";
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
   const navigation = useNavigation();
@@ -11,39 +9,45 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
 
   return (
     <View style={CategoryStyle.categoryItemContainer}>
-      <View style={CategoryStyle.categoryItemSubContainer}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {categoryData?.map((category) => {
-            return (
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={() => {
-                  setSelectedCategory(category?.categoryName);
-                  setRefreshCoupon((prev) => prev + 1);
-                  setSelectedCategoryColor(category);
-                }}
-                key={category?._id}
-                style={[
-                  CategoryStyle.categoryItem,
-                  {
-                    backgroundColor:
-                      selectedCategoryColor?._id === category?._id
-                        ? "#E7F0F2"
-                        : "#ffffff",
-                  },
-                ]}
-              >
-                {/* {cgImg.map((c) => {
-                  return c;
-                })} */}
-                <Text style={CategoryStyle.categoryItemText}>
-                  {category?.categoryName}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </View>
+      <FlatList
+        horizontal
+        contentContainerStyle={{
+          paddingVertical: 10,
+          paddingHorizontal: 20,
+          gap: 10,
+        }}
+        showsHorizontalScrollIndicator={false}
+        data={categoryData}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => {
+                setSelectedCategory(item?.categoryName);
+                setRefreshCoupon((prev) => prev + 1);
+                setSelectedCategoryColor(item);
+              }}
+              key={item?._id}
+              style={[
+                CategoryStyle.categoryItem,
+                {
+                  backgroundColor:
+                    selectedCategoryColor?._id === item?._id
+                      ? "#E7F0F2"
+                      : "#ffffff",
+                },
+              ]}
+            >
+              {/* {cgImg.map((c) => {
+              return c;
+            })} */}
+              <Text style={CategoryStyle.categoryItemText}>
+                {item?.categoryName}
+              </Text>
+            </TouchableOpacity>
+          );
+        }}
+      />
     </View>
   );
 };

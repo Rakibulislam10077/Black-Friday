@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, FlatList } from "react-native";
 import React, { useState } from "react";
 import { ChiepStyle } from "./ChiepStyle";
 import { ScrollView } from "react-native-gesture-handler";
@@ -19,38 +19,48 @@ const Chiep = ({
     setSelectedCampaignColor(cam);
   };
 
-  console.log(campaign, "0000000000000000000");
-
   const selectedCampaignId =
     selectedCampaignColor?._id || campaignDataFromHome?._id;
 
   return (
     <View style={ChiepStyle.chiepContainer}>
       <View style={ChiepStyle.chiepSubContainer}>
-        {campaign?.map((cam) => {
-          return (
-            <TouchableOpacity
-              onPress={() => {
-                handleCampaignEventListener(cam);
-              }}
-              style={[
-                ChiepStyle.chiepItem,
-                {
-                  backgroundColor:
-                    selectedCampaignId === cam?._id ? "#E7F0F2" : "#ffffff",
-                },
-              ]}
-            >
-              <Image
-                style={ChiepStyle.chiepItemImage}
-                source={{
-                  uri: cam?.campaignPhotoURL,
+        <FlatList
+          data={campaign}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingVertical: 10,
+            paddingHorizontal: 20,
+            gap: 10,
+          }}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  handleCampaignEventListener(item);
                 }}
-              />
-              <Text style={ChiepStyle.chiepItemText}>{cam?.campaignName}</Text>
-            </TouchableOpacity>
-          );
-        })}
+                style={[
+                  ChiepStyle.chiepItem,
+                  {
+                    backgroundColor:
+                      selectedCampaignId === item?._id ? "#E7F0F2" : "#ffffff",
+                  },
+                ]}
+              >
+                <Image
+                  style={ChiepStyle.chiepItemImage}
+                  source={{
+                    uri: item?.campaignPhotoURL,
+                  }}
+                />
+                <Text style={ChiepStyle.chiepItemText}>
+                  {item?.campaignName}
+                </Text>
+              </TouchableOpacity>
+            );
+          }}
+        />
       </View>
     </View>
   );

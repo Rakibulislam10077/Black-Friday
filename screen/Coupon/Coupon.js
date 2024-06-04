@@ -98,6 +98,9 @@ const Coupon = () => {
               refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
               }
+              contentContainerStyle={{
+                paddingBottom: 50,
+              }}
             >
               {allCoupon?.map((couponData) => {
                 return (

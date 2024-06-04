@@ -17,8 +17,8 @@ import { useNavigation } from "@react-navigation/native";
 import { VerifiedIcon } from "../../constants/AllSvg";
 import { getExpireInAtDays } from "../../utils/formattedDate";
 
+const screenHeight = Dimensions.get("screen").height;
 export default function CouponAndDealCart(props) {
-  const screenHeight = Dimensions.get("screen").height;
   const navigation = useNavigation();
   const data = props?.route?.params;
   const showToastWithGravity = () => {
@@ -31,7 +31,6 @@ export default function CouponAndDealCart(props) {
     );
     Clipboard.setString(data?.couponCode);
   };
-
 
   return (
     <SafeAreaView
@@ -60,15 +59,13 @@ export default function CouponAndDealCart(props) {
                 resizeMode="stretch"
               />
             </View>
-            <View>
-              <Text style={styles.BSstoreN}>{data?.store?.storeName}</Text>
-            </View>
-            <View>
-              <Text style={styles.BSstorePt}>{data?.postTitle}</Text>
-            </View>
+
+            <Text style={styles.BSstoreN}>{data?.store?.storeName}</Text>
+            <Text style={styles.BSstorePt}>{data?.postTitle}</Text>
+
             <View style={{ width: "80%", alignSelf: "center" }}>
               <Text style={styles.postDescription}>
-                {data?.postDescription}
+                {data?.postDescription?.slice(0, 200)}
               </Text>
             </View>
             <View style={styles.BScouponCodeCon}>
@@ -138,7 +135,14 @@ export default function CouponAndDealCart(props) {
               days
             </Text>
           </View>
-          <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
+          <View
+            style={{
+              flex: 1,
+              width: "100%",
+              alignItems: "center",
+              paddingBottom: 20,
+            }}
+          >
             <TouchableOpacity
               onPress={() => {
                 Linking.openURL(
@@ -150,7 +154,8 @@ export default function CouponAndDealCart(props) {
                 width: "80%",
                 height: 50,
                 borderRadius: 30,
-                marginVertical: 20,
+                marginBottom: 20,
+                marginTop: "auto",
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -214,13 +219,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "relative",
     justifyContent: "center",
-    // backgroundColor: "#fff",
     backgroundColor: "rgba(255, 255, 255, 0.8)",
-    // backgroundColor: "transparent",
     width: "90%",
     alignSelf: "center",
-    maxHeight: 600,
-    flex: 1,
+    height: screenHeight * 0.75,
+    // flex: 1,
     borderRadius: 20,
     shadowColor: "rgba(0,0,0,0.4)",
     elevation: 15,

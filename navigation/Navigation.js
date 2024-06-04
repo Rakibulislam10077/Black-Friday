@@ -70,7 +70,6 @@ const TabScreen = () => {
             tabBarIcon: ({ focused }) => {
               return (
                 <View
-                  onPress={() => console.log("hello")}
                   style={{ alignItems: "center", justifyContent: "center" }}
                 >
                   {focused ? <ActiveHomeIcon /> : <DefaultHomeIcon />}
