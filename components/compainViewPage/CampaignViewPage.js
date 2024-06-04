@@ -27,11 +27,15 @@ const CampaignViewPage = (props) => {
   const { campaign } = useCampaign();
   const [selectedCampaign, setSelectedCampaign] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [categoryActive, setCategoryActice] = useState(false);
   const { allCoupon, couponDataLoading, setRefreshCoupon } = useAllCoupon(
     `${selectedCampaign && `&campaignName=${selectedCampaign}`}&${
-      selectedCategory && `categoryName=${selectedCategory}`
+      selectedCategory &&
+      categoryActive === true &&
+      `categoryName=${selectedCategory}`
     }`
   );
+  console.log(categoryActive);
   const { categoryData } = useAllCategory();
   useLayoutEffect(() => {
     setSelectedCampaign(campaignDataFromHome?.campaignName);
@@ -74,6 +78,8 @@ const CampaignViewPage = (props) => {
             setSelectedCategory={setSelectedCategory}
             setRefreshCoupon={setRefreshCoupon}
             categoryData={categoryData}
+            setCategoryActice={setCategoryActice}
+            categoryActive={categoryActive}
           />
         </ScrollView>
       </View>

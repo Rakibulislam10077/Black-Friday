@@ -9,6 +9,8 @@ const HomeCategory = ({
   setRefreshCoupon,
   refreshVoucher,
   refreshDeal,
+  categoryActive,
+  setCategoryActice,
 }) => {
   const [selectedCategoryColor, setSelectedCategoryColor] = useState(null);
 
@@ -31,13 +33,15 @@ const HomeCategory = ({
                 refreshDeal((prev) => prev + 1);
                 refreshVoucher((prev) => prev + 1);
                 setSelectedCategoryColor(item);
+                setCategoryActice(!categoryActive);
               }}
               key={item?._id}
               style={[
                 CategoryStyle.categoryItem,
                 {
                   backgroundColor:
-                    selectedCategoryColor?._id === item?._id
+                    selectedCategoryColor?._id === item?._id &&
+                    categoryActive === true
                       ? "#E7F0F2"
                       : "#ffffff",
                 },

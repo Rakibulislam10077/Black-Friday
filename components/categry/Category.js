@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { CategoryStyle } from "./CategoryStyle";
 import { useNavigation } from "@react-navigation/native";
 
-const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
+const Category = ({
+  categoryData,
+  setSelectedCategory,
+  setRefreshCoupon,
+  setCategoryActice,
+  categoryActive,
+}) => {
   const navigation = useNavigation();
   const [selectedCategoryColor, setSelectedCategoryColor] = useState(null);
 
@@ -26,21 +32,19 @@ const Category = ({ categoryData, setSelectedCategory, setRefreshCoupon }) => {
                 setSelectedCategory(item?.categoryName);
                 setRefreshCoupon((prev) => prev + 1);
                 setSelectedCategoryColor(item);
+                setCategoryActice(!categoryActive);
               }}
               key={item?._id}
               style={[
                 CategoryStyle.categoryItem,
                 {
                   backgroundColor:
-                    selectedCategoryColor?._id === item?._id
+                    selectedCategoryColor?._id === item?._id && categoryActive
                       ? "#E7F0F2"
                       : "#ffffff",
                 },
               ]}
             >
-              {/* {cgImg.map((c) => {
-              return c;
-            })} */}
               <Text style={CategoryStyle.categoryItemText}>
                 {item?.categoryName}
               </Text>

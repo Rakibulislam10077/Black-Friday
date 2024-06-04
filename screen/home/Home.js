@@ -48,6 +48,8 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const { allStore, storeError, setStoreRefetch } = useAllStore("limit=6");
   const [visible, setVisible] = React.useState(false);
+  const [categoryActive, setCategoryActice] = useState(false);
+  console.log(categoryActive);
   const {
     allCoupon: couponData,
     couponDataLoading,
@@ -55,18 +57,22 @@ const Home = () => {
     setRefreshCoupon,
   } = useAllCoupon(
     `postType=Coupon&limit=6${
-      selectedCategory && `&categoryName=${selectedCategory}&limit=6`
+      categoryActive === true && `&categoryName=${selectedCategory}&limit=6`
     }`
   );
   const { allCoupon: dealData, setRefreshCoupon: refreshDeal } = useAllCoupon(
     `postType=Deal&limit=6${
-      selectedCategory && `&categoryName=${selectedCategory}&limit=6`
+      selectedCategory &&
+      categoryActive === true &&
+      `&categoryName=${selectedCategory}&limit=6`
     }`
   );
   const { allCoupon: voucherData, setRefreshCoupon: refreshVoucher } =
     useAllCoupon(
       `postType=Voucher&limit=6${
-        selectedCategory && `&categoryName=${selectedCategory}&limit=6`
+        selectedCategory &&
+        categoryActive === true &&
+        `&categoryName=${selectedCategory}&limit=6`
       }`
     );
   const { categoryData } = useAllCategory();
@@ -189,6 +195,8 @@ const Home = () => {
               setRefreshCoupon={setRefreshCoupon}
               refreshDeal={refreshDeal}
               refreshVoucher={refreshVoucher}
+              categoryActive={categoryActive}
+              setCategoryActice={setCategoryActice}
             />
             {/* ==========category end here=========*/}
             {/* =============chip item start here============== */}
