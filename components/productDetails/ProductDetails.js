@@ -100,7 +100,7 @@ const ProductDetails = (props) => {
           </View>
         </ScrollView>
         <TouchableOpacity
-          onPress={() => Linking.openURL(deal?.dealLink)}
+          onPress={() => Linking.openURL("http://" + deal?.dealLink)}
           activeOpacity={0.7}
           style={ProductDStyle.ClaimButton}
         >

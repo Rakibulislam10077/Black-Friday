@@ -49,7 +49,6 @@ const Home = () => {
   const { allStore, storeError, setStoreRefetch } = useAllStore("limit=6");
   const [visible, setVisible] = React.useState(false);
   const [categoryActive, setCategoryActice] = useState(false);
-  console.log(categoryActive);
   const {
     allCoupon: couponData,
     couponDataLoading,

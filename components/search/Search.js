@@ -21,7 +21,6 @@ export let refetchGlobalSearch;
 const Search = () => {
   const { searchedData, setRefetch, setSearchKey, isLoading } = useSearch();
   refetchGlobalSearch = setRefetch;
-  console.log(searchedData?.posts?.data?.length);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={SearchStyle.searchContainer}>

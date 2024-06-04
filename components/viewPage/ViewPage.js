@@ -327,14 +327,8 @@ const ViewStore = (props) => {
         onBackButtonPress={() => setModalVisible(false)}
         swipeDirection="down"
         onSwipeComplete={() => toggleModal()}
-        animationIn="bounceInUp"
-        animationOut="bounceOutDown"
-        animationInTiming={900}
-        animationOutTiming={500}
         isVisible={modalVisible}
         style={NotifyStyle.modal}
-        backdropTransitionInTiming={500}
-        backdropTransitionOutTiming={300}
       >
         <View style={NotifyStyle.modalContent}>
           <View style={NotifyStyle.insideToggleBar}></View>

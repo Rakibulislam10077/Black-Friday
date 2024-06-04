@@ -35,7 +35,6 @@ const CampaignViewPage = (props) => {
       `categoryName=${selectedCategory}`
     }`
   );
-  console.log(categoryActive);
   const { categoryData } = useAllCategory();
   useLayoutEffect(() => {
     setSelectedCampaign(campaignDataFromHome?.campaignName);
