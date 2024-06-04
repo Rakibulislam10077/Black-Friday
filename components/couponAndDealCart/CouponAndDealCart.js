@@ -65,7 +65,7 @@ export default function CouponAndDealCart(props) {
 
             <View style={{ width: "80%", alignSelf: "center" }}>
               <Text style={styles.postDescription}>
-                {data?.postDescription?.slice(0, 200)}
+                {data?.postDescription?.slice(0, 150)}
               </Text>
             </View>
             <View style={styles.BScouponCodeCon}>
@@ -145,9 +145,7 @@ export default function CouponAndDealCart(props) {
           >
             <TouchableOpacity
               onPress={() => {
-                Linking.openURL(
-                  data?.externalLink || data?.store?.storeExternalLink
-                );
+                Linking.openURL("http://" + data?.dealLink || data?.storeLink);
               }}
               style={{
                 backgroundColor: "#283d27",

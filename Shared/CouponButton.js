@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const CouponButton = ({ couponData, children, coupon, store }) => {
+const CouponButton = ({ couponData, children, coupon, store, item }) => {
   const navigation = useNavigation();
   const [clickedButton, setClickedButton] = useState(false);
   return (
@@ -14,6 +14,7 @@ const CouponButton = ({ couponData, children, coupon, store }) => {
           ...couponData,
           ...coupon,
           ...store,
+          ...item,
         });
       }}
     >
